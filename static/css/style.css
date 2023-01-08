@@ -434,7 +434,7 @@ button {
     margin: 0 auto;
     text-align: center;
     min-height: 90px;
-    background-image: url(../images/tiles-img.png);
+    background-image: url(../images/Health.png);
     background-repeat: no-repeat;
 }
 .tiles_img_1 {
@@ -442,7 +442,7 @@ button {
     margin: 0 auto;
     text-align: center;
     min-height: 90px;
-    background-image: url(../images/carpet-img.png);
+    background-image: url(../images/Health.png);
     background-repeat: no-repeat;
 }
 .tile_text{
@@ -458,7 +458,6 @@ button {
     float: left;
     font-size: 16px;
     color: #000000;
-    text-align: center;
     margin-left: 0px;
     font-weight: 500;
 }

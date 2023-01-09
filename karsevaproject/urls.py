@@ -19,8 +19,10 @@ from django.urls import path, include
 from django.contrib.auth import views as auth_views
 from django.conf import settings
 from django.conf.urls.static import static
+from django.shortcuts import redirect
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('karseva.urls')),
     path('', include('pwa.urls')),
+    path('', lambda req: redirect('/index')),
 ]

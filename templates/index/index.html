@@ -11,33 +11,24 @@
   <div class="container-fluid">
     <div class="row">
       <div class="col-md-3">
-        <div class="logo"><a href="index.html"><h1 style="font-family: Verdana, Geneva, Tahoma, sans-serif;font-weight: bold;color: aliceblue;">KARSEVA</h1></div>
+        <div class="logo"><a href="index.html"><h1 style="font-family: Verdana, Geneva, Tahoma, sans-serif;font-weight: bold;color: aliceblue;">KARSEVA</h1></a></div>
       </div>
       <div class="col-md-9">
         <div class="menu_text">
           <ul>
             <div class="togle_3">
               <div class="menu_main">
-                <div class="padding_left0"><a href="#">Register</a>
-                <span class="padding_left0"><a href="#">Login</a></span></div>
+                {% if not user.is_authenticated %}
+                <div class="padding_left0"><a  href="#" data-toggle="modal" data-target="#registerModal2">Register</a>
+                <span class="padding_left0"><a href="#" data-toggle="modal" data-target="#loginModal2">Login</a></span></div>
+                {% else %}
+                <h3>{{request.user.first_name}}</h3>
+                {% endif %}   
               </div>
-              <div class="shoping_bag"><img src="{% static 'images/index/search-icon.png' %}"></div>
+              
             </div> 
-            <div id="myNav" class="overlay">
-            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-            <div class="overlay-content">
-              <a href="index.html">Home</a>
-              <a href="services.html">Services</a>
-              <a href="about.html">About</a>
-              <a href="choose.html">Choose</a>
-              <a href="team.html">Team</a>
-              <a href="contact.html">Contact Us</a>
-            </div>
-            </div>
-            <span class="navbar-toggler-icon"></span>
-            <span onclick="openNav()"><img src="{% static 'images/index/toggle-icon.png' %}" class="toggle_menu"></span>
-          </ul>
-        </div>      
+            </ul>
+        </div>   
       </div>
     </div>
   </div>
@@ -49,7 +40,7 @@
         <h1 class="banner_taital_1" style="color: rgb(242, 187, 21);">No one cares</h1> 
         <h1 class="banner_taital_1">Until Someone cares;</h1>
         <h2 class="banner_taital_1" style="color: rgb(33, 175, 17);">be that one! </h2>
-        <div class="contact_bt"><a href="contact.html">SIGN UP<span class="contact_padding"><img src="{% static 'images/index/contact-icon.png' %}"></span></a></div>
+        <div class="contact_bt"><a href="contact.html">Register<span class="contact_padding"><img src="{% static 'images/index/contact-icon.png' %}"></span></a></div>
       </div>
       <div class="col-sm-2">
         <div class="play_icon"><a href="#"><img src="{% static 'images/index/phone_icon.png' %}"></a></div>
@@ -268,8 +259,9 @@
   </div>
 </div>
     <!-- copyright section end -->
-    
-   
+  
+<!-- modal -->
+{% include 'user/login.html' %} 
 <script>
   function openNav() {
   document.getElementById("myNav").style.width = "100%";

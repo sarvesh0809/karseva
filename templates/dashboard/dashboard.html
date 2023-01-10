@@ -1,0 +1,10 @@
+{% extends 'partials/base.html' %}
+{% block title %} Karseva {% endblock %}
+{% block index %}
+{% load static %}
+
+{% if user.is_authenticated %}
+    <p>Welcome, {{ user.username }} !</p>
+
+{% endif %}
+{% endblock %}

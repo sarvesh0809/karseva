@@ -39,7 +39,7 @@ def userSignup(request):
             # emergencyContactNumber = request.POST.get('emergencyContactNumber','')
             user = User.objects.create(username= email,password=make_password(password),first_name=firstName,last_name=lastName)
             UserType.objects.create(user=user,user_type=userType,)
-            UserContactInfo.objects.create(user=user,PrimaryPhoneNumber=phoneNumber)
+            UserContactInfo.objects.create(user=user,primaryPhoneNumber=phoneNumber)
             response_data['message'] = 200
         except Exception as e:
             response_data['message'] = f'{e}'
@@ -57,7 +57,7 @@ def checkEmail(request):
         else:
             response_data['message'] = 200
     elif phoneNumber:
-        if UserContactInfo.objects.filter(PrimaryPhoneNumber=phoneNumber).exists():
+        if UserContactInfo.objects.filter(primaryPhoneNumber=phoneNumber).exists():
             response_data['message'] = 400
         else:
             response_data['message'] = 200

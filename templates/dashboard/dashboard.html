@@ -1,10 +1,22 @@
-{% extends 'partials/base.html' %}
-{% block title %} Karseva {% endblock %}
-{% block index %}
 {% load static %}
 
+<!-- {{user.usertype.user_type }} -->
 {% if user.is_authenticated %}
-    <p>Welcome, {{ user.username }} !</p>
+<link rel="stylesheet" href="{% static 'css/bootstrap/webpixels.css' %}">
+<style>
+/* Bootstrap Icons */
+@import url("https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.4.0/font/bootstrap-icons.min.css");
+.navbar-vertical .navbar-nav {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+}
 
+</style>
+{% if user.usertype.user_type == 'USER' %}
+{% include 'dashboard/user_dashboard.html' %}
+{% elif user.usertype.user_type == 'VOLUNTEER'  %}
+{% include 'dashboard/volunteer_dashboard.html' %}
+{% elif user.usertype.user_type == 'ADMIN'  %}
+{% include 'dashboard/admin_dashboard.html' %}
 {% endif %}
-{% endblock %}
+{% endif %}

@@ -18,3 +18,8 @@ class CustomizedUserAdmin (UserAdmin):
 
 admin.site.unregister(User)
 admin.site.register(User,CustomizedUserAdmin)
+admin.site.register(ServiceCategory)
+admin.site.register(RequestStatus)
+admin.site.register(ServiceSubCategory)
+admin.site.register(Rating)
+admin.site.register(ServiceRequest)

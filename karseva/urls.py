@@ -1,4 +1,4 @@
-from . import accounts,users,views
+from . import accounts,users,views,volunteer
 from django.urls import path,include
 from django.conf.urls import url
 from django.conf import settings
@@ -22,6 +22,12 @@ urlpatterns = [
 
     #dashboard
     path('dashboard',views.dashboard, name='dashboard'),
+
+
+    #volunteer
+    path('user_requests',volunteer.user_requests, name='user_requests'),
+    path('volunteer_view_page',volunteer.volunteer_view_page, name='volunteer_view_page'),
+
 
 
 ]

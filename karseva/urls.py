@@ -25,9 +25,12 @@ urlpatterns = [
 
 
     #volunteer
+    path('volunteerprofile',volunteer.volunteerprofile, name='volunteerprofile'),
     path('user_requests',volunteer.user_requests, name='user_requests'),
     path('volunteer_view_page',volunteer.volunteer_view_page, name='volunteer_view_page'),
 
+    # userprofile
+    path('userprofile',users.userprofile, name='userprofile'),
 
 
 ]

@@ -15,3 +15,10 @@ def volunteer_view_page(request):
 
     }
     return render(request, 'volunteer/volunteer_view_page.html', context)
+
+@login_required(login_url='login')
+def volunteerprofile(request):
+    context={
+
+    }
+    return render(request, 'volunteer/volunteerprofile.html', context)

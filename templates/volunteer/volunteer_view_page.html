@@ -37,12 +37,7 @@ body {
     cursor: pointer;
   }
 </style>
-<head>
-  
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
-<head>
-<body>
+
 
 <div class="container rounded bg-white mt-5">
   <h1>Task View Page</h1>
@@ -51,9 +46,10 @@ body {
         <div class="col-md-12">
             <div class="p-3 py-5">
                 <form>
+                  {% for service in services %}
                   <div class="row mt-2">
-                      <div class="col-md-4"><label>Requestor</label><input type="text" class="form-control"  ></div>
-                      <div class="col-md-4"><label>SubCategory</label><input type="text" class="form-control" ></div>
+                      <div class="col-md-4"><label>Requestor</label><input type="text" class="form-control" value="{{ service.requestor}}" ></div>
+                      <div class="col-md-4"><label>SubCategory</label><input type="text" class="form-control" value="{{service.subCategory}}"></div>
                       <div class="col-md-4 dropdown" ><label>Status</label><br>
                         <button class="btn btn-info dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                           -------
@@ -68,44 +64,45 @@ body {
                   <div class="row mt-3">                   
                       <div class="col-md-6">
                         <label for="date">Request Time In Bound</label>&nbsp<i class="fa fa-calendar"></i>
-                        <input id='datepicker1' class="form-control input-group date">
-                      </div>
+                        <input id='Time In Bound' type="datetime-local" class="form-control input-group date" value="{{service.requestTimeInBound}}">
+                        
                       <div class="col-md-6">
                         <label for="date">Request Time Out Bound</label>&nbsp<i class="fa fa-calendar"></i>
-                        <input id='datepicker2' class="form-control input-group date">
+                        <input id='Time In Bound' type="datetime-local" class="form-control input-group date" value="{{service.requestTimeInBound}}">
                       </div>
                   </div>
                   <div class="row mt-3">
                     <div class="col-md-6">
                       <label for="date">Actual Time In Bound</label>&nbsp<i class="fa fa-calendar"></i>
-                      <input id='datepicker3' class="form-control input-group date">
+                      <input id='Time In Bound' type="datetime-local" class="form-control input-group date" value="{{service.requestTimeInBound}}">
                     </div>
                     <div class="col-md-6">
                       <label for="date">Actual Time Out Bound</label>&nbsp<i class="fa fa-calendar"></i>
-                      <input id='datepicker4' class="form-control input-group date">
+                      <input id='Time In Bound' type="datetime-local" class="form-control input-group date" value="{{service.requestTimeInBound}}">
                     </div>
                   </div>
                   <div class="row mt-3">
                     <div class="col-md-6">
                       <label for="date">Request Created By</label>&nbsp<i class="fa fa-calendar"></i>
-                      <input id='datepicker5' class="form-control input-group date">
+                      <input id='Time In Bound' type="datetime-local" class="form-control input-group date" value="{{service.requestTimeInBound}}">
                     </div>
                     <div class="col-md-6">
                       <label for="date">Request Created On</label>&nbsp<i class="fa fa-calendar"></i>
-                      <input id='datepicker6' class="form-control input-group date">
+                      <input id='Time In Bound' type="datetime-local" class="form-control input-group date" value="{{service.requestTimeInBound}}">
                     </div>
                   </div>
                   <div class="row mt-3">
-                      <div class="col-md-12"><label>Description</label><input type="textarea" class="form-control" value=""></div>
+                      <div class="col-md-12"><label>Description</label><input type="textarea" class="form-control" value="{{service.description}}"></div>
                   </div>
                   <div class="mt-5 text-right"><button class="btn btn-primary profile-button" type="button">Save</button></div>
+                {% endfor %}
                 </form>
             </div>
         </div>
     </div>
     
   </div>
-  <script type="text/javascript">
+  <!-- <script type="text/javascript">
     $(function() {
         $('#datepicker1').datepicker();
         $('#datepicker2').datepicker();
@@ -114,6 +111,6 @@ body {
         $('#datepicker5').datepicker();
         $('#datepicker6').datepicker();
     });
-  </script>
-</body>
+  </script> -->
+
   {% endblock %}

@@ -1,4 +1,4 @@
-from . import accounts,users,views,volunteer
+from . import accounts,users,views,volunteer,api
 from django.urls import path,include
 from django.conf.urls import url
 from django.conf import settings
@@ -29,8 +29,15 @@ urlpatterns = [
     path('user_requests',volunteer.user_requests, name='user_requests'),
     path('volunteer_view_page',volunteer.volunteer_view_page, name='volunteer_view_page'),
 
-    # userprofile
+    # user
     path('userprofile',users.userprofile, name='userprofile'),
+    path('submit_new_request',users.submit_new_request, name='submit_new_request'),
+
+
+    #api
+    path('category_data_api',api.category_data_api, name='category_data_api'),
+    path('volunteer/category/<str:pk>/',api.volunteer_category, name='volunteer_category'),
+
 
 
 ]

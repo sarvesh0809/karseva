@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'karseva',
     'pwa',
+    'rest_framework',
     'django.contrib.sites',
     'allauth',
     'allauth.account',

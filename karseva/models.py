@@ -3,8 +3,7 @@ from django.contrib.auth.models import User
 from django.utils import timezone
 import pytz
 from django_currentuser.db.models import CurrentUserField
-from django_currentuser.middleware import (
-    get_current_user, get_current_authenticated_user)
+from django_currentuser.middleware import (get_current_user, get_current_authenticated_user)
 timezone.activate(pytz.timezone("Asia/Kolkata"))
 timezone.localtime(timezone.now())
 # Create your models here.
@@ -78,13 +77,14 @@ class ServiceSubCategory(models.Model):
 
 
 class Rating(models.Model):
-    ratingName=models.CharField(max_length=15,choices=Rating_choices,blank=True)
+    ratingName=models.CharField(max_length=15,choices=Rating_choices,blank=True,unique=True)
     ratingNumber = models.IntegerField(blank=True)
     isActive = models.BooleanField(default=True)
     def __str__(self):
         return f'{self.ratingName}'
 
 
+# volunteer view page
 class ServiceRequest(models.Model):
     requestor = models.ForeignKey(User,on_delete=models.SET_NULL,related_name='requestor_name',null=True)
     subCategory = models.ForeignKey(ServiceSubCategory,on_delete=models.SET_NULL,null=True)
@@ -108,6 +108,25 @@ class ServiceRequest(models.Model):
 
     def __str__(self):
         return f'{self.requestor} - {self.subCategory} - {self.requestStatus.statusName} '
+
+
+
+class VolunteerInterest(models.Model):
+    volunteer = models.ForeignKey(User,on_delete=models.CASCADE)
+    interest = models.ForeignKey(ServiceSubCategory,on_delete=models.CASCADE,related_name='interest_name')
+    isActive = models.BooleanField(default=True)
+    class Meta:
+        unique_together = ('volunteer', 'interest',)
+    def __str__(self):
+        return f'{self.volunteer} - {self.interest}'
+
+class UserRatings(models.Model):
+    user = models.OneToOneField(User,on_delete=models.CASCADE,null=True)
+    ratingNumber = models.IntegerField(blank=True,default=0)
+    ratingCount = models.IntegerField(blank=True,default=0)
+    def __str__(self):
+        return f'{self.user} - {self.ratingNumber}'
+
 
 
 

@@ -1,4 +1,4 @@
-{% extends 'volunteer/volunteer_nav.html' %}
+{% extends 'partials/volunteer_nav.html' %}
 {% block title %} User Requests {% endblock %}
 {% load static %}
 {% block content %}
@@ -11,15 +11,18 @@
             <!-- Card stats -->
             <div class="card shadow border-0 mb-7">
                 <div class="card-header">
-                    <h5 class="mb-0">Requests</h5>
+                    <h5 class="mb-0">All Requests</h5>
                 </div>
+                <>
+                
                 <div class="table-responsive">
                     <table class="table table-hover table-nowrap">
                         <thead class="thead-light">
                             <tr>
                                 <th scope="col">Name</th>
                                 <th scope="col">Date</th>
-                                <th scope="col">Location</th>
+                                <th scope="col">End Date</th>
+                                <th scope="col">User Rating</th>
                                 <th scope="col">Service</th>
                                 <th scope="col">Status</th>
                                 <th></th>
@@ -339,6 +342,8 @@
                         </tbody>
                     </table>
                 </div>
+                
+            
                 <div class="card-footer border-0 py-5">
                     <span class="text-muted text-sm">Showing 10 items out of 250 results found</span>
                 </div>

@@ -1,7 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.utils import timezone
-import pytz
+import pytz,random
 from django_currentuser.db.models import CurrentUserField
 from django_currentuser.middleware import (get_current_user, get_current_authenticated_user)
 timezone.activate(pytz.timezone("Asia/Kolkata"))
@@ -86,14 +86,22 @@ class Rating(models.Model):
 
 # volunteer view page
 class ServiceRequest(models.Model):
+    def create_new_unique_no():
+        not_unique = True
+        while not_unique:
+            unique_ref = 'SEVA'+str(random.randint(111111,999999))
+            if not ServiceRequest.objects.filter(unique_no=unique_ref):
+                not_unique = False
+        return str(unique_ref)
+    unique_no = models.CharField(max_length=12,blank=True,default=create_new_unique_no)  
     requestor = models.ForeignKey(User,on_delete=models.SET_NULL,related_name='requestor_name',null=True)
     subCategory = models.ForeignKey(ServiceSubCategory,on_delete=models.SET_NULL,null=True)
     volunteer = models.ForeignKey(User,on_delete=models.SET_NULL, related_name='volunteer_name',null=True)
     requestStatus = models.ForeignKey(RequestStatus,on_delete=models.SET_NULL,null=True)
     requestTimeInBound = models.DateTimeField(default=timezone.localtime(timezone.now()), blank=True)
     requestTimeOutBound = models.DateTimeField(default=timezone.localtime(timezone.now()), blank=True)
-    actualTimeInBound = models.DateTimeField( blank=True)
-    actualTimeOutBound = models.DateTimeField(blank=True)
+    actualTimeInBound = models.DateTimeField( blank=True,null=True)
+    actualTimeOutBound = models.DateTimeField(blank=True,null=True)
     requestCreatedBy = models.ForeignKey(User,on_delete=models.SET_NULL,related_name='request_createdby',null=True)
     requestCreatedOn = models.DateTimeField(default=timezone.localtime(timezone.now()), blank=True)
     lastModifiedBy= models.ForeignKey(User,on_delete=models.SET_NULL,related_name='last_modifiedby',null=True,blank=True)
@@ -107,7 +115,7 @@ class ServiceRequest(models.Model):
     cancelledOn= models.DateTimeField(blank=True,null=True)
 
     def __str__(self):
-        return f'{self.requestor} - {self.subCategory} - {self.requestStatus.statusName} '
+        return f'{self.requestor} - {self.subCategory} '
 
 
 

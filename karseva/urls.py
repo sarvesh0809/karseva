@@ -32,6 +32,7 @@ urlpatterns = [
     # user
     path('userprofile',users.userprofile, name='userprofile'),
     path('submit_new_request',users.submit_new_request, name='submit_new_request'),
+    path('user_request_submit',users.user_request_submit, name='user_request_submit'),
 
 
     #api

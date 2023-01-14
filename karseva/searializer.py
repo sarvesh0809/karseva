@@ -22,6 +22,6 @@ class VolunteerCategory_searializer(serializers.ModelSerializer):
                 return 0
         class Meta:
             model = User
-            fields=['username','phone_number','ratings','is_active']
+            fields=['id','username','phone_number','ratings','is_active']
     except Exception as e:
         print(e)

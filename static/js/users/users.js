@@ -63,8 +63,10 @@ function fecthCategory(){
     })
 }
 
-function fetchVolunteer(){
+function fetchVolunteer(resp){
     if(resp.value==''){
+        $('#volunteer_table').html('');
+
         return false
     }
     fetch('/category_data_api')
@@ -76,16 +78,120 @@ function fetchVolunteer(){
         }, {});
     var subCategoryName = result.subCategoryName
     if(subCategoryName.includes(resp.value)){
-        fetch('/category_data_api')
+        $('#volunteer_table').html('');
+        fetch('/volunteer/category/'+resp.value)
         .then((resp) => resp.json())
         .then(function (data) {
-            const result = Object.keys(data[0]).reduce((obj, key) => {
+            // console.log(data)
+            const result_child_1 = Object.keys(data[0]).reduce((obj, key) => {
                 obj[key] = data.map(_ => _[key]);
                 return obj;
             }, {});
+            var username = result_child_1.username
+            var id = result_child_1.id
+            var phone_number = result_child_1.phone_number
+            var ratings = result_child_1.ratings
+            var is_active = result_child_1.is_active
+            var temp_html=`<div class="card-header" style="display: flex;justify-content: space-between;align-items: center;">
+                    <h5 class="mb-0">Volunteer's</h5>
+                    <form class="form-inline">
+                        <input class="form-control" type="search" placeholder="Search Volunteer" aria-label="Search" id="search" style="background: aliceblue;border: 1px solid;">
+                    </form>
+                    </div><div class="table-responsive">
+                    <table class="table table-hover table-nowrap">
+                        <thead class="thead-light">
+                            <tr>
+                                <th scope="col">Name</th>
+                                <th scope="col">Ratings</th>
+                                <th scope="col">Status</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody id="tbody">`
             
+            for(var i=0;i<=username.length-1;i++){
+                var temp_tr = `<tr class="tr">
+                <td>
+                    <img alt="..." src="https://images.unsplash.com/photo-1502823403499-6ccfcf4fb453?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=3&w=256&h=256&q=80" class="avatar avatar-sm rounded-circle me-2">
+                    <a class="text-heading font-semibold" href="#">
+                        ${username[i]}
+                    </a>
+                </td><td>
+                    <div class="star-ratings">
+                    <div class="fill-ratings" style="width: ${(ratings[i]*100)/5}%;">
+                    <span>🟊🟊🟊🟊🟊</span>
+                    </div>
+                    <div class="empty-ratings">
+                    <span>🟊🟊🟊🟊🟊</span>
+                    </div>
+                </div>
+                    
+                </td><td>
+                    <span class="badge badge-lg badge-dot">
+                        <i class="bg-success"></i>Scheduled
+                    </span>
+                </td> <td class="text-end">
+                    <button type="button" id=${id[i]} class="btn btn-sm btn-neutral volt-btn" onclick="volunteerSelect(this)">Select
+                    </button>
+                </td>`
+                temp_html+=temp_tr
+            }
+            temp_end=`</tbody></table></div>`
+            temp_html+=temp_end
+            $('#volunteer_table').append(temp_html)
         })
        
+    }
+    else{
+        $('#volunteer_table').html('');
+
     }   
     })
 }
+
+function volunteerSelect(resp){
+    $('.volt-btn').html('Select')
+    $('.volt-btn').removeClass('activated')
+    $('.volt-btn').css("background-color", "#fff")
+    $(resp).html('Selected')
+    $(resp).css("background-color", "yellow")
+    $(resp).addClass("activated")
+}
+
+
+
+
+$('#user_submit_request_btn').click(function (e) {
+    e.preventDefault();
+    var c = getCookie('csrftoken');
+    var formData = new FormData($('#service_request_form')[0]);
+    formData.append('csrfmiddlewaretoken', c)
+    try{
+        formData.append('volunteer', $('.activated').attr('id'))
+    }
+    catch(err) {
+        formData.append('volunteer','')
+    }
+    $.ajax({
+        type: 'POST',
+        url:  '/user_request_submit',
+        dataType: 'json',
+        data: formData,
+        cache: false,
+        processData: false,
+        contentType: false,
+        enctype: 'multipart/form-data',
+        success: function (json) {
+            if (json.message==200){
+                alert('Request has been submitted successfully')
+                window.location='/dashboard'
+            }
+            else{
+                alert('It Seems some error has occured')
+            }
+        },   
+        error: function (xhr, errmsg, err) {
+            console.log(xhr.status + ":" + xhr.responseText)
+        }
+    })
+})

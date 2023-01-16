@@ -1,4 +1,4 @@
-from . import accounts,users,views,volunteer,api
+from . import accounts,users,views,volunteer,api,admin_page
 from django.urls import path,include
 from django.conf.urls import url
 from django.conf import settings
@@ -23,6 +23,17 @@ urlpatterns = [
     #dashboard
     path('dashboard',views.dashboard, name='dashboard'),
 
+    # admin
+    
+    path('All_Users',admin_page.All_Users, name='All_Users'),
+    path('ALL_Volunteers',admin_page.ALL_Volunteers, name='ALL_Volunteers'),
+    path('Complaints',admin_page.Complaints, name='Complaints'),
+    path('Feedback',admin_page.Feedback, name='Feedback'),
+    path('Service_Requests',admin_page.Service_Requests, name='Service_Requests'),
+    path('add_service_sub_category',admin_page.add_service_sub_category, name='add_service_sub_category'),
+    path('add_service_category',admin_page.add_service_category, name='add_service_category'),
+    
+
 
     #volunteer
     path('volunteerprofile',volunteer.volunteerprofile, name='volunteerprofile'),
@@ -33,6 +44,10 @@ urlpatterns = [
     path('userprofile',users.userprofile, name='userprofile'),
     path('submit_new_request',users.submit_new_request, name='submit_new_request'),
     path('user_request_submit',users.user_request_submit, name='user_request_submit'),
+    path('load_request_data/<int:pk>/',users.load_request_data, name='load_request_data'),
+    path('view_user_request/<int:pk>/',users.view_user_request, name='view_user_request'),
+    path('view_user_request_submit',users.view_user_request_submit, name='view_user_request_submit'),
+
 
 
     #api

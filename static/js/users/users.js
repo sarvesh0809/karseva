@@ -195,3 +195,179 @@ $('#user_submit_request_btn').click(function (e) {
         }
     })
 })
+
+
+// Load first 5 data
+
+$.ajax({
+    url:  '/load_request_data/0',
+    success: function (data) {
+        var json_data = JSON.parse(data)
+        var data_length = json_data.length-1
+        if(data_length>0){
+        var temp_html = `<table class="table table-hover table-nowrap">
+                        <thead class="thead-light">
+                            <tr>
+                                <th scope="col">Request No</th>
+                                <th scope="col">Volunteer Name</th>
+                                <th scope="col">Requested Date</th>
+                                <th scope="col">Service</th>
+                                <th scope="col">Status</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody id="data_body">`
+        for(var i=0;i<=data_length-1;i++){
+            
+            // console.log(`{{${json_data[i].volunteer}|volunteerCheck}}`)
+            if(json_data[i].requestStatus){
+                if(json_data[i].requestStatus['statusName']=='NEW'){
+                    var status = `<button type="button" class="btn btn-success btn-sm" disabled>NEW</button>`
+                }
+                else if(json_data[i].requestStatus['statusName']=='ASSIGNED'){
+                    var status = `<button type="button" class="btn btn-primary btn-sm" disabled>ASSIGNED</button>`
+
+                }
+                else if(json_data[i].requestStatus['statusName']=='INPROGRESS'){
+                    var status = `<button type="button" class="btn btn-info btn-sm" disabled>INPROGRESS</button>`
+
+                }
+                else if(json_data[i].requestStatus['statusName']=='PENDING'){
+                    var status = `<button type="button" class="btn btn-warning btn-sm" disabled>PENDING</button>`
+
+                }
+                else if(json_data[i].requestStatus['statusName']=='RESOLVED'){
+                    var status = `<button type="button" class="btn btn-danger btn-sm" disabled>RESOLVED</button>`
+
+                }
+                else if(json_data[i].requestStatus['statusName']=='CLOSED'){
+                    var status = `<button type="button" class="btn btn-secondary btn-sm" disabled>CLOSED</button>`
+
+                }
+            }
+            else{
+                var status = `N/A`
+
+            }
+            var temp_tr = `<tr>
+            <td>
+            <b>${json_data[i].unique_no}</b> 
+
+            </td>
+            <td>
+                <img alt="..." src="https://images.unsplash.com/photo-1502823403499-6ccfcf4fb453?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=3&w=256&h=256&q=80" class="avatar avatar-sm rounded-circle me-2">
+                <a class="text-heading font-semibold" href="#">
+                    ${json_data[i].volunteer? `${json_data[i].volunteer['username']}` : 'N/A'} 
+                </a>
+            </td>
+            <td>
+                ${json_data[i].requestCreatedOn}
+
+            </td>
+            <td>
+                ${json_data[i].subCategory.subCategoryName}
+
+            </td>
+            <td>
+            ${status} 
+
+            </td>
+            <td class="text-end">
+                <a href="view_user_request/${json_data[i].id}" class="btn btn-sm btn-neutral">View</a>
+                
+            </td>
+        </tr>
+        `
+        temp_html+=temp_tr
+        }
+        var temp_end = `</tbody></table>`
+        temp_html+=temp_end
+        $('#user_request_table').append(temp_html)
+    }
+    },
+    error: function (xhr, errmsg, err) {
+        console.log(xhr.status + ":" + xhr.responseText)
+    }
+})
+
+var offset=0;
+var myDiv = document.getElementById("user_request_table");
+myDiv.addEventListener("scroll",function(e)
+{
+    e.preventDefault();
+    console.log(myDiv.scrollTop+myDiv.clientHeight,myDiv.scrollHeight)
+    if(myDiv.scrollTop+myDiv.clientHeight<=myDiv.scrollHeight){
+        offset+=10
+
+        $.ajax({
+            url:  '/load_request_data/'+offset,
+            success: function (data) {
+                var json_data = JSON.parse(data)
+                var data_length = json_data.length-1
+                for(var i=0;i<=data_length-1;i++){
+                    if(json_data[i].requestStatus){
+                        if(json_data[i].requestStatus['statusName']=='NEW'){
+                            var status = `<button type="button" class="btn btn-success btn-sm" disabled>NEW</button>`
+                        }
+                        else if(json_data[i].requestStatus['statusName']=='ASSIGNED'){
+                            var status = `<button type="button" class="btn btn-primary btn-sm" disabled>ASSIGNED</button>`
+        
+                        }
+                        else if(json_data[i].requestStatus['statusName']=='INPROGRESS'){
+                            var status = `<button type="button" class="btn btn-info btn-sm" disabled>INPROGRESS</button>`
+        
+                        }
+                        else if(json_data[i].requestStatus['statusName']=='PENDING'){
+                            var status = `<button type="button" class="btn btn-warning btn-sm" disabled>PENDING</button>`
+        
+                        }
+                        else if(json_data[i].requestStatus['statusName']=='RESOLVED'){
+                            var status = `<button type="button" class="btn btn-danger btn-sm" disabled>RESOLVED</button>`
+        
+                        }
+                        else if(json_data[i].requestStatus['statusName']=='CLOSED'){
+                            var status = `<button type="button" class="btn btn-secondary btn-sm" disabled>CLOSED</button>`
+        
+                        }
+                    }
+                    else{
+                        var status = `N/A`
+        
+                    }
+                    var temp_tr = `<tr>
+                    <td>
+                        <b>${json_data[i].unique_no}</b> 
+                    </td>
+                    <td>
+                        <img alt="..." src="https://images.unsplash.com/photo-1502823403499-6ccfcf4fb453?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=3&w=256&h=256&q=80" class="avatar avatar-sm rounded-circle me-2">
+                        <a class="text-heading font-semibold" href="#">
+                            ${json_data[i].volunteer? `${json_data[i].volunteer['username']}` : 'N/A'} 
+                        </a>
+                    </td>
+                    <td>
+                        ${json_data[i].requestCreatedOn}
+        
+                    </td>
+                    <td>
+                    ${json_data[i].subCategory.subCategoryName}
+
+                    
+                    </td>
+                    <td>
+                        ${status} 
+                    </td>
+                    <td class="text-end">
+                        <a href="view_user_request/${json_data[i].id}" class="btn btn-sm btn-neutral">View</a>
+                        
+                    </td>
+                </tr>
+                `
+                $('#data_body').append(temp_tr)
+                }
+            },
+            error: function (xhr, errmsg, err) {
+                console.log(xhr.status + ":" + xhr.responseText)
+            }
+        })
+    }
+});

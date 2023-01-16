@@ -38,7 +38,7 @@ class UserContactInfo(models.Model):
         return f'{self.user}' 
     
 class RequestStatus(models.Model):
-    statusName = models.CharField(max_length=20,blank=True)
+    statusName = models.CharField(max_length=20,blank=True,unique=True)
     isActive = models.BooleanField(default=True)
     def __str__(self):
         return f'{self.statusName} - {self.isActive}' 
@@ -97,7 +97,7 @@ class ServiceRequest(models.Model):
     requestor = models.ForeignKey(User,on_delete=models.SET_NULL,related_name='requestor_name',null=True)
     subCategory = models.ForeignKey(ServiceSubCategory,on_delete=models.SET_NULL,null=True)
     volunteer = models.ForeignKey(User,on_delete=models.SET_NULL, related_name='volunteer_name',null=True)
-    requestStatus = models.ForeignKey(RequestStatus,on_delete=models.SET_NULL,null=True)
+    requestStatus = models.ForeignKey(RequestStatus ,on_delete=models.SET_NULL,null=True)
     requestTimeInBound = models.DateTimeField(default=timezone.localtime(timezone.now()), blank=True)
     requestTimeOutBound = models.DateTimeField(default=timezone.localtime(timezone.now()), blank=True)
     actualTimeInBound = models.DateTimeField( blank=True,null=True)
@@ -115,7 +115,7 @@ class ServiceRequest(models.Model):
     cancelledOn= models.DateTimeField(blank=True,null=True)
 
     def __str__(self):
-        return f'{self.requestor} - {self.subCategory} '
+        return f'{self.requestor} - {self.unique_no} - {self.subCategory} -{self.requestStatus}'
 
 
 

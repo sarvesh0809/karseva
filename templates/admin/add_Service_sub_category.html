@@ -1,0 +1,92 @@
+{% extends 'partials/admin_nav.html' %}
+{% block title %} Add Service Sub Category  {% endblock %}
+{% load static %}
+{% block content %}
+
+<div class="h-screen flex-grow-1 overflow-y-lg-auto">
+    <!-- Main -->
+    <main class="py-6 bg-surface-secondary">
+        <div class="container-fluid">
+            <!-- Card stats -->
+            <div class="card shadow border-0 mb-7">
+                <div class="card-header">
+                    <h3 class="mb-0">Add Service Sub Category</h3>
+                </div>
+                
+                <form class="row m-4 p-4">
+                    
+                    <div class="col-md-6" style="margin-bottom: 4rem;">
+                        <label>Select Service Category</label>
+                        <div class="dropdown">
+                            <button class="btn btn-secondary dropdown-toggle ml-4" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                              Select
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                              <li><a class="dropdown-item" href="#">Action</a></li>
+                              <li><a class="dropdown-item" href="#">Another action</a></li>
+                              <li><a class="dropdown-item" href="#">Something else here</a></li>
+                            </ul>
+                          </div>
+                    </div>
+                    <div class="col-md-6">
+                    <button type="submit" class="btn btn-primary" >Save</button>
+                    </div>
+                    
+                    <div class="table-responsive">
+                        <table class="table table-hover table-nowrap">
+                            <thead class="thead-light">
+                                <tr>
+                                    <th scope="col">Sr. no</th>
+                                    <th scope="col">Service Name</th>
+                                    <th scope="col">Sub Service Name</th>
+                                    
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <img alt="..." src="https://images.unsplash.com/photo-1502823403499-6ccfcf4fb453?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=3&w=256&h=256&q=80" class="avatar avatar-sm rounded-circle me-2">
+                                        <a class="text-heading font-semibold" href="#">
+                                            Robert Fox
+                                        </a>
+                                    </td>
+                                    <td>
+                                        Feb 15, 2021
+                                    </td>
+                                    <td>
+                                        Feb 15, 2021
+                                    </td>
+                                    
+                                    <td class="text-end">
+                                        <a href="#" class="btn btn-sm btn-success">Edit</a>
+                                        <a href="#" class="btn btn-sm btn-danger">Delete</a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <img alt="..." src="https://images.unsplash.com/photo-1610271340738-726e199f0258?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=3&w=256&h=256&q=80" class="avatar avatar-sm rounded-circle me-2">
+                                        <a class="text-heading font-semibold" href="#">
+                                            Darlene Robertson
+                                        </a>
+                                    </td>
+                                    <td>
+                                        Apr 15, 2021
+                                    </td>
+                                    <td>
+                                        Feb 15, 2021
+                                    </td>
+                                    
+                                    
+                                    <td class="text-end">
+                                        <a href="#" class="btn btn-sm btn-success">Edit</a>
+                                        <a href="#" class="btn btn-sm btn-danger">Delete</a>
+                                    </td>
+                                </tr>
+                    </table>
+                </form>
+            </div>
+        </div>
+        
+ </div>
+{% endblock %}

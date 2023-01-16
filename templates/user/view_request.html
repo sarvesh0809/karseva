@@ -1,0 +1,95 @@
+{% extends 'partials/user_nav.html' %}
+{% block title %} User Dashboard {% endblock %}
+{% load static %}
+{% load index %}
+{% block content %}
+
+<style>
+    .goog-te-combo{
+        display: flex;
+        border: none;
+        padding: 10px;
+        cursor: pointer;
+
+    }
+    .goog-te-menu2 { 
+    max-width: 100% !important;
+    overflow: scroll !important;
+    box-sizing:border-box !important; 
+    height:auto !important; 
+    }
+
+</style>
+
+<div class="h-screen flex-grow-1 overflow-y-lg-auto">
+   <div style="margin-left:3px">
+    <div id="google_translate_element"></div>
+   </div>
+       
+
+    <!-- Main -->
+    
+    <main class="py-6 bg-surface-secondary">
+        <div class="container-fluid">
+            <!-- Card stats -->
+            <div class="row g-6 mb-6" id='cards'>
+
+            <!-- 1 -->
+            
+            <div class="col" style="padding:0 !important;">
+                <div class="card shadow p-3 py-5">
+                    <div class="mt-3" style="display: flex;justify-content: space-between;">
+                        Request: <h3>{{request_data.unique_no.value}}</h3>
+                        <button class="btn btn-primary profile-button float-right" id="user_view_request_submit_btn" style="margin-right: 20px;background-color: #519f3d;border: none;" type="button">Submit</button>
+                    </div>
+                    <form id="view_request_form">
+                      <div class="row mt-2">
+                        <div class="col-md-4"><label>Category</label>
+                            <input class="form-control" id="category" name="category" value={{request_data.subCategory.subCategoryName.value}} list="category_list" type="text" placeholder="" readonly>
+                        </div>
+                        <div class="col-md-4"><label>Description</label>
+                            <textarea class="form-control"  id="description" name="description" value={{request_data.description.value}} rows="1" cols="50"></textarea>
+                        </div>
+                        <div class="col" >
+                            <label>Status</label>
+                            {% if request_data.requestStatus.statusName.value != 'RESOLVED' %}
+                            <select class="form-select" name="status" disabled>
+                                <option {% if request_data.requestStatus.statusName.value == 'NEW' %}selected{% endif %}>NEW</option>
+                                <option value="ASSIGNED"{% if request_data.requestStatus.statusName.value == 'ASSIGNED' %}selected{% endif %}>ASSIGNED</option>
+                                <option value="INPROGRESS"{% if request_data.requestStatus.statusName.value == 'INPROGRESS' %}selected{% endif %}>INPROGRESS</option>
+                                <option value="PENDING"{% if request_data.requestStatus.statusName.value == 'PENDING' %}selected{% endif %}>PENDING</option>
+                            {% else %}
+                            <select class="form-select" name="status"  >
+                                <option value="RESOLVED"{% if request_data.requestStatus.statusName.value == 'RESOLVED' %}selected{% endif %}>RESOLVED</option>
+                                <option value="CLOSED"{% if request_data.requestStatus.statusName.value == 'CLOSED' %}selected{% endif %}>CLOSED</option>
+                            {% endif %}
+                            </select>
+                        </div>
+                      
+                      <div class="row mt-3">                   
+                          <div class="col-md-6">
+                            <label for="date">Request Time In Bound</label>&nbsp<i class="fa fa-calendar"></i>
+                            <input id='Time In Bound' type="datetime-local" name="time_in" value="{{request_data.requestTimeInBound.value|formatDate}}" class="form-control input-group date">
+                          </div>
+                          <div class="col-md-6">
+                            <label for="date">Request Time Out Bound</label>&nbsp<i class="fa fa-calendar"></i>
+                            <input id='Time Out Bound' type="datetime-local" name="time_out" value="{{request_data.requestTimeOutBound.value}}"  class="form-control input-group date">
+                          </div>
+                      </div>
+                    </form>
+                </div>
+            </div>
+    </main>
+</div>
+<script src="{% static 'js/users/users.js' %}"></script>
+<script type="text/javascript">
+    //  model.niceSelect('destroy').niceSelect();
+    
+    function googleTranslateElementInit() {
+      new google.translate.TranslateElement({pageLanguage: 'en', includedLanguages : 'hi,en,mr,ms,gu,kn,ta'},'google_translate_element');
+    }
+</script>
+
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+{% endblock %}

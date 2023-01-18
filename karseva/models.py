@@ -17,7 +17,7 @@ Rating_choices=(
     ('VERY GOOD','VERY GOOD'),
     ('GOOD', 'GOOD'),
     ('FAIR', 'FAIR'),
-    ('POOR', 'GOOD'),
+    ('POOR', 'POOR'),
     ('VERY POOR', 'VERY POOR'),
 )
 
@@ -34,6 +34,12 @@ class UserContactInfo(models.Model):
     primaryPhoneNumber = models.CharField(max_length=13,blank=True)
     alternatePhoneNumber = models.CharField(max_length=13,blank=True)
     emergencyContactNumber = models.CharField(max_length=13,blank=True)
+    address1 = models.CharField(max_length=100,blank=True,null=True)
+    address2 = models.CharField(max_length=100,blank=True,null=True)
+    LandMark = models.CharField(max_length=50,blank=True,null=True)
+    city = models.CharField(max_length=50,blank=True,null=True)
+    state = models.CharField(max_length=50,blank=True,null=True)
+    pincode = models.CharField(max_length=15,blank=True,null=True)
     def __str__(self):
         return f'{self.user}' 
     
@@ -41,7 +47,7 @@ class RequestStatus(models.Model):
     statusName = models.CharField(max_length=20,blank=True,unique=True)
     isActive = models.BooleanField(default=True)
     def __str__(self):
-        return f'{self.statusName} - {self.isActive}' 
+        return f'{self.statusName} - {self.isActive} - {self.id}' 
     
 class ServiceCategory(models.Model):
     serviceName = models.CharField(max_length=30,blank=True)
@@ -81,7 +87,7 @@ class Rating(models.Model):
     ratingNumber = models.IntegerField(blank=True)
     isActive = models.BooleanField(default=True)
     def __str__(self):
-        return f'{self.ratingName}'
+        return f'{self.ratingName}-{self.ratingNumber}'
 
 
 # volunteer view page
@@ -98,11 +104,11 @@ class ServiceRequest(models.Model):
     subCategory = models.ForeignKey(ServiceSubCategory,on_delete=models.SET_NULL,null=True)
     volunteer = models.ForeignKey(User,on_delete=models.SET_NULL, related_name='volunteer_name',null=True)
     requestStatus = models.ForeignKey(RequestStatus ,on_delete=models.SET_NULL,null=True)
-    requestTimeInBound = models.DateTimeField(default=timezone.localtime(timezone.now()), blank=True)
-    requestTimeOutBound = models.DateTimeField(default=timezone.localtime(timezone.now()), blank=True)
+    requestTimeInBound = models.DateTimeField( blank=True,null=True)
+    requestTimeOutBound = models.DateTimeField( blank=True,null=True)
     actualTimeInBound = models.DateTimeField( blank=True,null=True)
     actualTimeOutBound = models.DateTimeField(blank=True,null=True)
-    requestCreatedBy = models.ForeignKey(User,on_delete=models.SET_NULL,related_name='request_createdby',null=True)
+    requestCreatedBy = models.ForeignKey(User,on_delete=models.SET_NULL,related_name='request_createdby',null=True,blank=True)
     requestCreatedOn = models.DateTimeField(default=timezone.localtime(timezone.now()), blank=True)
     lastModifiedBy= models.ForeignKey(User,on_delete=models.SET_NULL,related_name='last_modifiedby',null=True,blank=True)
     lastModifiedOn = models.DateTimeField(default=timezone.localtime(timezone.now()), blank=True)

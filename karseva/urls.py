@@ -39,6 +39,13 @@ urlpatterns = [
     path('volunteerprofile',volunteer.volunteerprofile, name='volunteerprofile'),
     path('user_requests',volunteer.user_requests, name='user_requests'),
     path('volunteer_view_page',volunteer.volunteer_view_page, name='volunteer_view_page'),
+    path('load_volunteer_data/<int:pk>/',volunteer.load_volunteer_data, name='load_volunteer_data'),
+    path('view_user_request_volunteer/<int:pk>/',volunteer.view_user_request_volunteer, name='view_user_request_volunteer'),
+    path('volunteer_view_request_submit/<int:pk>',volunteer.volunteer_view_request_submit, name='volunteer_view_request_submit'),
+
+
+
+
 
     # user
     path('userprofile',users.userprofile, name='userprofile'),
@@ -46,7 +53,7 @@ urlpatterns = [
     path('user_request_submit',users.user_request_submit, name='user_request_submit'),
     path('load_request_data/<int:pk>/',users.load_request_data, name='load_request_data'),
     path('view_user_request/<int:pk>/',users.view_user_request, name='view_user_request'),
-    path('view_user_request_submit',users.view_user_request_submit, name='view_user_request_submit'),
+    path('user_view_request_submit/<int:pk>',users.user_view_request_submit, name='user_view_request_submit'),
 
 
 

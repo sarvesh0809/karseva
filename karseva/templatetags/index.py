@@ -13,8 +13,8 @@ def volunteerCheck(id):
 
 import dateutil.parser
 
- 
+
 @register.filter   
 def formatDate(value):
     print(value)
-    return datetime.datetime.strptime(value,"%Y-%m-%dT%H:%M:%S%z")
+    return datetime.datetime.strptime(value,"%Y-%m-%dT%H:%M:%S%z").isoformat()

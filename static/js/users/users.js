@@ -423,3 +423,36 @@ $('#user_view_request_submit_btn').click(function (e) {
         }
     })
 })
+
+
+
+
+$('#profile_save_btn').click(function (e) {
+    e.preventDefault();
+    var c = getCookie('csrftoken');
+    var formData = new FormData($('#profile_form')[0]);
+    formData.append('csrfmiddlewaretoken', c)
+    
+    $.ajax({
+        type: 'POST',
+        url:  '/user_profile_submit',
+        dataType: 'json',
+        data: formData,
+        cache: false,
+        processData: false,
+        contentType: false,
+        enctype: 'multipart/form-data',
+        success: function (json) {
+            if (json.message==200){
+                alert('Saved Successfully')
+                location.reload();
+            }
+            else{
+                alert('It Seems some error has occured')
+            }
+        },   
+        error: function (xhr, errmsg, err) {
+            console.log(xhr.status + ":" + xhr.responseText)
+        }
+    })
+})

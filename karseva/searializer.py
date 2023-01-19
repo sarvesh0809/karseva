@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import ServiceSubCategory,User,UserRatings,ServiceRequest,RequestStatus,Rating
+from .models import ServiceSubCategory,User,UserRatings,ServiceRequest,RequestStatus,Rating,UserContactInfo
 
 class ServiceSubCategory_searializer(serializers.ModelSerializer):
     serviceCategory = serializers.CharField(source='serviceCategory.serviceName')
@@ -35,7 +35,13 @@ class RequestStatusSearializer(serializers.ModelSerializer):
         model = RequestStatus
         fields= ['statusName']
 
+class UserContactInfoSearializer(serializers.ModelSerializer):
+    class Meta:
+        model = UserContactInfo
+        fields= '__all__'
+
 class UserSearializer(serializers.ModelSerializer):
+    usercontactinfo = UserContactInfoSearializer()
     primaryphonenumber  = serializers.CharField(source='usercontactinfo.primaryPhoneNumber')
     class Meta:
         model = User

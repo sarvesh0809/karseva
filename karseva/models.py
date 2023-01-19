@@ -11,6 +11,7 @@ User_type=(
     ('USER','USER'),
     ('VOLUNTEER','VOLUNTEER'),
     ('ADMIN', 'ADMIN'),
+    ('TASK COORDINATOR', 'TASK COORDINATOR'),
 )
 Rating_choices=(
     ('EXCELLENT','EXCELLENT'),
@@ -24,7 +25,7 @@ Rating_choices=(
 
 class UserType(models.Model):
     user = models.OneToOneField(User,on_delete=models.CASCADE)
-    user_type = models.CharField(max_length=15,choices=User_type,blank=True)
+    user_type = models.CharField(max_length=30,choices=User_type,blank=True)
     def __str__(self):
         return f'{self.user}-{self.user_type}' 
 
@@ -42,7 +43,17 @@ class UserContactInfo(models.Model):
     pincode = models.CharField(max_length=15,blank=True,null=True)
     def __str__(self):
         return f'{self.user}' 
+
+class TaskCoordinatorPincode(models.Model):
+    coordinator = models.ForeignKey(User,on_delete=models.SET_NULL,null=True,blank=True)
+    pincode = models.CharField(max_length=14,blank=True,null=True)
+    isActive = models.BooleanField(default=True)
+    class Meta:
+        unique_together = ('coordinator', 'pincode',)
     
+    def __str__(self):
+        return f'{self.coordinator.username} - {self.pincode}'
+
 class RequestStatus(models.Model):
     statusName = models.CharField(max_length=20,blank=True,unique=True)
     isActive = models.BooleanField(default=True)
@@ -114,7 +125,8 @@ class ServiceRequest(models.Model):
     lastModifiedOn = models.DateTimeField(default=timezone.localtime(timezone.now()), blank=True)
     userRating = models.ForeignKey(Rating,on_delete=models.SET_NULL,related_name='user_rating',null=True,blank=True)
     volunteerRating = models.ForeignKey(Rating,on_delete=models.SET_NULL,related_name='volunteer_rating',null=True,blank=True)
-    description = models.CharField(max_length=200,blank=True)
+    description = models.CharField(max_length=500,blank=True)
+    address = models.CharField(max_length=500,blank=True,null=True)
     userFeedback = models.CharField(max_length=200,blank=True)
     volunteerFeedback = models.CharField(max_length=200,blank=True)
     canceledBy = models.ForeignKey(User,on_delete=models.SET_NULL,related_name='canceled_by',null=True,blank=True)

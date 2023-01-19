@@ -63,14 +63,19 @@
                     </div>
                     <form id="view_request_form">
                       <div class="row mt-2">
+                        <div class="col"><label>Address/Location</label>
+                            <textarea class="form-control"  id="address" name="address" rows="1" cols="50" readonly>{{request_data.address.value}} </textarea>
+                        </div>
+                    </div>
+                      <div class="row mt-2">
                         <div class="col-md-4"><label>Category</label>
-                            <input class="form-control" id="category" name="category" value="{{request_data.subCategory.subCategoryName.value}}""  type="text" placeholder="" readonly>
+                            <input class="form-control" id="category" name="category" value="{{request_data.subCategory.subCategoryName.value}}"  type="text" placeholder="" readonly>
                         </div>
                         <div class="col-md-4"><label>Description</label>
                             <textarea class="form-control"  id="description" name="description" rows="1" cols="50" readonly >{{request_data.description.value}} </textarea>
                         </div>
                         <div class="col-md-4"><label>Requested User</label>
-                            <input class="form-control" id="user" name="user" value="{{request_data.requestor.first_name.value}} - {{request_data.requestor.primaryphonenumber.value}}" type="text" placeholder="" readonly>
+                            <input class="form-control" id="user" name="user" value="{{request_data.requestor.first_name.value}} - {{request_data.requestor.usercontactinfo.primaryPhoneNumber.value}}" type="text" placeholder="" readonly>
                         </div>
                       </div>
                       <div class="row mt-2" > 

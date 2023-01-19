@@ -38,13 +38,13 @@ def user_request_submit(request):
         time_in = request.POST.get('time_in')
         time_out = request.POST.get('time_out')
         volunteer = request.POST.get('volunteer')
-        print(volunteer)
+        address = request.POST.get('address')
         if time_in and time_out and volunteer!='undefined':
-            ServiceRequest.objects.create(requestor=request.user,subCategory=ServiceSubCategory.objects.get(subCategoryName=category),description=description,requestTimeInBound=time_in,requestTimeOutBound=time_out,volunteer=User.objects.get(id=volunteer),requestStatus=RequestStatus.objects.get(id=1))
+            ServiceRequest.objects.create(requestor=request.user,subCategory=ServiceSubCategory.objects.get(subCategoryName=category),description=description,requestTimeInBound=time_in,requestTimeOutBound=time_out,volunteer=User.objects.get(id=volunteer),requestStatus=RequestStatus.objects.get(id=1),address=address)
         elif volunteer!='undefined' and not (time_in and time_out):
-            ServiceRequest.objects.create(requestor=request.user,subCategory=ServiceSubCategory.objects.get(subCategoryName=category),description=description,volunteer=User.objects.get(id=volunteer),requestStatus=RequestStatus.objects.get(id=1))
+            ServiceRequest.objects.create(requestor=request.user,subCategory=ServiceSubCategory.objects.get(subCategoryName=category),description=description,volunteer=User.objects.get(id=volunteer),requestStatus=RequestStatus.objects.get(id=1),address=address)
         else:
-            ServiceRequest.objects.create(requestor=request.user,subCategory=ServiceSubCategory.objects.get(subCategoryName=category),description=description,requestStatus=RequestStatus.objects.get(id=1))
+            ServiceRequest.objects.create(requestor=request.user,subCategory=ServiceSubCategory.objects.get(subCategoryName=category),description=description,requestStatus=RequestStatus.objects.get(id=1),address=address)
         response_data['message'] = 200
     except Exception as e:
         print(e)
@@ -75,7 +75,6 @@ def user_view_request_submit(request,pk):
             sr.requestTimeOutBound = request.POST.get('time_out')
         if request.POST.get('status')=='CLOSED':
             sr.requestStatus = RequestStatus.objects.get(id=6)
-       
         if request.POST.get('user_feedback')!='' and request.POST.get('status')=='CLOSED':
             sr.userFeedback=request.POST.get('user_feedback')
         if request.POST.get('user_rating')!='' and request.POST.get('status')=='CLOSED':
@@ -98,4 +97,39 @@ def user_view_request_submit(request,pk):
         print(e)
         response_data['message'] = 400
 
+    return HttpResponse(json.dumps(response_data), content_type="application/json")
+
+
+def user_profile_submit(request):
+    response_data={}
+    try:
+        fname = request.POST.get('fname')
+        lname = request.POST.get('lname')
+        address = request.POST.get('address')
+        landmark = request.POST.get('landmark')
+        city = request.POST.get('city')
+        state = request.POST.get('state')
+        pincode = request.POST.get('pincode')
+        pno = request.POST.get('pno')
+        sno = request.POST.get('sno')
+        user = User.objects.get(id = request.user.id)
+        user.first_name = fname
+        user.last_name = lname
+        user.save()
+        if UserContactInfo.objects.filter(user = user).exists():
+            uc = UserContactInfo.objects.get(user = user)
+            uc.address1 = address
+            uc.LandMark = landmark
+            uc.city = city
+            uc.state = state
+            uc.pincode = pincode
+            uc.primaryPhoneNumber = pno
+            uc.alternatePhoneNumber = sno
+            uc.save()
+        else:
+            UserContactInfo.objects.create(user=user,address1 = address,LandMark = landmark,city = city,state = state,pincode = pincode,primaryPhoneNumber = pno,alternatePhoneNumber = sno)
+        response_data['message'] = 200
+    except Exception as e:
+        print(e)
+        response_data['message'] = 400
     return HttpResponse(json.dumps(response_data), content_type="application/json")

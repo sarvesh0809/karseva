@@ -1,5 +1,5 @@
 {% extends 'partials/volunteer_nav.html' %}
-{% block title %} Volunteer Profile {% endblock %}
+{% block title %} Task Coordinator's Profile {% endblock %}
 {% load index %}
 {% load static %}
 {% block content %}
@@ -83,55 +83,7 @@
                       <div class="col-md-6"><label>Secondary Contact No.</label><input type="phone" class="form-control" name="sno"  placeholder="Enter secondary no." value="{{request.user.usercontactinfo.alternatePhoneNumber|default_if_none:"" }}"></div>
                       
                     </div>
-                    <div class="row mt-4">
-                      <div class="col-md-4"><label>Interests</label>
-                      <div class="form-check">
-                        <input class="form-check-input" type="checkbox" name='health_related'{% if "health_related"|checkInterest:request.user.id %}checked{% endif %} id="health_related">
-                        <label class="form-check-label" >
-                          Health Related
-                        </label>
-                      </div>
-                      <div class="form-check">
-                        <input class="form-check-input" type="checkbox" name='daily_needs' {% if "daily_needs"|checkInterest:request.user.id %}checked{% endif %} id="daily_needs" >
-                        <label class="form-check-label" >
-                          Daily Needs
-                        </label>
-                      </div>
-                      <div class="form-check">
-                        <input class="form-check-input" type="checkbox" name='information_guidance'{% if "information_guidance"|checkInterest:request.user.id %}checked{% endif %}  id="information_guidance" >
-                        <label class="form-check-label" >
-                          Information Guidance
-                        </label>
-                      </div>
-                      <div class="form-check">
-                        <input class="form-check-input" type="checkbox" name='psychological_support' {% if "psychological_support"|checkInterest:request.user.id %}checked{% endif %} id="psychological_support" >
-                        <label class="form-check-label" >
-                          Psychological Support
-                        </label>
-                      </div>
-                    </div>
                     
-                    <div class="row mt-5">
-                     
-                        <label>Total Ratings</label>
-                        <div class="container">
-                            <div class="row">
-                              <div class="col-lg-12">
-                                <div class="star-rating">
-                                  <span class="fa fa-star-o" data-rating="1"></span>
-                                  <span class="fa fa-star-o" data-rating="2"></span>
-                                  <span class="fa fa-star-o" data-rating="3"></span>
-                                  <span class="fa fa-star-o" data-rating="4"></span>
-                                  <span class="fa fa-star-o" data-rating="5"></span>
-                                  <input type="hidden" name="rating" class="rating-value" id="rating" value={% widthratio request.user.userratings.ratingNumber request.user.userratings.ratingCount 1 %}>
-                                </div>
-                              </div>
-                            </div>
-                        </div>
-                            
-                        
-                    </div>
-                 
                     
                    <div class="mt-6 text-right"><button class="btn btn-primary profile-button" type="button" id="profile_save_btn">Save Profile</button></div>
                 </div>
@@ -139,21 +91,5 @@
           </form>
         </div>
     </div>
-<script src="{% static 'js/volunteer/volunteer.js' %}"></script>
-  
-<script>
-var $star_rating = $('.star-rating .fa');
 
-var SetRatingStar = function() {
-return $star_rating.each(function() {
-if (parseInt($star_rating.siblings('input.rating-value').val()) >= parseInt($(this).data('rating'))) {
-  return $(this).removeClass('fa-star-o').addClass('fa-star');
-} else {
-  return $(this).removeClass('fa-star').addClass('fa-star-o');
-}
-});
-};
-
-SetRatingStar();
-</script>   
 {% endblock %}

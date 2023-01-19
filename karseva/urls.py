@@ -1,4 +1,4 @@
-from . import accounts,users,views,volunteer,api,admin_page
+from . import accounts,users,views,volunteer,api,admin_page,taskcoordinator
 from django.urls import path,include
 from django.conf.urls import url
 from django.conf import settings
@@ -24,7 +24,7 @@ urlpatterns = [
     path('dashboard',views.dashboard, name='dashboard'),
 
     # admin
-    
+    # path('adminprofile',admin_page.adminprofile, name='adminprofile'),
     path('All_Users',admin_page.All_Users, name='All_Users'),
     path('ALL_Volunteers',admin_page.ALL_Volunteers, name='ALL_Volunteers'),
     path('Complaints',admin_page.Complaints, name='Complaints'),
@@ -33,10 +33,14 @@ urlpatterns = [
     path('add_service_sub_category',admin_page.add_service_sub_category, name='add_service_sub_category'),
     path('add_service_category',admin_page.add_service_category, name='add_service_category'),
     
+    # task coordinator
+    
+    path('task_profile',taskcoordinator.task_profile, name='task_profile'),
 
 
     #volunteer
     path('volunteerprofile',volunteer.volunteerprofile, name='volunteerprofile'),
+    path('volunteer_profile_submit',volunteer.volunteer_profile_submit, name='volunteer_profile_submit'),
     path('user_requests',volunteer.user_requests, name='user_requests'),
     path('volunteer_view_page',volunteer.volunteer_view_page, name='volunteer_view_page'),
     path('load_volunteer_data/<int:pk>/',volunteer.load_volunteer_data, name='load_volunteer_data'),
@@ -49,6 +53,7 @@ urlpatterns = [
 
     # user
     path('userprofile',users.userprofile, name='userprofile'),
+    path('user_profile_submit',users.user_profile_submit, name='user_profile_submit'),
     path('submit_new_request',users.submit_new_request, name='submit_new_request'),
     path('user_request_submit',users.user_request_submit, name='user_request_submit'),
     path('load_request_data/<int:pk>/',users.load_request_data, name='load_request_data'),

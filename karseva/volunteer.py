@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse,JsonResponse
 from django.contrib.auth.decorators import login_required
-from .models import ServiceRequest,UserContactInfo,RequestStatus,Rating,User,UserRatings
+from .models import ServiceRequest,UserContactInfo,RequestStatus,Rating,User,UserRatings,VolunteerInterest,ServiceSubCategory
 from .searializer import ServiceRequest_searializer
 import json
 
@@ -82,4 +82,56 @@ def volunteer_view_request_submit(request,pk):
         print(e)
         response_data['message'] = 400
 
+    return HttpResponse(json.dumps(response_data), content_type="application/json")
+
+def volunteer_profile_submit(request):
+    response_data={}
+    try:
+        fname = request.POST.get('fname')
+        lname = request.POST.get('lname')
+        address = request.POST.get('address')
+        landmark = request.POST.get('landmark')
+        city = request.POST.get('city')
+        state = request.POST.get('state')
+        pincode = request.POST.get('pincode')
+        pno = request.POST.get('pno')
+        sno = request.POST.get('sno')
+        health_related = request.POST.get('health_related')
+        daily_needs = request.POST.get('daily_needs')
+        information_guidance = request.POST.get('information_guidance')
+        psychological_support = request.POST.get('psychological_support')
+        user = User.objects.get(id = request.user.id)
+        user.first_name = fname
+        user.last_name = lname
+        user.save()
+        if UserContactInfo.objects.filter(user = user).exists():
+            uc = UserContactInfo.objects.get(user = user)
+            uc.address1 = address
+            uc.LandMark = landmark
+            uc.city = city
+            uc.state = state
+            uc.pincode = pincode
+            uc.primaryPhoneNumber = pno
+            uc.alternatePhoneNumber = sno
+            uc.save()
+        else:
+            UserContactInfo.objects.create(user=user,address1 = address,LandMark = landmark,city = city,state = state,pincode = pincode,primaryPhoneNumber = pno,alternatePhoneNumber = sno)
+        
+        if health_related=='true':
+            for i in ServiceSubCategory.objects.filter(serviceCategory__serviceName='Health'):
+                VolunteerInterest.objects.update_or_create(volunteer=request.user,interest=i,defaults={'interest':i})
+        if daily_needs=='true':
+            for i in ServiceSubCategory.objects.filter(serviceCategory__serviceName='Daily Needs'):
+                VolunteerInterest.objects.update_or_create(volunteer=request.user,interest=i,defaults={'interest':i})
+        if information_guidance=='true':
+            for i in ServiceSubCategory.objects.filter(serviceCategory__serviceName='Information Guidance'):
+                VolunteerInterest.objects.update_or_create(volunteer=request.user,interest=i,defaults={'interest':i})
+        if psychological_support=='true':
+            for i in ServiceSubCategory.objects.filter(serviceCategory__serviceName='Psychological Support'):
+                VolunteerInterest.objects.update_or_create(volunteer=request.user,interest=i,defaults={'interest':i})
+        response_data['message'] = 200
+    
+    except Exception as e:
+        print(e)
+        response_data['message'] = 400
     return HttpResponse(json.dumps(response_data), content_type="application/json")

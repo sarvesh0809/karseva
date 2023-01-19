@@ -18,5 +18,9 @@
 {% include 'dashboard/volunteer_dashboard.html' %}
 {% elif user.usertype.user_type == 'ADMIN'  %}
 {% include 'dashboard/admin_dashboard.html' %}
+{% elif user.usertype.user_type == 'TASK COORDINATOR'  %}
+{% include 'dashboard/taskcoordinator_dashboard.html' %}
+
+
 {% endif %}
 {% endif %}

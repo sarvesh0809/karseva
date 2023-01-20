@@ -35,3 +35,8 @@ def checkInterest(value,arg):
 
     else:
         return False
+    
+
+@register.filter
+def category_list(val):
+    return ServiceSubCategory.objects.values_list('subCategoryName',flat=True)

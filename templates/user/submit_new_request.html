@@ -74,9 +74,11 @@
                     <form id="service_request_form">
                         <div class="row mt-2">
                             <div class="col"><label>Address/Location</label>
-                                <textarea class="form-control"  id="address" name="address" rows="1" cols="50">{{request.user.usercontactinfo.address1|default_if_none:"" }}, {{request.user.usercontactinfo.LandMark|default_if_none:"" }}, {{request.user.usercontactinfo.city|default_if_none:"" }}, {{request.user.usercontactinfo.pincode|default_if_none:"" }}</textarea>
+                                <textarea class="form-control"  id="address" name="address" rows="1" cols="20">{{request.user.usercontactinfo.address1|default_if_none:"" }}, {{request.user.usercontactinfo.LandMark|default_if_none:"" }}, {{request.user.usercontactinfo.city|default_if_none:"" }}</textarea>
                             </div>
-                        </div>
+                            <div class="col"><label>Pincode</label>
+                                <input class="form-control" id="pincode" name="pincode" type="text"   placeholder="" value="{{request.user.usercontactinfo.pincode|default_if_none:"" }}" required>
+                            </div>
                       <div class="row mt-2">
                         <div class="col-md-4"><label>Category</label>
                             <input class="form-control" id="category" name="category" list="category_list" type="text" onchange="fetchVolunteer(this)"  onfocus="fecthCategory()" onblur="checkCategory(this)" placeholder="">

@@ -39,12 +39,13 @@ def user_request_submit(request):
         time_out = request.POST.get('time_out')
         volunteer = request.POST.get('volunteer')
         address = request.POST.get('address')
+        pincode = request.POST.get('pincode')
         if time_in and time_out and volunteer!='undefined':
-            ServiceRequest.objects.create(requestor=request.user,subCategory=ServiceSubCategory.objects.get(subCategoryName=category),description=description,requestTimeInBound=time_in,requestTimeOutBound=time_out,volunteer=User.objects.get(id=volunteer),requestStatus=RequestStatus.objects.get(id=1),address=address)
+            ServiceRequest.objects.create(requestor=request.user,subCategory=ServiceSubCategory.objects.get(subCategoryName=category),description=description,requestTimeInBound=time_in,requestTimeOutBound=time_out,volunteer=User.objects.get(id=volunteer),requestStatus=RequestStatus.objects.get(id=1),address=address,pincode=pincode)
         elif volunteer!='undefined' and not (time_in and time_out):
-            ServiceRequest.objects.create(requestor=request.user,subCategory=ServiceSubCategory.objects.get(subCategoryName=category),description=description,volunteer=User.objects.get(id=volunteer),requestStatus=RequestStatus.objects.get(id=1),address=address)
+            ServiceRequest.objects.create(requestor=request.user,subCategory=ServiceSubCategory.objects.get(subCategoryName=category),description=description,volunteer=User.objects.get(id=volunteer),requestStatus=RequestStatus.objects.get(id=1),address=address,pincode=pincode)
         else:
-            ServiceRequest.objects.create(requestor=request.user,subCategory=ServiceSubCategory.objects.get(subCategoryName=category),description=description,requestStatus=RequestStatus.objects.get(id=1),address=address)
+            ServiceRequest.objects.create(requestor=request.user,subCategory=ServiceSubCategory.objects.get(subCategoryName=category),description=description,requestStatus=RequestStatus.objects.get(id=1),address=address,pincode=pincode)
         response_data['message'] = 200
     except Exception as e:
         print(e)

@@ -127,6 +127,7 @@ class ServiceRequest(models.Model):
     volunteerRating = models.ForeignKey(Rating,on_delete=models.SET_NULL,related_name='volunteer_rating',null=True,blank=True)
     description = models.CharField(max_length=500,blank=True)
     address = models.CharField(max_length=500,blank=True,null=True)
+    pincode = models.CharField(max_length=14,blank=True,null=True)
     userFeedback = models.CharField(max_length=200,blank=True)
     volunteerFeedback = models.CharField(max_length=200,blank=True)
     canceledBy = models.ForeignKey(User,on_delete=models.SET_NULL,related_name='canceled_by',null=True,blank=True)

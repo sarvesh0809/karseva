@@ -8,6 +8,17 @@
         margin-top: 4px;
         margin-bottom: 4px;
     }
+    .custom-btn{
+        border: none;
+        background: #445b73;
+        color: rgb(255, 255, 255);
+    }
+    .custom-btn:hover{
+        box-shadow: -1px -1px 4px 1px hsla(193, 24%, 38%, 0.71);
+        color: rgb(255, 255, 255);
+
+        background: #2b353f;
+    }
 </style>
 <div class="h-screen flex-grow-1 overflow-y-lg-auto">
     <!-- Main -->
@@ -15,23 +26,22 @@
     <main class="py-6 bg-surface-secondary">
         <div class="container-fluid">
             <!-- Card stats -->
-            <div class="row g-6 mb-6" id='cards'>
+            <div class="row mb-6" id='cards'>
 
-            <!-- 1 -->
-                <div class="col-xl-3 col-sm-6 col-12 card-main">
+            
+                
+                <div class="col card-main">
                     <div class="card shadow border-0">
                         <div class="card-body">
                             <a href="/submit_new_request" style="position: absolute;width: 100%;top: 0;height: 100%;left: 0;"></a>
                             <div class="row" style="align-items: center;">
-                                <div class="col">
-                                    <span class="h6 font-semibold text-muted text-sm d-block mb-2 title">Submit a new request</span>
-                                    
+                                <span class="h6 font-semibold text-muted text-sm d-block mb-2 title">Submit a new request</span>
+                                <div class="col" style="padding: 0 !important;">
+                                    {% for i in "none"|category_list %}
+                                    <button type="button" class="btn btn-sm m-2 custom-btn">{{i}}</button>
+                                    {% endfor %}
                                 </div>
-                                <div class="col-auto">
-                                    <div class="icon icon-shape bg-warning text-white text-lg rounded-circle">
-                                        <i class="fa fa-ticket"></i>
-                                    </div>
-                                </div>
+                                
                             </div>
                             
                         </div>

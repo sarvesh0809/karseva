@@ -164,6 +164,10 @@ function volunteerSelect(resp){
 $('#user_submit_request_btn').click(function (e) {
     e.preventDefault();
     // console.log($('#category').val())
+    if($('#pincode').val()==''){
+        alert("Please Enter Pincode")
+        return false
+    }
     if($('#category').val()==''){
         alert("Please select value from drop down")
         return false

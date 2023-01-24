@@ -38,7 +38,7 @@
                                 <span class="h6 font-semibold text-muted text-sm d-block mb-2 title">Submit a new request</span>
                                 <div class="col" style="padding: 0 !important;">
                                     {% for i in "none"|category_list %}
-                                    <button type="button" class="btn btn-sm m-2 custom-btn">{{i}}</button>
+                                    <button type="button" class="btn btn-sm m-2 custom-btn" onclick="redirectFunc('{{i}}')" >{{i}}</button>
                                     {% endfor %}
                                 </div>
                                 
@@ -87,6 +87,13 @@
         </div>
     </main>
 </div>
+
+<script>
+    function redirectFunc(resp){
+        localStorage.setItem('category_name', resp);
+        location.replace('/submit_new_request')
+    }
+</script>
 <script src="{% static 'js/users/users.js' %}"></script>
 
 {% endblock %}

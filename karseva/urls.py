@@ -34,9 +34,10 @@ urlpatterns = [
     path('add_service_category',admin_page.add_service_category, name='add_service_category'),
     
     # task coordinator
-    
     path('task_profile',taskcoordinator.task_profile, name='task_profile'),
-
+    path('task_all_requests',taskcoordinator.task_all_requests, name='task_all_requests'),
+    path('task_view_request',taskcoordinator.task_view_request, name='task_view_request'),
+    path('task_complaints',taskcoordinator.task_complaints, name='task_complaints'),
 
     #volunteer
     path('volunteerprofile',volunteer.volunteerprofile, name='volunteerprofile'),
@@ -45,10 +46,9 @@ urlpatterns = [
     path('volunteer_view_page',volunteer.volunteer_view_page, name='volunteer_view_page'),
     path('load_volunteer_data/<int:pk>/',volunteer.load_volunteer_data, name='load_volunteer_data'),
     path('view_user_request_volunteer/<int:pk>/',volunteer.view_user_request_volunteer, name='view_user_request_volunteer'),
+    path('user_requests/view/<int:pk>/',volunteer.user_requests_view_all, name='user_requests_view_all'),
+    path('volunteer_procure_submit',volunteer.volunteer_procure_submit, name='volunteer_procure_submit'),
     path('volunteer_view_request_submit/<int:pk>',volunteer.volunteer_view_request_submit, name='volunteer_view_request_submit'),
-
-
-
 
 
     # user

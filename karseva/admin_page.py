@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
+from .models import UserContactInfo
 
 @login_required(login_url='login')
 def adminprofile(request):
@@ -8,11 +9,13 @@ def adminprofile(request):
 
     }
     return render(request, 'admin/adminprofile.html', context)
+    
 # view pages
 @login_required(login_url='login')
 def All_Users(request):
+    data = UserContactInfo.objects.all()
     context={
-
+        'data':data
     }
     return render(request, 'admin/All_Users.html', context)
 

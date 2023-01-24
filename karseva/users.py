@@ -53,13 +53,13 @@ def user_request_submit(request):
 
     return HttpResponse(json.dumps(response_data), content_type="application/json")
 
+
 @login_required(login_url='login')
 def load_request_data(request,pk):
     offset=pk
     data=ServiceRequest.objects.select_related().filter(requestor=request.user).order_by("-id")[offset:offset+10]
     request_data = ServiceRequest_searializer(data,many=True)
     json_data = json.dumps((request_data.data))
-
     return JsonResponse(json_data,safe=False)
 
     

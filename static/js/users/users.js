@@ -213,13 +213,15 @@ $.ajax({
     url:  '/load_request_data/0',
     success: function (data) {
         var json_data = JSON.parse(data)
-        var data_length = json_data.length-1
+        
+        var data_length = json_data.length
         if(data_length>0){
         var temp_html = `<table class="table table-hover table-nowrap">
                         <thead class="thead-light">
                             <tr>
                                 <th scope="col">Request No</th>
                                 <th scope="col">Volunteer Name</th>
+                                <th scope="col">Otp</th>
                                 <th scope="col">Requested Date</th>
                                 <th scope="col">Service</th>
                                 <th scope="col">Status</th>
@@ -271,6 +273,10 @@ $.ajax({
                 </a>
             </td>
             <td>
+                ${json_data[i].taskOtp? `Start: <b>${json_data[i].taskOtp['start_otp']}</b> <br>End: <b>${json_data[i].taskOtp['end_otp']!=null ? json_data[i].taskOtp['end_otp'] :''} </b> ` : 'N/A' } 
+                
+            </td>
+            <td>
                 ${json_data[i].requestCreatedOn}
 
             </td>
@@ -314,7 +320,7 @@ myDiv.addEventListener("scroll",function(e)
             url:  '/load_request_data/'+offset,
             success: function (data) {
                 var json_data = JSON.parse(data)
-                var data_length = json_data.length-1
+                var data_length = json_data.length
                 for(var i=0;i<=data_length-1;i++){
                     if(json_data[i].requestStatus){
                         if(json_data[i].requestStatus['statusName']=='NEW'){
@@ -354,6 +360,10 @@ myDiv.addEventListener("scroll",function(e)
                         <a class="text-heading font-semibold" href="#">
                             ${json_data[i].volunteer? `${json_data[i].volunteer['username']}` : 'N/A'} 
                         </a>
+                    </td>
+                    <td>
+                        ${json_data[i].taskOtp? `${json_data[i].taskOtp['start_otp']}` : 'N/A'} 
+                        
                     </td>
                     <td>
                         ${json_data[i].requestCreatedOn}

@@ -156,6 +156,14 @@ class UserRatings(models.Model):
 
 
 
+class TaskOtp(models.Model):
+    service_request = models.OneToOneField(ServiceRequest,on_delete=models.CASCADE)
+    start_otp = models.IntegerField(blank=True,null=True)
+    start_otp_date = models.DateTimeField( blank=True,null=True)
+    end_otp = models.IntegerField(blank=True,null=True)
+    end_otp_date = models.DateTimeField( blank=True,null=True)
+    def __str__(self):
+        return f'{self.service_request}'
 
 
 

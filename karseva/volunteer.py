@@ -1,14 +1,18 @@
 from django.shortcuts import render
 from django.http import HttpResponse,JsonResponse
 from django.contrib.auth.decorators import login_required
-from .models import ServiceRequest,UserContactInfo,RequestStatus,Rating,User,UserRatings,VolunteerInterest,ServiceSubCategory
+from .models import ServiceRequest,UserContactInfo,RequestStatus,Rating,User,UserRatings,VolunteerInterest,ServiceSubCategory,TaskOtp
 from .searializer import ServiceRequest_searializer
-import json
-
+import json,pytz,random
+from django.utils import timezone
+timezone.activate(pytz.timezone("Asia/Kolkata"))
+timezone.localtime(timezone.now())
 # Create your views here.
 @login_required(login_url='login')
 def user_requests(request):
-    services = ServiceRequest.objects.all()
+    
+    services = ServiceRequest.objects.filter(subCategory__in=list(VolunteerInterest.objects.filter(volunteer=request.user).values_list('interest',flat=True))).filter(volunteer=None).filter(requestStatus__in=[1,2,3,4]).select_related()
+    
     context={
         "services":services
     }
@@ -49,7 +53,14 @@ def view_user_request_volunteer(request,pk):
     }
     return render(request, 'volunteer/view_request.html', context)
 
-
+@login_required(login_url='login')
+def user_requests_view_all(request,pk):
+    data=ServiceRequest.objects.get(id=pk)
+    request_data = ServiceRequest_searializer(data,many=False)
+    context={
+        'request_data':request_data,
+    }
+    return render(request, 'volunteer/user_requests_view_all.html', context)
 
 
 @login_required(login_url='login')
@@ -57,7 +68,6 @@ def volunteer_view_request_submit(request,pk):
     response_data={}
     try:
         sr = ServiceRequest.objects.get(id=pk)
-        print(request.POST.get('actual_time_in'))
         if request.POST.get('status')!='CLOSED':
             sr.requestStatus = RequestStatus.objects.get(statusName=request.POST.get('status'))
         if request.POST.get('actual_time_in')!='':
@@ -135,3 +145,27 @@ def volunteer_profile_submit(request):
         print(e)
         response_data['message'] = 400
     return HttpResponse(json.dumps(response_data), content_type="application/json")
+
+
+def volunteer_procure_submit(request):
+    response_data={}
+    try:
+        user_id = request.POST.get('user_id')
+        task_id = request.POST.get('task_id')
+        sr = ServiceRequest.objects.get(id=task_id)
+        if not sr.volunteer:
+            sr.volunteer=User.objects.get(id=user_id)
+            sr.requestStatus = RequestStatus.objects.get(statusName='ASSIGNED')
+            # sr.save()
+            TaskOtp.objects.create(service_request=sr,start_otp=create_new_otp(),start_otp_date=get_cuurent_date())
+            response_data['message'] = 200
+    except Exception as e:
+        print(e)
+        response_data['message'] = 400
+    return HttpResponse(json.dumps(response_data), content_type="application/json")
+
+def create_new_otp():
+        return random.randint(1111,9999)
+
+def get_cuurent_date():
+    return timezone.localtime(timezone.now())

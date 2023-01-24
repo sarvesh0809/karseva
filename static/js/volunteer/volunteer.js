@@ -24,7 +24,7 @@ $.ajax({
     url:  '/load_volunteer_data/0',
     success: function (data) {
         var json_data = JSON.parse(data)
-        var data_length = json_data.length-1
+        var data_length = json_data.length
         if(data_length>0){
         var temp_html = `<table class="table table-hover table-nowrap">
                         <thead class="thead-light">
@@ -125,7 +125,7 @@ myDiv.addEventListener("scroll",function(e)
             url:  '/load_volunteer_data/'+offset,
             success: function (data) {
                 var json_data = JSON.parse(data)
-                var data_length = json_data.length-1
+                var data_length = json_data.length
                 for(var i=0;i<=data_length-1;i++){
                     if(json_data[i].requestStatus){
                         if(json_data[i].requestStatus['statusName']=='NEW'){
@@ -276,3 +276,37 @@ $('#profile_save_btn').click(function (e) {
         }
     })
 })
+
+
+function procureTask(user_id,task_id){
+    var c = getCookie('csrftoken');
+    var formData = new FormData();
+    formData.append('csrfmiddlewaretoken', c)
+    formData.append('user_id', user_id)
+    formData.append('task_id', task_id)
+    $.ajax({
+        type: 'POST',
+        url:  '/volunteer_procure_submit',
+        dataType: 'json',
+        data: formData,
+        cache: false,
+        processData: false,
+        contentType: false,
+        enctype: 'multipart/form-data',
+        success: function (json) {
+            if (json.message==200){
+                alert('Task has been successfully added in your queue ')
+                window.location='/dashboard'
+                
+            }
+            else{
+                alert('It Seems some error has occured or Task you looking for has already taken.')
+                window.location='/user_requests'
+
+            }
+        },   
+        error: function (xhr, errmsg, err) {
+            console.log(xhr.status + ":" + xhr.responseText)
+        }
+    })
+}

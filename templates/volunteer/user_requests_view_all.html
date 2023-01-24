@@ -1,0 +1,131 @@
+{% extends 'partials/user_nav.html' %}
+{% block title %} Volunteer Dashboard {% endblock %}
+{% load static %}
+{% load index %}
+{% block content %}
+
+<style>
+    
+    label{
+        font-weight: bold;
+    }
+    .goog-te-combo{
+        display: flex;
+        border: none;
+        padding: 10px;
+        cursor: pointer;
+
+    }
+    .goog-te-menu2 { 
+    max-width: 100% !important;
+    overflow: scroll !important;
+    box-sizing:border-box !important; 
+    height:auto !important; 
+    }
+    .star-rating {
+  line-height:32px;
+  font-size:2.25em;
+  margin-bottom: 1rem;
+}
+
+.star-rating .fa-star{color: gold;}
+
+</style>
+
+<div class="h-screen flex-grow-1 overflow-y-lg-auto">
+   <div style="margin-left:3px">
+    <div id="google_translate_element"></div>
+   </div>
+       
+
+    <!-- Main -->
+    
+    <main class="py-6 bg-surface-secondary">
+        <div class="container-fluid">
+            <!-- Card stats -->
+            <div class="row g-6 mb-6" id='cards'>
+
+            <!-- 1 -->
+            
+            <div class="col" style="padding:0 !important;">
+                <div class="card shadow p-3 py-5">
+                    <div class="mt-3" style="display: flex;justify-content: space-between;">
+                        Request: <h3>{{request_data.unique_no.value}}</h3>
+                                                                                                                                                                            
+                        <button class="btn btn-warning float-right" id="volunteer_procure" data-toggle="modal" data-target=".procure"  style="margin-right: 20px;border: none;" type="button">PROCURE</button>
+
+                    </div>
+                    <form>
+                      <div class="row mt-2">
+                        <div class="col"><label>Address/Location</label>
+                            <textarea class="form-control"  id="address" name="address" rows="1" cols="50" readonly>{{request_data.address.value}} </textarea>
+                        </div>
+                        <div class="col"><label>Pincode</label>
+                          <input class="form-control" id="pincode" name="pincode" type="text"   placeholder="" value="{{request_data.pincode.value}}" readonly required>
+                      </div>
+                    </div>
+                      <div class="row mt-2">
+                        <div class="col-md-4"><label>Category</label>
+                            <input class="form-control" id="category" name="category" value="{{request_data.subCategory.subCategoryName.value}}"  type="text" placeholder="" readonly>
+                        </div>
+                        <div class="col-md-4"><label>Description</label>
+                            <textarea class="form-control"  id="description" name="description" rows="1" cols="50" readonly >{{request_data.description.value}} </textarea>
+                        </div>
+                        <div class="col-md-4"><label>Requested User</label>
+                            <input class="form-control" id="user" name="user" value="{{request_data.requestor.first_name.value}}" type="text" placeholder="" readonly>
+                        </div>
+                      </div>
+                      <div class="row mt-2" > 
+                       
+                                        
+                          <div class="col-md-4">
+                            <label for="time_in">Request Time In Bound</label>&nbsp<i class="fa fa-calendar"></i>
+                            <input id='time_in' type="datetime-local" name="time_in" value="{{request_data.requestTimeInBound.value}}" class="form-control input-group date" readonly >
+                          </div>
+                          <div class="col-md-4">
+                            <label for="time_out">Request Time Out Bound</label>&nbsp<i class="fa fa-calendar"></i>
+                            <input id='time_out' type="datetime-local" name="time_out" value="{{request_data.requestTimeOutBound.value}}"  class="form-control input-group date" readonly>
+                          </div>
+                          <div class="col-md-4">
+                            <label for="created_on">Created on</label>&nbsp<i class="fa fa-calendar"></i>
+                            <input id='created_on' type="text" name="created_on" value="{{request_data.requestCreatedOn.value}}"  class="form-control input-group date" readonly>
+                          </div>
+                      </div>
+                      <div class="row mt-2">
+                        <div class="col-md-4" >
+                            <label>Status</label>
+                            <select class="form-select" name="status" id="status" disabled>
+                                
+                                <option value="CLOSED"{% if request_data.requestStatus.statusName.value == 'CLOSED' %}selected{% endif %}>CLOSED</option>
+                                <option {% if request_data.requestStatus.statusName.value == 'NEW' %}selected{% endif %}>NEW</option>
+                                <option value="ASSIGNED"{% if request_data.requestStatus.statusName.value == 'ASSIGNED' %}selected{% endif %}>ASSIGNED</option>
+                                <option value="INPROGRESS"{% if request_data.requestStatus.statusName.value == 'INPROGRESS' %}selected{% endif %}>INPROGRESS</option>
+                                <option value="PENDING"{% if request_data.requestStatus.statusName.value == 'PENDING' %}selected{% endif %}>PENDING</option>
+                                <option value="RESOLVED"{% if request_data.requestStatus.statusName.value == 'RESOLVED' %}selected{% endif %}>RESOLVED</option>                          
+                            </select>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            </div>
+        </div>       
+    </main>
+</div>
+
+
+<div class="modal fade procure" tabindex="-1" role="dialog" aria-labelledby="procureModal" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">{{request_data.unique_no.value}}</h5>
+                <p class="card-text">Do you want to take this request in your queue?</p>
+                <button type="button" class="btn btn-success btn-sm m-3 float-right" onclick="procureTask('{{request.user.id}}','{{request_data.id.value}}')">Confirm</button>
+              </div>
+          </div>
+    </div>
+  </div>
+</div>
+<script src="{% static 'js/volunteer/volunteer.js' %}"></script>
+
+{% endblock %}

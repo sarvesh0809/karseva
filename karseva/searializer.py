@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import ServiceSubCategory,User,UserRatings,ServiceRequest,RequestStatus,Rating,UserContactInfo
+from .models import ServiceSubCategory,User,UserRatings,ServiceRequest,RequestStatus,Rating,UserContactInfo,TaskOtp
 
 class ServiceSubCategory_searializer(serializers.ModelSerializer):
     serviceCategory = serializers.CharField(source='serviceCategory.serviceName')
@@ -52,6 +52,11 @@ class ServiceSubCategorySearializer(serializers.ModelSerializer):
         model = ServiceSubCategory
         fields=['subCategoryName']
 
+class TaskOtpSearializer(serializers.ModelSerializer):
+    class Meta:
+        model = TaskOtp
+        fields='__all__'
+
 class ServiceRequest_searializer(serializers.ModelSerializer): # keep particular's fields only - 16/01/23
     volunteer = UserSearializer()
     requestor = UserSearializer()
@@ -59,6 +64,7 @@ class ServiceRequest_searializer(serializers.ModelSerializer): # keep particular
     userRating = Rating_searializer()
     volunteerRating = Rating_searializer()
     subCategory = ServiceSubCategorySearializer()
+    taskOtp = TaskOtpSearializer(source='taskotp')
     requestCreatedOn = serializers.DateTimeField(format="%b %d, %Y %H:%M")
     # requestCreatedon = serializers.DateTimeField(format="%b %d, %Y %H:%M")
     requestTimeInBound= serializers.DateTimeField(format="%Y-%m-%dT%H:%M:%S")

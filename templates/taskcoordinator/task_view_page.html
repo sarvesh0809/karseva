@@ -1,5 +1,5 @@
-{% extends 'partials/volunteer_nav.html' %}
-{% block title %} Volunteer View Page {% endblock %}
+{% extends 'partials/task_nav.html' %}
+{% block title %} Task View Request {% endblock %}
 {% load static %}
 {% block content %}
 <style>
@@ -40,7 +40,7 @@ body {
 
 
 <div class="container rounded bg-white mt-5">
-  <h4>Volunteer View Page</h4>
+  <h4>Task View Request</h4>
     <div class="row">
       
         <div class="col-md-12">
@@ -65,7 +65,7 @@ body {
                       <div class="col-md-6">
                         <label for="date">Request Time In Bound</label>&nbsp<i class="fa fa-calendar"></i>
                         <input id='Time In Bound' type="datetime-local" class="form-control input-group date" value="{{service.requestTimeInBound}}">
-                      </div> 
+                      </div>
                       <div class="col-md-6">
                         <label for="date">Request Time Out Bound</label>&nbsp<i class="fa fa-calendar"></i>
                         <input id='Time In Bound' type="datetime-local" class="form-control input-group date" value="{{service.requestTimeInBound}}">

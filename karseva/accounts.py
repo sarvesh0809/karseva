@@ -8,6 +8,7 @@ from django.shortcuts import redirect
 import json
 
 def userLogin(request):
+    
     response_data ={}
     username = request.POST.get('username')
     password = request.POST.get('password')

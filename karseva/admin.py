@@ -21,6 +21,7 @@ class CustomUserRatingsInline(admin.StackedInline):
 class CustomizedUserAdmin (UserAdmin):
     inlines = (CustomUserTypeInline,CustomUserContactInfoInline,CustomUserRatingsInline)
 
+
 admin.site.unregister(User)
 admin.site.register(User,CustomizedUserAdmin)
 admin.site.register(ServiceCategory)
@@ -30,4 +31,5 @@ admin.site.register(Rating)
 admin.site.register(ServiceRequest)
 admin.site.register(VolunteerInterest)
 admin.site.register(TaskCoordinatorPincode)
+admin.site.register(TaskOtp)
 # admin.site.register(UserRatings)

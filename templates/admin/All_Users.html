@@ -1,5 +1,5 @@
 {% extends 'partials/admin_nav.html' %}
-{% block title %} All Usrs {% endblock %}
+{% block title %} All Users {% endblock %}
 {% load static %}
 {% block content %}
 
@@ -18,7 +18,7 @@
         </thead>
         <tbody>
             {% for datas in data %}
-            {% if datas.user == 'USER' %}
+            
             <tr>                        
                 <td>
                     {{ forloop.counter }}               
@@ -40,7 +40,7 @@
                     <a href="#" class="btn btn-sm btn-danger">Delete</a>
                 </td>
             </tr>
-            {% endif %}
+            
             {% endfor %}
         </tbody>
     </table>

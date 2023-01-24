@@ -273,7 +273,7 @@ $.ajax({
                 </a>
             </td>
             <td>
-                ${json_data[i].taskOtp? `Start: <b>${json_data[i].taskOtp['start_otp']}</b> <br>End: <b>${json_data[i].taskOtp['end_otp']!=null ? json_data[i].taskOtp['end_otp'] :''} </b> ` : 'N/A' } 
+                ${json_data[i].taskOtp? `Start: <b style="color:purple;">${json_data[i].taskOtp['start_otp']}</b> <br>End: <b style="color:purple;">${json_data[i].taskOtp['end_otp']!=null ? json_data[i].taskOtp['end_otp'] :''} </b> ` : 'N/A' } 
                 
             </td>
             <td>
@@ -362,12 +362,10 @@ myDiv.addEventListener("scroll",function(e)
                         </a>
                     </td>
                     <td>
-                        ${json_data[i].taskOtp? `${json_data[i].taskOtp['start_otp']}` : 'N/A'} 
-                        
+                        ${json_data[i].taskOtp? `Start: <b style="color:purple;">${json_data[i].taskOtp['start_otp']}</b> <br>End: <b style="color:purple;">${json_data[i].taskOtp['end_otp']!=null ? json_data[i].taskOtp['end_otp'] :''} </b> ` : 'N/A' } 
                     </td>
                     <td>
                         ${json_data[i].requestCreatedOn}
-        
                     </td>
                     <td>
                     ${json_data[i].subCategory.subCategoryName}

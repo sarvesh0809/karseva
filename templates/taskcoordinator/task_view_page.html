@@ -25,25 +25,26 @@
                     <div class="mt-3" style="display: flex;justify-content: space-between;">
                         Request: <h3>{{request_data.unique_no.value}}</h3>
                                                                                                                                                                             
-                        <button class="btn btn-success float-right" id="" data-toggle="modal" data-target=".save"  style="margin-right: 20px;border: none;" type="button">Save</i></button>
+                        <button class="btn btn-success float-right" id="coordinator_form_submit" data-toggle="modal" data-target=".save"  style="margin-right: 20px;border: none;" type="button">Save</i></button>
 
                     </div>
-                    <form>
+                    <form id='coordinator_form'>
+                      <input class="form-control" id="task_id" name="task_id" value="{{request_data.id.value}}"  type="text" hidden>
+
                       <div class="row mt-2">
-                        <div class="col"><label>volunteer Name</label>
-                          <textarea class="form-control"  id="address" name="address" rows="1" cols="50" >{{request_data.volunteer.first_name.value}} </textarea>
+                        <div class="col-md-4"><label>Volunteer</label>
+                          <input class="form-control"  id="volunteerName" list="volunteerName_list" onfocus="volunteerName_list()" name="volunteerName" value="{{request_data.volunteer.username.value}}" required>
+                          <datalist id="volunteerName_list"></datalist>
+                        
                         </div>
-                        <div class="col"><label>Address/Location</label>
-                            <textarea class="form-control"  id="address" name="address" rows="1" cols="50" >{{request_data.address.value}} </textarea>
+                        <div class="col-md-4"><label>Address/Location</label>
+                            <textarea class="form-control"  id="address" name="address" rows="1" cols="50" >{{request_data.address.value}}</textarea>
                         </div>
-                        <div class="col"><label>Pincode</label>
+                        <div class="col-md-4"><label>Pincode</label>
                           <input class="form-control" id="pincode" name="pincode" type="text"   placeholder="" value="{{request_data.pincode.value}}"  required>
-                      </div>
-                    </div>
-                      <div class="row mt-2">
-                        <div class="col-md-4"><label>Category</label>
-                            <input class="form-control" id="category" name="category" value="{{request_data.subCategory.subCategoryName.value}}"  type="text" placeholder="" >
                         </div>
+                      </div>
+                      <div class="row mt-2">    
                         <div class="col-md-4"><label>Description</label>
                             <textarea class="form-control"  id="description" name="description" rows="1" cols="50"  >{{request_data.description.value}} </textarea>
                         </div>
@@ -51,9 +52,7 @@
                             <input class="form-control" id="user" name="user" value="{{request_data.requestor.first_name.value}}" type="text" placeholder="" >
                         </div>
                       </div>
-                      <div class="row mt-2" > 
-                       
-                                        
+                      <div class="row mt-2" >             
                           <div class="col-md-4">
                             <label for="time_in">Request Time In Bound</label>&nbsp<i class="fa fa-calendar"></i>
                             <input id='time_in' type="datetime-local" name="time_in" value="{{request_data.requestTimeInBound.value}}" class="form-control input-group date"  >
@@ -62,10 +61,7 @@
                             <label for="time_out">Request Time Out Bound</label>&nbsp<i class="fa fa-calendar"></i>
                             <input id='time_out' type="datetime-local" name="time_out" value="{{request_data.requestTimeOutBound.value}}"  class="form-control input-group date" >
                           </div>
-                          <div class="col-md-4">
-                            <label for="created_on">Created on</label>&nbsp<i class="fa fa-calendar"></i>
-                            <input id='created_on' type="text" name="created_on" value="{{request_data.requestCreatedOn.value}}"  class="form-control input-group date" >
-                          </div>
+                          
                       </div>
                       <div class="row mt-2">
                         <div class="col-md-4" >
@@ -73,7 +69,7 @@
                             <select class="form-select" name="status" id="status">
                                 
                                 <option value="CLOSED"{% if request_data.requestStatus.statusName.value == 'CLOSED' %}selected{% endif %}>CLOSED</option>
-                                <option {% if request_data.requestStatus.statusName.value == 'NEW' %}selected{% endif %}>NEW</option>
+                                <option value="NEW"{% if request_data.requestStatus.statusName.value == 'NEW' %}selected{% endif %}>NEW</option>
                                 <option value="ASSIGNED"{% if request_data.requestStatus.statusName.value == 'ASSIGNED' %}selected{% endif %}>ASSIGNED</option>
                                 <option value="INPROGRESS"{% if request_data.requestStatus.statusName.value == 'INPROGRESS' %}selected{% endif %}>INPROGRESS</option>
                                 <option value="PENDING"{% if request_data.requestStatus.statusName.value == 'PENDING' %}selected{% endif %}>PENDING</option>
@@ -103,4 +99,6 @@
     </div>
   </div>
 </div>
+<script src="{% static 'js/coordinator/coordinator.js' %}"></script>
+
   {% endblock %}

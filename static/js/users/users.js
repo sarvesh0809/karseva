@@ -40,6 +40,8 @@ function checkCategory(resp){
     })
 }
 
+
+
 function fecthCategory(){
     $('#category_list').empty()
     var datalist = $('#category_list')
@@ -176,12 +178,14 @@ $('#user_submit_request_btn').click(function (e) {
     var c = getCookie('csrftoken');
     var formData = new FormData($('#service_request_form')[0]);
     formData.append('csrfmiddlewaretoken', c)
+    //No--
     try{
         formData.append('volunteer', $('.activated').attr('id'))
     }
     catch(err) {
         formData.append('volunteer','')
     }
+    //
     $.ajax({
         type: 'POST',
         url:  '/user_request_submit',

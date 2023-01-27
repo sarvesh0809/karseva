@@ -76,6 +76,7 @@
                             <div class="col"><label>Address/Location</label>
                                 <textarea class="form-control"  id="address" name="address" rows="1" cols="20">{{request.user.usercontactinfo.address1|default_if_none:"" }} {{request.user.usercontactinfo.LandMark|default_if_none:"" }} {{request.user.usercontactinfo.city|default_if_none:"" }}</textarea>
                             </div>
+
                             <div class="col"><label>Pincode</label>
                                 <input class="form-control" id="pincode" name="pincode" type="text"   placeholder="" value="{{request.user.usercontactinfo.pincode|default_if_none:"" }}" required>
                             </div>

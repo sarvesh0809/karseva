@@ -58,6 +58,9 @@ input[type=number]::-webkit-outer-spin-button {
                 <div class="card shadow p-3 py-5">
                     <div class="mt-3" style="display: flex;justify-content: center;">
                         <h4 float-center>{{request_data.unique_no.value}}</h4> 
+                        {% if request_data.requestStatus.statusName.value == 'CLOSED' %}
+                        <button class="btn btn-primary profile-button float-right" id="volunteer_view_request_submit_btn" style="margin-right: 20px;background-color: #519f3d;border: none;" type="button">SAVE</button>
+                        {% endif %}
                     </div>
                     <form id="view_request_form">
                       <input type="text" name="task_id" id="task_id" value="{{request_data.id.value}}" hidden>
@@ -148,7 +151,7 @@ input[type=number]::-webkit-outer-spin-button {
                                   <span class="fa fa-star-o" data-rating="3"></span>
                                   <span class="fa fa-star-o" data-rating="4"></span>
                                   <span class="fa fa-star-o" data-rating="5"></span>
-                                  <input type="hidden" name="rating" class="rating-value" id="rating"  {% if request_data.volunteerRating.value %} value="{{request_data.userRating.ratingNumber.value}}" readonly {% else %} value="3" {% endif %}>
+                                  <input type="hidden" name="rating" class="rating-value" id="rating"  {% if request_data.volunteerRating.value %} value="{{request_data.volunteerRating.ratingNumber.value}}" readonly {% else %} value="3" {% endif %}>
                                 </div>
                               </div>
                             </div>

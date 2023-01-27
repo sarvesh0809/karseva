@@ -37,6 +37,7 @@ urlpatterns = [
     path('task_profile',taskcoordinator.task_profile, name='task_profile'),
     path('task_all_requests',taskcoordinator.task_all_requests, name='task_all_requests'),
     path('task_all_requests/<int:pk>/',taskcoordinator.task_view_page, name='task_view_page'),
+    path('task_edit_submit',taskcoordinator.task_edit_submit, name='task_edit_submit'),
     path('task_complaints',taskcoordinator.task_complaints, name='task_complaints'),
 
     #volunteer
@@ -50,8 +51,6 @@ urlpatterns = [
     path('volunteer_procure_submit',volunteer.volunteer_procure_submit, name='volunteer_procure_submit'),
     path('volunteer_view_request_submit/<int:pk>',volunteer.volunteer_view_request_submit, name='volunteer_view_request_submit'),
     path('volunterr_otp_submit',volunteer.volunterr_otp_submit, name='volunterr_otp_submit'),
-    
-
 
     # user
     path('userprofile',users.userprofile, name='userprofile'),
@@ -67,6 +66,7 @@ urlpatterns = [
     #api
     path('category_data_api',api.category_data_api, name='category_data_api'),
     path('volunteer/category/<str:pk>/',api.volunteer_category, name='volunteer_category'),
+    path('volunteerName_category',api.volunteerName_category, name='volunteerName_category'),
 
 
 

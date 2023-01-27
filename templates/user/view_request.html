@@ -121,7 +121,7 @@
                                   <span class="fa fa-star-o" data-rating="3"></span>
                                   <span class="fa fa-star-o" data-rating="4"></span>
                                   <span class="fa fa-star-o" data-rating="5"></span>
-                                  <input type="hidden" name="rating" class="rating-value" id="rating"  {% if request_data.userRating %} value="{{request_data.userRating.ratingNumber.value}}" readonly {% else %} value="3" {% endif %}>
+                                  <input type="hidden" name="rating" class="rating-value" id="rating"  {% if request_data.userRating.value %} value="{{request_data.userRating.ratingNumber.value}}" readonly {% else %} value="3" {% endif %}>
                                 </div>
                               </div>
                             </div>

@@ -342,3 +342,4 @@ $('#otp_submit_btn').click(function (e) {
         }
     })
 })
+

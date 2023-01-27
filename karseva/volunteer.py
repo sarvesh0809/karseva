@@ -27,7 +27,7 @@ def user_requests(request):
 
 @login_required(login_url='login')
 def volunteer_view_page(request):
-    services = ServiceRequest.objects.all()
+    services = ServiceRequest.objects.filter()
     context={
         "services":services
     }
@@ -199,15 +199,12 @@ def volunterr_otp_submit(request):
                 sr.save()
                 to = TaskOtp.objects.get(service_request__id=task_id)
                 to.end_otp_date=get_cuurent_date()
-                to.end_otp = create_new_otp()
                 to.save()
                 response_data['message'] = "Status has been changed to Resolved"
             else:
                 response_data['message'] = "Otp didn't match, Please entered the correct otp!"
-
         else:
             response_data['message'] = "Otp didn't match, Please entered the correct otp!"
-
     except Exception as e:
         print(e)
         response_data['message'] = "It seems some error has occured."

@@ -132,6 +132,8 @@ class ServiceRequest(models.Model):
     volunteerFeedback = models.CharField(max_length=200,blank=True)
     canceledBy = models.ForeignKey(User,on_delete=models.SET_NULL,related_name='canceled_by',null=True,blank=True)
     cancelledOn= models.DateTimeField(blank=True,null=True)
+    volunteerPoint = models.FloatField(blank=True,null=True)
+
 
     def __str__(self):
         return f'{self.requestor} - {self.unique_no} - {self.subCategory} -{self.requestStatus}'
@@ -163,7 +165,7 @@ class TaskOtp(models.Model):
     end_otp = models.IntegerField(blank=True,null=True)
     end_otp_date = models.DateTimeField( blank=True,null=True)
     def __str__(self):
-        return f'{self.service_request}'
+        return f'{self.service_request} - {self.id}'
 
 
 

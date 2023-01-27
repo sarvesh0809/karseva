@@ -5,6 +5,7 @@ from. searializer import ServiceRequest_searializer
 from django.contrib.auth.decorators import login_required
 import json
 from django.core import serializers
+from dateutil import relativedelta
 @login_required(login_url='login')
 def userprofile(request):
     context={
@@ -79,7 +80,6 @@ def user_view_request_submit(request,pk):
         if request.POST.get('user_feedback')!='' and request.POST.get('status')=='CLOSED':
             sr.userFeedback=request.POST.get('user_feedback')
         if request.POST.get('user_rating')!='' and request.POST.get('status')=='CLOSED':
-            
             if sr.userRating==None or sr.userRating=='':
                 sr.userRating=Rating.objects.get(ratingNumber=request.POST.get('user_rating')) 
                 if UserRatings.objects.filter(user = User.objects.get(username=sr.volunteer.username)).exists():
@@ -91,6 +91,14 @@ def user_view_request_submit(request,pk):
                 user.ratingCount+=1
                 user.save()
         sr.save()
+        if  request.POST.get('status')=='CLOSED':
+            to = TaskOtp.objects.get(service_request = sr)
+            difference = relativedelta.relativedelta(to.end_otp_date,to.start_otp_date)
+            if sr.userRating:
+                sr.volunteerPoint=(difference.days*24+difference.hours)*sr.userRating.ratingNumber*10
+            else:
+                sr.volunteerPoint=(difference.days*24+difference.hours)*10
+            sr.save()  
         response_data['message'] = 200
 
         

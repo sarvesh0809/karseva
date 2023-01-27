@@ -310,3 +310,35 @@ function procureTask(user_id,task_id){
         }
     })
 }
+
+$('#otp_submit_btn').click(function (e) {
+
+    e.preventDefault();
+    if($("#otp_input").val()==''){
+        return False
+    }
+    var c = getCookie('csrftoken');
+    var formData = new FormData();
+    formData.append('csrfmiddlewaretoken', c)
+    formData.append('task_id', $("#task_id").val())
+    formData.append('otp_input', $("#otp_input").val())
+    formData.append('otp_type', $("#otp_input").attr("otp_type"))
+    
+    $.ajax({
+        type: 'POST',
+        url:  '/volunterr_otp_submit',
+        dataType: 'json',
+        data: formData,
+        cache: false,
+        processData: false,
+        contentType: false,
+        enctype: 'multipart/form-data',
+        success: function (json) {
+            alert(json.message)
+            window.location.reload()
+        },   
+        error: function (xhr, errmsg, err) {
+            console.log(xhr.status + ":" + xhr.responseText)
+        }
+    })
+})

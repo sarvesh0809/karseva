@@ -9,7 +9,7 @@ def adminprofile(request):
 
     }
     return render(request, 'admin/adminprofile.html', context)
-    
+
 # view pages
 @login_required(login_url='login')
 def All_Users(request):

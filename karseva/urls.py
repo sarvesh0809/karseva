@@ -36,7 +36,7 @@ urlpatterns = [
     # task coordinator
     path('task_profile',taskcoordinator.task_profile, name='task_profile'),
     path('task_all_requests',taskcoordinator.task_all_requests, name='task_all_requests'),
-    path('task_view_request',taskcoordinator.task_view_request, name='task_view_request'),
+    path('task_all_requests/<int:pk>/',taskcoordinator.task_view_page, name='task_view_page'),
     path('task_complaints',taskcoordinator.task_complaints, name='task_complaints'),
 
     #volunteer
@@ -49,6 +49,8 @@ urlpatterns = [
     path('user_requests/view/<int:pk>/',volunteer.user_requests_view_all, name='user_requests_view_all'),
     path('volunteer_procure_submit',volunteer.volunteer_procure_submit, name='volunteer_procure_submit'),
     path('volunteer_view_request_submit/<int:pk>',volunteer.volunteer_view_request_submit, name='volunteer_view_request_submit'),
+    path('volunterr_otp_submit',volunteer.volunterr_otp_submit, name='volunterr_otp_submit'),
+    
 
 
     # user

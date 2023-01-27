@@ -1,105 +1,106 @@
 {% extends 'partials/task_nav.html' %}
-{% block title %} Task View Request {% endblock %}
+{% block title %} Task View page {% endblock %}
 {% load static %}
 {% block content %}
-<style>
-body {
-    background: #BA68C8;
-  }
-  
-  .form-control:focus {
-    box-shadow: none;
-    border-color: #BA68C8;
-  }
-  
-  .profile-button {
-    background: #BA68C8;
-    box-shadow: none;
-    border: none;
-  }
-  
-  .profile-button:hover {
-    background: #682773;
-  }
-  
-  .profile-button:focus {
-    background: #682773;
-    box-shadow: none;
-  }
-  
-  .profile-button:active {
-    background: #682773;
-    box-shadow: none;
-  }
-  
-  .back:hover {
-    color: #682773;
-    cursor: pointer;
-  }
-</style>
 
 
-<div class="container rounded bg-white mt-5">
-  <h4>Task View Request</h4>
-    <div class="row">
-      
-        <div class="col-md-12">
-            <div class="p-3 py-5">
-                <form>
-                  {% for service in services %}
-                  <div class="row mt-2">
-                      <div class="col-md-4"><label>Requestor</label><input type="text" class="form-control" value="{{ service.requestor}}" ></div>
-                      <div class="col-md-4"><label>SubCategory</label><input type="text" class="form-control" value="{{service.subCategory}}"></div>
-                      <div class="col-md-4 dropdown" ><label>Status</label><br>
-                        <button class="btn btn-info dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                          -------
-                        </button>
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                          <a class="dropdown-item" href="#">In Progress</a>
-                          <a class="dropdown-item" href="#">Scheduled</a>
-                          <a class="dropdown-item" href="#">Awaiting</a>
+
+<div class="h-screen flex-grow-1 overflow-y-lg-auto">
+   <div style="margin-left:3px">
+    <div id="google_translate_element"></div>
+   </div>
+       
+
+    <!-- Main -->
+    
+    <main class="py-6 bg-surface-secondary">
+        <div class="container-fluid">
+            <!-- Card stats -->
+            <div class="row g-6 mb-6" id='cards'>
+
+            <!-- 1 -->
+            
+            <div class="col" style="padding:0 !important;">
+                <div class="card shadow p-3 py-5">
+                    <div class="mt-3" style="display: flex;justify-content: space-between;">
+                        Request: <h3>{{request_data.unique_no.value}}</h3>
+                                                                                                                                                                            
+                        <button class="btn btn-success float-right" id="" data-toggle="modal" data-target=".save"  style="margin-right: 20px;border: none;" type="button">Save</i></button>
+
+                    </div>
+                    <form>
+                      <div class="row mt-2">
+                        <div class="col"><label>volunteer Name</label>
+                          <textarea class="form-control"  id="address" name="address" rows="1" cols="50" >{{request_data.volunteer.first_name.value}} </textarea>
+                        </div>
+                        <div class="col"><label>Address/Location</label>
+                            <textarea class="form-control"  id="address" name="address" rows="1" cols="50" >{{request_data.address.value}} </textarea>
+                        </div>
+                        <div class="col"><label>Pincode</label>
+                          <input class="form-control" id="pincode" name="pincode" type="text"   placeholder="" value="{{request_data.pincode.value}}"  required>
+                      </div>
+                    </div>
+                      <div class="row mt-2">
+                        <div class="col-md-4"><label>Category</label>
+                            <input class="form-control" id="category" name="category" value="{{request_data.subCategory.subCategoryName.value}}"  type="text" placeholder="" >
+                        </div>
+                        <div class="col-md-4"><label>Description</label>
+                            <textarea class="form-control"  id="description" name="description" rows="1" cols="50"  >{{request_data.description.value}} </textarea>
+                        </div>
+                        <div class="col-md-4"><label>Requested User</label>
+                            <input class="form-control" id="user" name="user" value="{{request_data.requestor.first_name.value}}" type="text" placeholder="" >
                         </div>
                       </div>
-                  </div>
-                  <div class="row mt-3">                   
-                      <div class="col-md-6">
-                        <label for="date">Request Time In Bound</label>&nbsp<i class="fa fa-calendar"></i>
-                        <input id='Time In Bound' type="datetime-local" class="form-control input-group date" value="{{service.requestTimeInBound}}">
+                      <div class="row mt-2" > 
+                       
+                                        
+                          <div class="col-md-4">
+                            <label for="time_in">Request Time In Bound</label>&nbsp<i class="fa fa-calendar"></i>
+                            <input id='time_in' type="datetime-local" name="time_in" value="{{request_data.requestTimeInBound.value}}" class="form-control input-group date"  >
+                          </div>
+                          <div class="col-md-4">
+                            <label for="time_out">Request Time Out Bound</label>&nbsp<i class="fa fa-calendar"></i>
+                            <input id='time_out' type="datetime-local" name="time_out" value="{{request_data.requestTimeOutBound.value}}"  class="form-control input-group date" >
+                          </div>
+                          <div class="col-md-4">
+                            <label for="created_on">Created on</label>&nbsp<i class="fa fa-calendar"></i>
+                            <input id='created_on' type="text" name="created_on" value="{{request_data.requestCreatedOn.value}}"  class="form-control input-group date" >
+                          </div>
                       </div>
-                      <div class="col-md-6">
-                        <label for="date">Request Time Out Bound</label>&nbsp<i class="fa fa-calendar"></i>
-                        <input id='Time In Bound' type="datetime-local" class="form-control input-group date" value="{{service.requestTimeInBound}}">
+                      <div class="row mt-2">
+                        <div class="col-md-4" >
+                            <label>Status</label>
+                            <select class="form-select" name="status" id="status">
+                                
+                                <option value="CLOSED"{% if request_data.requestStatus.statusName.value == 'CLOSED' %}selected{% endif %}>CLOSED</option>
+                                <option {% if request_data.requestStatus.statusName.value == 'NEW' %}selected{% endif %}>NEW</option>
+                                <option value="ASSIGNED"{% if request_data.requestStatus.statusName.value == 'ASSIGNED' %}selected{% endif %}>ASSIGNED</option>
+                                <option value="INPROGRESS"{% if request_data.requestStatus.statusName.value == 'INPROGRESS' %}selected{% endif %}>INPROGRESS</option>
+                                <option value="PENDING"{% if request_data.requestStatus.statusName.value == 'PENDING' %}selected{% endif %}>PENDING</option>
+                                <option value="RESOLVED"{% if request_data.requestStatus.statusName.value == 'RESOLVED' %}selected{% endif %}>RESOLVED</option>                          
+                            </select>
+                        </div>
                       </div>
-                  </div>
-                  <div class="row mt-3">
-                    <div class="col-md-6">
-                      <label for="date">Actual Time In Bound</label>&nbsp<i class="fa fa-calendar"></i>
-                      <input id='Time In Bound' type="datetime-local" class="form-control input-group date" value="{{service.requestTimeInBound}}">
-                    </div>
-                    <div class="col-md-6">
-                      <label for="date">Actual Time Out Bound</label>&nbsp<i class="fa fa-calendar"></i>
-                      <input id='Time In Bound' type="datetime-local" class="form-control input-group date" value="{{service.requestTimeInBound}}">
-                    </div>
-                  </div>
-                  <div class="row mt-3">
-                    <div class="col-md-6">
-                      <label for="date">Request Created By</label>&nbsp<i class="fa fa-calendar"></i>
-                      <input id='Time In Bound' type="datetime-local" class="form-control input-group date" value="{{service.requestTimeInBound}}">
-                    </div>
-                    <div class="col-md-6">
-                      <label for="date">Request Created On</label>&nbsp<i class="fa fa-calendar"></i>
-                      <input id='Time In Bound' type="datetime-local" class="form-control input-group date" value="{{service.requestTimeInBound}}">
-                    </div>
-                  </div>
-                  <div class="row mt-3">
-                      <div class="col-md-12"><label>Description</label><input type="textarea" class="form-control" value="{{service.description}}"></div>
-                  </div>
-                  <div class="mt-5 text-right"><button class="btn btn-primary profile-button" type="button">Save</button></div>
-                {% endfor %}
-                </form>
+                    </form>
+                </div>
             </div>
-        </div>
+            </div>
+        </div>       
+    </main>
+</div>
+
+
+<div class="modal fade procure" tabindex="-1" role="dialog" aria-labelledby="procureModal" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">{{request_data.unique_no.value}}</h5>
+                <p class="card-text">Do you want to take this request in your queue?</p>
+                <button type="button" class="btn btn-success btn-sm m-3 float-right" onclick="procureTask('{{request.user.id}}','{{request_data.id.value}}')">Confirm</button>
+              </div>
+          </div>
     </div>
-    
   </div>
+</div>
   {% endblock %}

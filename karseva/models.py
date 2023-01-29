@@ -22,6 +22,15 @@ Rating_choices=(
     ('VERY POOR', 'VERY POOR'),
 )
 
+Activity_choices=(
+    ('VOLUNTEER CHANGE','VOLUNTEER CHANGE'),
+    ('STATUS CHANGE','STATUS CHANGE'),
+    ('DESCRIPTION CHANGE','DESCRIPTION CHANGE'),
+    ('TIME CHANGE','TIME CHANGE'),
+    ('FEEDBACK','FEEDBACK'),
+    ('RATING','RATING'),
+    ('OTHER','RATING'),
+)
 
 class UserType(models.Model):
     user = models.OneToOneField(User,on_delete=models.CASCADE)
@@ -169,4 +178,11 @@ class TaskOtp(models.Model):
 
 
 
-# pip install django-currentuser
+class TaskActivity(models.Model):
+    service_request = models.ForeignKey(ServiceRequest,on_delete=models.CASCADE,null=True,blank=True)
+    activity_type = models.CharField(max_length=30,choices=Activity_choices,blank=True,null=True)
+    comments = models.TextField(blank=True,null=True)
+    time_added = models.DateTimeField(default=timezone.localtime(timezone.now()), blank=True)
+    def __str__(self):
+        return f'{self.service_request} - {self.activity_type}'
+

@@ -29,6 +29,13 @@
 }
 
 .star-rating .fa-star{color: gold;}
+.second{
+	width: 100%;
+	background-color: white;
+	border-radius: 4px;
+	box-shadow: 10px 10px 5px #aaaaaa;
+}
+
 
 </style>
 
@@ -135,6 +142,21 @@
                     </div>
                 </div>
             </div>
+        {% endif %}
+        {% if task_activity %}
+        <div class="container-fluid justify-content-center mt-5 border-left border-right" style="background: #eef2f5;border-radius: 1rem;">
+          <div class="d-flex justify-content-center pt-3 pb-2"> <input type="text" name="text" placeholder="+ Add a comment" class="form-control addtxt"> </div>
+          {% for activity in task_activity %}
+          <div class="d-flex justify-content-center py-2">
+              <div class="second py-2 px-2">
+                  <div class="d-flex justify-content-between py-1 pt-2">
+                      <div><span class="text2">{{ activity.comments }}</span></div>
+                      <div><span class="text3">{{ activity.time_added }}</span></div>
+                  </div>
+              </div>
+          </div>
+          {% endfor %}
+        </div>
         {% endif %}
     </main>
 </div>

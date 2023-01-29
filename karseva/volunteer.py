@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse,JsonResponse
 from django.contrib.auth.decorators import login_required
-from .models import ServiceRequest,UserContactInfo,RequestStatus,Rating,User,UserRatings,VolunteerInterest,ServiceSubCategory,TaskOtp
+from .models import ServiceRequest,UserContactInfo,RequestStatus,Rating,User,UserRatings,VolunteerInterest,ServiceSubCategory,TaskOtp,TaskActivity
 from .searializer import ServiceRequest_searializer
 import json,pytz,random
 from django.utils import timezone
@@ -55,8 +55,10 @@ def load_volunteer_data(request,pk):
 def view_user_request_volunteer(request,pk):
     data=ServiceRequest.objects.get(id=pk)
     request_data = ServiceRequest_searializer(data,many=False)
+    task_activity = TaskActivity.objects.filter(service_request = data).order_by('-id')
     context={
         'request_data':request_data,
+        'task_activity':task_activity,
     }
     return render(request, 'volunteer/view_request.html', context)
 

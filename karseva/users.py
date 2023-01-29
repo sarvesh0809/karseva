@@ -25,8 +25,11 @@ def submit_new_request(request):
 def view_user_request(request,pk):
     data=ServiceRequest.objects.get(id=pk)
     request_data = ServiceRequest_searializer(data,many=False)
+    task_activity = TaskActivity.objects.filter(service_request = data).order_by('-id')
+
     context={
         'request_data':request_data,
+        'task_activity':task_activity,
     }
     return render(request, 'user/view_request.html', context)
 

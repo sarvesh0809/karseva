@@ -3,7 +3,10 @@
 {% load static %}
 {% block content %}
 
-
+<style>
+  
+.star-rating .fa-star{color: gold;}
+</style>
 
 <div class="h-screen flex-grow-1 overflow-y-lg-auto">
    <div style="margin-left:3px">
@@ -79,26 +82,48 @@
                       </div>
                     </form>
                 </div>
+                
             </div>
+            
             </div>
-        </div>       
+            {% if request_data.requestStatus.statusName.value == 'CLOSED' %}
+            <div class="row mt-5">
+              <label>User Ratings</label>
+              <div class="container">
+                  <div class="row">
+                    <div class="col-lg-12">
+                      <div class="star-rating">
+                        <span class="fa fa-star-o" data-rating="1"></span>
+                        <span class="fa fa-star-o" data-rating="2"></span>
+                        <span class="fa fa-star-o" data-rating="3"></span>
+                        <span class="fa fa-star-o" data-rating="4"></span>
+                        <span class="fa fa-star-o" data-rating="5"></span>
+                        <input type="hidden" name="rating" class="rating-value" id="rating" value={{request_data.userRating.ratingNumber.value}}>
+                      </div>
+                    </div>
+                  </div>
+              </div>
+            </div>
+          {% endif %}
+            
+        </div>  
+             
     </main>
 </div>
 
-
-<div class="modal fade procure" tabindex="-1" role="dialog" aria-labelledby="procureModal" aria-hidden="true">
-  <div class="modal-dialog modal-sm">
-    <div class="modal-content">
-        <div class="card">
-            <div class="card-body">
-                <h5 class="card-title">{{request_data.unique_no.value}}</h5>
-                <p class="card-text">Do you want to take this request in your queue?</p>
-                <button type="button" class="btn btn-success btn-sm m-3 float-right" onclick="procureTask('{{request.user.id}}','{{request_data.id.value}}')">Confirm</button>
-              </div>
-          </div>
-    </div>
-  </div>
-</div>
+    
 <script src="{% static 'js/coordinator/coordinator.js' %}"></script>
-
-  {% endblock %}
+<script>
+var $star_rating = $('.star-rating .fa');
+var SetRatingStar = function() {
+return $star_rating.each(function() {
+if (parseInt($star_rating.siblings('input.rating-value').val()) >= parseInt($(this).data('rating'))) {
+  return $(this).removeClass('fa-star-o').addClass('fa-star');
+} else {
+  return $(this).removeClass('fa-star').addClass('fa-star-o');
+}
+});
+}
+SetRatingStar();
+</script>
+{% endblock %}

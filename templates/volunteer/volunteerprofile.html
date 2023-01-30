@@ -43,20 +43,44 @@
   font-size:2.25em;
   margin-bottom: 1rem;
 }
-
+label{font-weight: bold;}
 .star-rating .fa-star{color: gold;}
+.points {
+
+/*   text-shadow: 0 0 5px #f562ff, 0 0 15px #f562ff, 0 0 25px #f562ff,
+    0 0 20px #f562ff, 0 0 30px #890092, 0 0 80px #890092, 0 0 80px #890092;
+  color: #fccaff; */
+  
+  color: #0f2361;
+  font-family: "Sacramento", cursive;
+  text-align: center;
+  animation: blink 2s infinite;
+  -webkit-animation: blink 2s infinite;
+}
+@keyframes blink{
+0%{opacity: 0;}
+50%{opacity: .5;}
+100%{opacity: 1;}
+}
     
     
-    
-    </style>
+</style>
     <div class="container rounded bg-white mt-5">
         <div class="row">
-            <div class="col-md-12 ">
+            <div class="col-md-12 " style="display: flex;justify-content: space-between; ">
                 <div class="d-flex flex-column align-items-center text-center p-3 py-5">
-                  <img class="rounded-circle mt-5" src="https://i.imgur.com/0eg0aG0.jpg" width="90">
-                  <span class="font-weight-bold">{{request.user.first_name|default_if_none:"" }}</span>
-                  <span class="text-black-50">{{request.user.email}}</span>
-                  <span>{{request.user.usercontactinfo.city|default_if_none:"" }}</span></div>
+                  <div style="display: flex;align-items: center;">
+                    <img class="rounded-circle" src="https://i.imgur.com/0eg0aG0.jpg" width="90">
+                    <span class="font-weight-bold ml-3" style="text-transform: uppercase;">{{request.user.first_name|default_if_none:"" }}</span>  
+                  </div>
+                 
+                </div>
+                <div class="rounded-circle d-flex flex-column align-items-center text-center p-3 py-5">
+                  <span class="font-weight-bold points" style="font-size: x-large;">{{ request.user.id|volunteer_point }}</span>
+                  <span class="font-weight-bold points">POINTS</span>
+
+                </div>
+
             </div>
             <div class="col-md-12 border-right">
               <form id="profile_form">
@@ -112,7 +136,7 @@
                     </div>
                     
                     <div class="row mt-5">
-                     
+
                         <label>Total Ratings</label>
                         <div class="container">
                             <div class="row">
@@ -133,7 +157,7 @@
                     </div>
                  
                     
-                   <div class="mt-6 text-right"><button class="btn btn-primary profile-button" type="button" id="profile_save_btn">Save Profile</button></div>
+                   <div class="mt-6 text-right"><button class="btn btn-primary profile-button" type="button" id="profile_save_btn">Save</button></div>
                 </div>
             </div>
           </form>

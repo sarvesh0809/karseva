@@ -1,5 +1,6 @@
 {% extends 'partials/volunteer_nav.html' %}
 {% block title %} Volunteer Dashboard {% endblock %}
+{% load index %}
 {% load static %}
 {% block content %}
     <!-- Main content -->
@@ -13,7 +14,7 @@
                 <div class="col-xl-3 col-sm-6 col-12">
                     <div class="card shadow border-0" >
                         <center style="display: flex;flex-direction: row; flex-wrap: wrap;justify-content: center; align-items: baseline;">
-                            <h1 class="font-semibold text-muted text-xl d-block mt-4" >Open Tasks</h1>
+                            <h1 class="font-semibold text-muted text-xl d-block mt-4">Tasks</h1>
                             <span class="icon icon-shape bg-info text-white text-lg rounded-circle" style="width: 2.5rem;height: 2.5rem;margin-left: 2%;">
                                 <i class="bi bi-people"></i>
                             </span>
@@ -23,27 +24,31 @@
                                 <span class="ext-nowrap text-xs text-muted"></span>
                                     <div class="mt-2 mb-0 text-sm">
                                         <span class="badge badge-pill bg-soft-warning text-warning me-2">
-                                            <i class="bi bi-arrow-down me-1"></i>5
+                                           {{request.user.id|trackTask:"INPROGRESS"}}
                                         </span>
-                                        <span class="text-nowrap text-xs text-muted">In progress</span>
+                                        <span class="text-nowrap text-xs text-muted">In Progress</span>
                                     </div>
                                     <div class="mt-2 mb-0 text-sm">
                                         <span class="badge badge-pill bg-soft-success text-success me-2">
-                                            <i class="bi bi-arrow-up me-1"></i>15
+                                            {{request.user.id|trackTask:"ASSIGNED"}}
                                         </span>
-                                        <span class="text-nowrap text-xs text-muted">Scheduled</span>
+                                        <span class="text-nowrap text-xs text-muted">Assigned</span>
                                     </div>
                                     <div class="mt-2 mb-0 text-sm">
                                         <span class="badge badge-pill bg-soft-danger text-danger me-2">
-                                            <i class="bi bi-arrow-down me-1"></i>2
+                                            {% with closed=request.user.id|trackTask:"CLOSED" %}
+                                            {% with resolved=request.user.id|trackTask:"RESOLVED" %}
+                                            {{ closed|add:resolved }}
+                                            {% endwith %}
+                                            {% endwith %}
                                         </span>
-                                        <span class="text-nowrap text-xs text-muted">Awaiting</span>
+                                        <span class="text-nowrap text-xs text-muted">Closed/Resolved</span>
                                     </div>     
                             </div>
                             <div class="row" style="display: grid;">                            
                                 <div class="col-auto">
                                     <div class="text-xl " style="font-size: 3.8rem!important; width: 5rem;height: 5rem;">
-                                        15                                            
+                                        {{request.user.id|trackTask:"ALL"}}                                            
                                     </div>
                                 </div>
                             </div>                               

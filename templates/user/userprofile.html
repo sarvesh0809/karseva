@@ -43,8 +43,7 @@ body {
           <div class="d-flex flex-column align-items-center text-center p-3 py-5">
             <img class="rounded-circle mt-5" src="https://i.imgur.com/0eg0aG0.jpg" width="90">
             <span class="font-weight-bold">{{request.user.first_name|default_if_none:"" }}</span>
-            <span class="text-black-50">{{request.user.email}}</span>
-            <span>{{request.user.usercontactinfo.city|default_if_none:"" }}</span>
+            
                  
       </div>
       <div class="col-md-12 border-right">
@@ -79,7 +78,7 @@ body {
               
             </div>
               
-             <div class="mt-6 text-right"><button class="btn btn-primary profile-button" type="button" id="profile_save_btn">Save Profile</button></div>
+             <div class="mt-6 text-right"><button class="btn btn-primary profile-button" type="button" id="profile_save_btn">Save</button></div>
           </div>
       </div>
     </form>

@@ -1,0 +1,84 @@
+{% extends 'partials/admin_nav.html' %}
+{% block title %} User Profile  {% endblock %}
+{% load static %}
+{% block content %}
+<style>
+body {
+    background: #BA68C8;
+  }
+  
+  .form-control:focus {
+    box-shadow: none;
+    border-color: #BA68C8;
+  }
+  
+  .profile-button {
+    background: #BA68C8;
+    box-shadow: none;
+    border: none;
+  }
+  
+  .profile-button:hover {
+    background: #682773;
+  }
+  
+  .profile-button:focus {
+    background: #682773;
+    box-shadow: none;
+  }
+  
+  .profile-button:active {
+    background: #682773;
+    box-shadow: none;
+  }
+  
+  .back:hover {
+    color: #682773;
+    cursor: pointer;
+  }
+</style>
+<div class="container rounded bg-white mt-5">
+    {% for i in data %}
+    <div class="row">
+      <div class="col-md-12 ">
+          <div class="d-flex flex-column align-items-center text-center p-3 py-5">
+            <img class="rounded-circle mt-5" src="https://i.imgur.com/0eg0aG0.jpg" width="90">
+            <span class="font-weight-bold">{{i.first_name|default_if_none:"" }}</span>
+            
+                 
+      </div>
+      <div class="col-md-12 border-right">
+        <form id="profile_form">
+
+          <div class="py-5">
+              <div class="row mt-2">
+                <div class="col-md-4"><label>Firstname+Middlename</label><input type="text" class="form-control" placeholder="Enter your Firstname+Middlename" name='fname'  value="{{i.first_name|default_if_none:"" }}"></div>
+                <div class="col-md-4"><label>Lastname</label><input type="text" class="form-control" placeholder="Enter your Lastname " name='lname' value="{{i.last_name|default_if_none:"" }}"></div>
+                
+              </div>
+              <div class="row mt-3">
+                <div class="col-md-12"><label>Address</label><input type="address" class="form-control" name='address'  placeholder="HouseNo, building name, Area name" value="{{i.usercontactinfo.address1|default_if_none:"" }}"></div>
+                
+            </div>
+            <div class="row mt-3">
+                <div class="col-md-3"><label>Landmark</label><input type="text" class="form-control" name="landmark" placeholder="Enter your Landmark"  value="{{i.usercontactinfo.LandMark|default_if_none:"" }}"></div>
+                <div class="col-md-3"><label>City</label><input type="text" class="form-control" placeholder="Enter your City"  name="city"  value="{{i.usercontactinfo.city|default_if_none:"" }}"></div>
+                <div class="col-md-3"><label>State</label><input type="text" class="form-control" placeholder="Enter your State"  name="state"  value="{{i.usercontactinfo.state|default_if_none:"" }}"></div>
+                <div class="col-md-3"><label>Pincode</label><input type="text" class="form-control" placeholder="Enter your Pincode" name="pincode"  value="{{i.usercontactinfo.pincode|default_if_none:"" }}"></div>
+            </div>
+            <div class="row mt-3">
+              
+              <div class="col-md-6"><label>Primary Contact No.</label><input type="phone" class="form-control" name="pno"  placeholder="Enter Primary no." value="{{i.usercontactinfo.primaryPhoneNumber|default_if_none:"" }}"></div>
+              <div class="col-md-6"><label>Secondary Contact No.</label><input type="phone" class="form-control" name="sno"  placeholder="Enter secondary no." value="{{i.usercontactinfo.alternatePhoneNumber|default_if_none:"" }}"></div>
+              
+            </div>
+              
+             <div class="mt-6 text-right"><button class="btn btn-primary profile-button" type="button" id="profile_save_btn">Save</button></div>
+          </div>
+      </div>
+    {% endfor %}
+  </div>
+</div>
+<script src="{% static 'js/users/users.js' %}"></script>
+
+{% endblock %}

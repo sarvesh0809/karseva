@@ -26,7 +26,11 @@ urlpatterns = [
     # admin
     # path('adminprofile',admin_page.adminprofile, name='adminprofile'),
     path('All_Users',admin_page.All_Users, name='All_Users'),
+    path('All_user_id/<int:pk>/',admin_page.All_user_id, name='All_user_id'),
+    path('All_volunteer_id/<int:pk>/',admin_page.All_volunteer_id, name='All_volunteer_id'),
     path('ALL_Volunteers',admin_page.ALL_Volunteers, name='ALL_Volunteers'),
+    path('user_profile_edit',admin_page.user_profile_edit, name='user_profile_edit'),
+    # path('volunteer_profile_edit',admin_page.volunteer_profile_edit, name='volunteer_profile_edit'),
     path('Complaints',admin_page.Complaints, name='Complaints'),
     path('Feedback',admin_page.Feedback, name='Feedback'),
     path('Service_Requests',admin_page.Service_Requests, name='Service_Requests'),

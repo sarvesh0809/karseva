@@ -4,46 +4,90 @@
 {% block content %}
 
 <div class="table-responsive">
+    
+   
     <table class="table table-hover table-nowrap">
+        
         <thead class="thead-light">
             <tr>
                 <th scope="col">Sr. no</th>
                 <th scope="col">Name</th>
                 <th scope="col">Username</th>
+                <th scope="col">User type</th>
                 <th scope="col">Phone No.</th>
                 <th scope="col">City</th>
                 
                 <th></th>
             </tr>
         </thead>
+        {% if data %}
         <tbody>
-            {% for datas in data %}
+          {% for datas in data %}
             
-            <tr>                        
+            <tr> 
+                                   
                 <td>
                     {{ forloop.counter }}               
                 </td>
                 <td>
                     <img alt="..." src="https://images.unsplash.com/photo-1502823403499-6ccfcf4fb453?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=3&w=256&h=256&q=80" class="avatar avatar-sm rounded-circle me-2">
-                    <a class="text-heading font-semibold" href="#">{{datas.user.first_name}}&nbsp{{datas.user.last_name}}</a>
+                    <a class="text-heading font-semibold" href="#">{{datas.first_name}}&nbsp{{datas.last_name}}</a>
                 </td>
-                <td>{{datas.user}}</td>
-                <td>{{datas.primaryPhoneNumber}}</td>
+                <td>{{datas.username}}</td>
+                <td>{{datas.usertype.user_type}}</td>
+                <td>{{datas.usercontactinfo.primaryPhoneNumber}}</td>
                 
-                <td>{{datas.city}},{{datas.state}}</td>
+                <td>{{datas.usercontactinfo.city}},{{datas.usercontactinfo.state}}</td>
                
                 <td></td>
                 
                 <td class="text-end">
-                    <a href="#" class="btn btn-sm btn-primary">View</a>
+                    <a href="/All_user_id/{{datas.id}}/" class="btn btn-sm btn-primary">View</a>
                     <a href="#" class="btn btn-sm btn-success">Edit</a>
                     <a href="#" class="btn btn-sm btn-danger">Delete</a>
-                </td>
+                </td> 
             </tr>
             
             {% endfor %}
         </tbody>
+        {% endif %}
     </table>
 </div>     
-                
+
+
+{% comment %} <script>
+// get data on usertype
+function get_user_data() {
+    var select = document.getElementById("select-user-type");
+    var user_type = select.options[select.selectedIndex].value;
+    if (!user_type) {
+      return;
+    }
+    var xhr = new XMLHttpRequest();
+    xhr.open("GET", "/get_user_data?user_type=" + user_type, true);
+    xhr.onreadystatechange = function() {
+      if (xhr.readyState === 4 && xhr.status === 200) {
+        var data = JSON.parse(xhr.responseText);
+        // update the page with the received data
+        var tableBody = document.querySelector("table tbody");
+        tableBody.innerHTML = ""; // clear the current contents of the table
+        for (var i = 0; i < data.length; i++) {
+          var tr = document.createElement("tr");
+          tr.innerHTML = "<td>" + (i + 1) + "</td>" +
+            "<td><img alt='...' src='https://images.unsplash.com/photo-1502823403499-6ccfcf4fb453?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=3&w=256&h=256&q=80' class='avatar avatar-sm rounded-circle me-2'>" +
+            "<a class='text-heading font-semibold' href='#'>" + data[i].user.first_name + "&nbsp" + data[i].user.last_name + "</a></td>" +
+            "<td>" + data[i].user.username + "</td>" +
+            "<td>" + data[i].user.usertype.user_type + "</td>" +
+            "<td>" + data[i].contact_info.primaryPhoneNumber + "</td>" +
+            "<td>" + data[i].contact_info.city + "," + data[i].contact_info.state + "</td>" +
+            "<td class='text-end'><a href='#' class='btn btn-sm btn-primary'>View</a>" +
+            "<a href='#' class='btn btn-sm btn-success'>Edit</a>" +
+            "<a href='#' class='btn btn-sm btn-danger'>Delete</a></td>";
+          tableBody.appendChild(tr);
+        }
+      }
+    };
+    xhr.send();
+  }
+</script> {% endcomment %}
 {% endblock %}

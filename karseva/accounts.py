@@ -30,20 +30,23 @@ def userSignup(request):
     if request.method=='POST':
         response_data ={}
         try:
-            email = request.POST.get('email')
-            password = request.POST.get('password')
-            firstName = request.POST.get('firstName','')
-            lastName = request.POST.get('lastName','')
-            userType = request.POST.get('userType','USER')
-            phoneNumber = request.POST.get('phoneNumber','')
-            # alternatePhoneNumber = request.POST.get('alternatePhoneNumber','')
-            # emergencyContactNumber = request.POST.get('emergencyContactNumber','')
-            user = User.objects.create(username= email,password=make_password(password),first_name=firstName,last_name=lastName)
-            UserType.objects.create(user=user,user_type=userType,)
-            UserContactInfo.objects.create(user=user,primaryPhoneNumber=phoneNumber)
-            response_data['message'] = 200
+            if not User.objects.filter(username=request.POST.get('email')).exists():
+                email = request.POST.get('email')
+                password = request.POST.get('password')
+                firstName = request.POST.get('firstName','')
+                lastName = request.POST.get('lastName','')
+                userType = request.POST.get('userType','USER')
+                phoneNumber = request.POST.get('phoneNumber','')
+                # alternatePhoneNumber = request.POST.get('alternatePhoneNumber','')
+                # emergencyContactNumber = request.POST.get('emergencyContactNumber','')
+                user = User.objects.create(username= email,password=make_password(password),first_name=firstName,last_name=lastName)
+                UserType.objects.create(user=user,user_type=userType,)
+                UserContactInfo.objects.create(user=user,primaryPhoneNumber=phoneNumber)
+                response_data['message'] = 'Account Successfully created..'
+            else:
+                response_data['message'] = 'Email already exists'
         except Exception as e:
-            response_data['message'] = f'{e}'
+            response_data['message'] = 'It Seems some error occured.'
         return HttpResponse(json.dumps(response_data), content_type="application/json")
     
 

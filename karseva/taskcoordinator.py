@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
-from .models import TaskCoordinatorPincode,ServiceRequest,User,RequestStatus
+from .models import TaskCoordinatorPincode,ServiceRequest,User,RequestStatus,TaskActivity
 from .searializer import ServiceRequest_searializer
 import json
 @login_required(login_url='login')
@@ -22,8 +22,11 @@ def task_complaints(request):
 def task_view_page(request,pk):
     services = ServiceRequest.objects.get(id=pk)
     request_data = ServiceRequest_searializer(services,many=False)
+    task_activity = TaskActivity.objects.filter(service_request = services).order_by('-id')
+
     context={
         "request_data":request_data,
+        "task_activity":task_activity
     }
     return render(request, 'taskcoordinator/task_view_page.html', context)
 

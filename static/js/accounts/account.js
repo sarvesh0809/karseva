@@ -36,6 +36,8 @@ $('.signupform').submit(function (e) {
         enctype: 'multipart/form-data',
         success: function (json) {
             alert(json.message)
+            window.location='/dashboard'
+
         },   
         error: function (xhr, errmsg, err) {
             
@@ -62,6 +64,9 @@ $('.loginform').submit(function (e) {
         success: function (json) {
             if (json.message==200){
                 window.location='/dashboard'
+            }
+            else{
+                alert(json.message)
             }
         },   
         error: function (xhr, errmsg, err) {

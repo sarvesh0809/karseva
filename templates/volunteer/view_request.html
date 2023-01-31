@@ -175,7 +175,13 @@ input[type=number]::-webkit-outer-spin-button {
         {% endif %}
         {% if task_activity %}
         <div class="container-fluid justify-content-center mt-5 border-left border-right" style="background: #eef2f5;border-radius: 1rem;">
-          <div class="d-flex justify-content-center pt-3 pb-2"> <input type="text" name="text" placeholder="+ Add a comment" class="form-control addtxt"> </div>
+          <div class="d-flex justify-content-center pt-3 pb-2"> 
+            <div class="d-flex justify-content-center pt-3 pb-2"> 
+              <input type="text" name="text" placeholder="+ Add a comment" class="form-control addtxt"> 
+              <button class="btn btn-success btn-sm float-right ml-3" id="comment_submit" type="button">POST</button>
+  
+            </div>
+          
           {% for activity in task_activity %}
           <div class="d-flex justify-content-center py-2">
               <div class="second py-2 px-2">

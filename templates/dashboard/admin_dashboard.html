@@ -18,7 +18,7 @@
         <div class="container-fluid">
             <!-- Card stats -->
             <div class="row g-6 mb-6" id='cards'>
-
+                
             <!-- 1 -->
                 <div class="col-xl-3 col-sm-6 col-12 card-main">
                     <div class="card shadow border-0">
@@ -28,7 +28,7 @@
                             <div class="row">
                                 <div class="col">
                                     <span class="h6 font-semibold text-muted text-sm d-block mb-2 title">Service Request's</span>
-                                    <span class="h3 font-bold mb-0">95</span>
+                                    <span class="h3 font-bold mb-0">{{services}}</span>
                                 </div>
                                 <div class="col-auto">
                                     <div class="icon icon-shape bg-warning text-white text-lg rounded-circle">
@@ -44,12 +44,11 @@
                 <div class="col-xl-3 col-sm-6 col-12 card-main">
                     <div class="card shadow border-0">
                         <div class="card-body">
-                            <a href="/Complaints" style="position: absolute;width: 100%;top: 0;height: 100%;left: 0;"></a>
-
+                            <a href="/All_Users" style="position: absolute;width: 100%;top: 0;height: 100%;left: 0;"></a>
                             <div class="row">
                                 <div class="col">
-                                    <span class="h6 font-semibold text-muted text-sm d-block mb-2 title">Complaints</span>
-                                    <span class="h3 font-bold mb-0">15</span>
+                                    <span class="h6 font-semibold text-muted text-sm d-block mb-2 title" >Users</span>
+                                    <span class="h3 font-bold mb-0">{{users}}</span>
                                 </div>
                                 <div class="col-auto">
                                     <div class="icon icon-shape bg-warning text-white text-lg rounded-circle">
@@ -61,17 +60,19 @@
                         </div>
                     </div>
                 </div>
+                
                 <!-- 3 -->
                 <div class="col-xl-3 col-sm-6 col-12 card-main">
                     <div class="card shadow border-0">
                         <div class="card-body">
-                            <a href="/Feedback" style="position: absolute;width: 100%;top: 0;height: 100%;left: 0;"></a>
+                            <a href="/ALL_Volunteers" style="position: absolute;width: 100%;top: 0;height: 100%;left: 0;"></a>
 
                             <div class="row">
                                 <div class="col">
-                                    <span class="h6 font-semibold text-muted text-sm d-block mb-2 title">Feedback</span>
-                                    <span class="h3 font-bold mb-0">95</span>
+                                    <span class="h6 font-semibold text-muted text-sm d-block mb-2 title">Volunteer</span>
+                                    <span class="h3 font-bold mb-0">{{volunteers}}</span>
                                 </div>
+                            
                                 <div class="col-auto">
                                     <div class="icon icon-shape bg-warning text-white text-lg rounded-circle">
                                         <i class="bi-list-check"></i>
@@ -86,11 +87,12 @@
                 <div class="col-xl-3 col-sm-6 col-12 card-main">
                     <div class="card shadow border-0">
                         <div class="card-body">
-                            <a href="/All_Users" style="position: absolute;width: 100%;top: 0;height: 100%;left: 0;"></a>
+                            <a href="/Complaints" style="position: absolute;width: 100%;top: 0;height: 100%;left: 0;"></a>
+
                             <div class="row">
                                 <div class="col">
-                                    <span class="h6 font-semibold text-muted text-sm d-block mb-2 title" >Users</span>
-                                    <span class="h3 font-bold mb-0">95</span>
+                                    <span class="h6 font-semibold text-muted text-sm d-block mb-2 title">Task Coordinator</span>
+                                    <span class="h3 font-bold mb-0">{{coordinator}}</span>
                                 </div>
                                 <div class="col-auto">
                                     <div class="icon icon-shape bg-warning text-white text-lg rounded-circle">
@@ -106,12 +108,12 @@
                 <div class="col-xl-3 col-sm-6 col-12 card-main">
                     <div class="card shadow border-0">
                         <div class="card-body">
-                            <a href="/ALL_Volunteers" style="position: absolute;width: 100%;top: 0;height: 100%;left: 0;"></a>
+                            <a href="/Complaints" style="position: absolute;width: 100%;top: 0;height: 100%;left: 0;"></a>
 
                             <div class="row">
                                 <div class="col">
-                                    <span class="h6 font-semibold text-muted text-sm d-block mb-2 title">Volunteer</span>
-                                    <span class="h3 font-bold mb-0">95</span>
+                                    <span class="h6 font-semibold text-muted text-sm d-block mb-2 title">Complaints</span>
+                                    <span class="h3 font-bold mb-0">0</span>
                                 </div>
                                 <div class="col-auto">
                                     <div class="icon icon-shape bg-warning text-white text-lg rounded-circle">
@@ -123,7 +125,28 @@
                         </div>
                     </div>
                 </div>
+                <!-- 6 -->
+                <div class="col-xl-3 col-sm-6 col-12 card-main">
+                    <div class="card shadow border-0">
+                        <div class="card-body">
+                            <a href="/Feedback" style="position: absolute;width: 100%;top: 0;height: 100%;left: 0;"></a>
 
+                            <div class="row">
+                                <div class="col">
+                                    <span class="h6 font-semibold text-muted text-sm d-block mb-2 title">Feedback</span>
+                                    <span class="h3 font-bold mb-0">0</span>
+                                </div>
+                                <div class="col-auto">
+                                    <div class="icon icon-shape bg-warning text-white text-lg rounded-circle">
+                                        <i class="bi-list-check"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+                
 
             </div>
         </div>

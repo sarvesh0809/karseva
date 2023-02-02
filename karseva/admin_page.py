@@ -24,7 +24,7 @@ def All_Users(request):
 
 @login_required(login_url='login')
 def All_volunteer_id(request,pk):
-    data = User.objects.filter(id=pk,usertype__user_type='VOLUNTEER')     
+    data = User.objects.get(id=pk)     
     context={
         'data':data
     }
@@ -32,7 +32,7 @@ def All_volunteer_id(request,pk):
 
 @login_required(login_url='login')
 def All_user_id(request,pk):
-    data = User.objects.filter(id=pk,usertype__user_type='USER')  
+    data = User.objects.get(id=pk)  
     context={
         'data':data
     }
@@ -59,7 +59,7 @@ def user_profile_edit(request):
         pincode = request.POST.get('pincode')
         pno = request.POST.get('pno')
         sno = request.POST.get('sno')
-        user = User.objects.get(id = request.user.id)
+        user = User.objects.get(id = request.POST.get('user_id'))
         user.first_name = fname
         user.last_name = lname
         user.save()
@@ -82,8 +82,39 @@ def user_profile_edit(request):
     return HttpResponse(json.dumps(response_data), content_type="application/json")
 
 
-
-
+def volunteer_profile_edit(request):
+    response_data={}
+    try:
+        fname = request.POST.get('fname')
+        lname = request.POST.get('lname')
+        address = request.POST.get('address')
+        landmark = request.POST.get('landmark')
+        city = request.POST.get('city')
+        state = request.POST.get('state')
+        pincode = request.POST.get('pincode')
+        pno = request.POST.get('pno')
+        sno = request.POST.get('sno')
+        user = User.objects.get(id = request.POST.get('user_id'))
+        user.first_name = fname
+        user.last_name = lname
+        user.save()
+        if UserContactInfo.objects.filter(user = user).exists():
+            uc = UserContactInfo.objects.get(user = user)
+            uc.address1 = address
+            uc.LandMark = landmark
+            uc.city = city
+            uc.state = state
+            uc.pincode = pincode
+            uc.primaryPhoneNumber = pno
+            uc.alternatePhoneNumber = sno
+            uc.save()
+        else:
+            UserContactInfo.objects.create(user=user,address1 = address,LandMark = landmark,city = city,state = state,pincode = pincode,primaryPhoneNumber = pno,alternatePhoneNumber = sno)
+        response_data['message'] = 200
+    except Exception as e:
+        print(e)
+        response_data['message'] = 400
+    return HttpResponse(json.dumps(response_data), content_type="application/json")
 
 @login_required(login_url='login')
 def Complaints(request):

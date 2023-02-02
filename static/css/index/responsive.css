@@ -301,8 +301,8 @@ padding: 126px 40px;
 .image_2 { padding-top: 20px; }
 .about_section .row{ flex-direction: column-reverse; }
 .ipsum_text { font-size: 14px; }
-.choose_taital { font-size: 30px; }
-.choose_text { font-size: 13px; }
+/* .choose_taital { font-size: 30px; }
+.choose_text { font-size: 13px; } */
 .choose_section_2 { padding-top: 30px;  }
 .choose_box { margin-top: 30px; }
 .get_bt { width: 150px; }
@@ -419,8 +419,8 @@ ul.link li {
 .image_2 { padding-top: 20px; }
 .about_section .row{ flex-direction: column-reverse; }
 .ipsum_text { font-size: 14px; }
-.choose_taital { font-size: 30px; }
-.choose_text { font-size: 15px; }
+/* .choose_taital { font-size: 30px; } */
+/* .choose_text { font-size: 15px; } */
 .choose_section_2 { padding-top: 30px;  }
 .choose_box { margin-top: 30px; }
 .get_bt { width: 150px; }
@@ -437,5 +437,19 @@ ul.link li {
 .team_section_2 { padding-top: 20px; }
 .menu_text { padding-top: 0px; }
 
+.list-group {
+    margin-bottom: -43rem;
+}
+
+/* 
+.advocateImage {
+    margin-left: 2rem;
+}
 
 }
+
+@media (min-width: 844px) and (max-width: 390px) {
+    .advocateImage {
+        margin-left: 2rem;
+    }*/
+} 

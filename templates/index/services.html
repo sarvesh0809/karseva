@@ -1,3 +1,5 @@
+
+{% load static %}
 <style>
 .services{
   border: none;
@@ -5,22 +7,26 @@
   box-shadow: 2px 6px 8px 0 rgba(22, 22, 26, 0.18);
 }
 .carousel-inner {
-  padding: 1em;
-}
-.carousel-control-prev,
-.carousel-control-next {
-  background-color: #e1e1e1;
-  width: 6vh;
-  height: 6vh;
-  border-radius: 50%;
-  top: 50%;
-  transform: translateY(-50%);
-}
-.carousel-control-prev span,
-.carousel-control-next span {
-  width: 1.5rem;
-  height: 1.5rem;
-}
+	padding: 1em;
+  }
+  .carousel-control-prev,
+  .carousel-control-next {
+	background-color: #e1e1e1;
+	width: 6vh;
+	height: 6vh;
+	border-radius: 50%;
+	top: 50%;
+	transform: translateY(-50%);
+  }
+  .carousel-control-prev span,
+  .carousel-control-next span {
+	width: 1.5rem;
+	height: 1.5rem;
+  }
+  
+  
+  
+
 @media screen and (min-width: 577px) {
   .cards-wrapper {
     display: flex;
@@ -38,7 +44,7 @@
   .card:not(:first-child) {
     display: none;
   }
-}
+} 
 
 .image-wrapper img {
   max-width: 100%;
@@ -46,448 +52,93 @@
 }
 
 </style>
-<!-- {% load static %} -->
-<!-- <div class="services_section layout_padding">
-    <div class="container">
-        <h1 class="services_taital"><span>Our </span><span style="color: #1f1f1f">Services</span></h1>
-        <p class="services_text">Consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</p>
-    </div>   +
-      <div id="cards_landscape_wrap-2">
-      
-      <div class="row">
-          <div class="col">
-              <a href="">
-                  <div class="card-flyer" >
-                      <div class="text-box">
-                          <div class="image-box">
-                              <img src="{% static 'images/index/service-1.jpg' %}" alt="" />
-                          </div>
-                          <div class="text-container">
-                              <h6>Health Related</h6>
-                              
-                                <ul class="list-group list-group-flush">
-                                    <li class="list-group-item">Doctor's Appointment and visits </li>
-                                    <li class="list-group-item">Medicine Procurement</li>
-                                    <li class="list-group-item">Lab Tests assistance </li>
-                                </ul>                            
-                          </div>
-                      </div>
-                  </div>
-              </a>
-          </div>
-          <div class="col">
-              <a href="">
-                  <div class="card-flyer">
-                      <div class="text-box">
-                          <div class="image-box">
-                              <img src="{% static 'images/index/service-1.jpg' %}" alt="" />
-                          </div>
-                        <div class="text-container">
-                            <h6>Daily Needs</h6>
-                            
-                              <ul class="list-group list-group-flush">
-                                  <li class="list-group-item">Grocery Support </li>
-                                  <li class="list-group-item">Home Maintenance</li>
-                              </ul>                            
-                        </div>
-                      </div>
-                  </div>
-              </a>
-          </div>
-          <div class="col">
-              <a href="">
-                  <div class="card-flyer">
-                      <div class="text-box">
-                          <div class="image-box">
-                              <img src="{% static 'images/index/service-1.jpg' %}" alt="" />
-                          </div>
-  
-                        <div class="text-container">
-                            <h6>Information and Guidance</h6>
-                            
-                              <ul class="list-group list-group-flush">
-                                  <li class="list-group-item">Assistance for official and legal documentation work </li>
-                                  <li class="list-group-item">Aadhaar/Passport/Pan Card/Official Certificates</li>
-                                  <li class="list-group-item">Technology and Appliances assistance (Usage of Computer/Tablets/Smartphones etc.) </li>
-                              </ul>                            
-                        </div>
-                      </div>
-                  </div>
-              </a>
-          </div>
-          <div class="col">
-              <a href="">
-                  <div class="card-flyer">
-                      <div class="text-box">
-                          <div class="image-box">
-                              <img src="{% static 'images/index/service-1.jpg' %}" alt="" />
-                          </div>
-                          <div class="text-container">
-                            <h6>Physiological Support</h6>
-                            
-                              <ul class="list-group list-group-flush">
-                                  <li class="list-group-item">Emotional Support </li>
-                                  <li class="list-group-item">Spend free time (Chit-chat/Watching TV/Playing Games)/li>
-                                  <li class="list-group-item">Walk with me (visit to a nearby parks/places) </li>
-                              </ul>                            
-                        </div>
-                      </div>
-                  </div>
-              </a>
-          </div>
-          <div class="col">
-            <a href="">
-                <div class="card-flyer">
-                    <div class="text-box">
-                        <div class="image-box">
-                            <img src="{% static 'images/index/service-1.jpg' %}" alt="" />
-                        </div>
-                        <div class="text-container">
-                          <h6>Physiological Support</h6>
-                          
-                            <ul class="list-group list-group-flush">
-                                <li class="list-group-item">Emotional Support </li>
-                                <li class="list-group-item">Spend free time (Chit-chat/Watching TV/Playing Games)/li>
-                                <li class="list-group-item">Walk with me (visit to a nearby parks/places) </li>
-                            </ul>                            
-                      </div>
-                    </div>
-                </div>
-            </a>
-        </div>
-      </div>
-      
-  </div>
-  </div> -->
 
-
-
-<!-- 
-  <body>
-
-	<div class="slideshow-container">
-
-		<div class="mySlides">
-			<div class="numbertext">1 / 3</div>
-			<img src="{% static 'images/index/service-1.jpg' %}"
-				style="width:100%">
-			<a href="">
-				<div class="text">
-					<h3>Health Related</h3>
-					<ul class="list-group list-group-flush">
-						<li class="list-group-item">Doctor's Appointment and visits </li>
-						<li class="list-group-item">Medicine Procurement</li>
-						<li class="list-group-item">Lab Tests assistance </li>
-					</ul>
-				</div>
-			</a>
-		</div>
-
-		<div class="mySlides">
-			<div class="numbertext">1 / 3</div>
-			<img src="{% static 'images/index/service-1.jpg' %}"
-				style="width:100%">
-			<a href="">
-				<div class="text">
-					<h3>Daily Needs</h3>
-					<ul class="list-group list-group-flush">
-						<li class="list-group-item">Grocery Support </li>
-						<li class="list-group-item">Home Maintenance</li>
-					  </ul>
-				</div>
-			</a>
-		</div>
-
-		<div class="mySlides">
-			<div class="numbertext">1 / 3</div>
-			<img src="{% static 'images/index/service-1.jpg' %}"
-				style="width:100%">
-			<a href="">
-				<div class="text">
-					<h3>Information and Guidance</h3>
-					<ul class="list-group list-group-flush">
-						<li class="list-group-item">Assistance for official and legal documentation work </li>
-						<li class="list-group-item">Aadhaar/Passport/Pan Card/Official Certificates</li>
-						<li class="list-group-item">Technology and Appliances assistance (Usage of
-						  Computer/Tablets/Smartphones etc.) </li>
-					  </ul>
-				</div>
-			</a>
-		</div>
-
-		<div class="mySlides">
-			<div class="numbertext">1 / 3</div>
-			<img src="{% static 'images/index/service-1.jpg' %}"
-				style="width:100%">
-			<a href="">
-				<div class="text">
-					<h3>Physiological Support</h3>
-					<ul class="list-group list-group-flush">
-						<li class="list-group-item">Emotional Support </li>
-						<li class="list-group-item">Spend free time (Chit-chat/Watching TV/Playing Games)</li>
-						<li class="list-group-item">Walk with me (visit to a nearby parks/places) </li>
-					  </ul>
-				</div>
-			</a>
-		</div>
-
-		<div class="mySlides">
-			<div class="numbertext">1 / 3</div>
-			<img src="{% static 'images/index/service-1.jpg' %}"
-				style="width:100%">
-			<a href="">
-				<div class="text">
-					<h3>Physiological Support</h3>
-					<ul class="list-group list-group-flush">
-						<li class="list-group-item">Emotional Support </li>
-						<li class="list-group-item">Spend free time (Chit-chat/Watching TV/Playing Games)</li>
-						<li class="list-group-item">Walk with me (visit to a nearby parks/places) </li>
-					  </ul>
-				</div>
-			</a>
-		</div>
-
-		<a class="prev" onclick="plusSlides(-1)">❮</a>
-		<a class="next" onclick="plusSlides(1)">❯</a>
-
-	</div>
-	<br>
-
-	<div style="text-align:center">
-		<span class="dot" onclick="currentSlide(1)"></span>
-		<span class="dot" onclick="currentSlide(2)"></span>
-		<span class="dot" onclick="currentSlide(3)"></span>
-		<span class="dot" onclick="currentSlide(4)"></span>
-		<span class="dot" onclick="currentSlide(5)"></span>
-	</div>
-
-	<script>
-		let slideIndex = 1;
-		showSlides(slideIndex);
-
-		function plusSlides(n) {
-			showSlides(slideIndex += n);
-		}
-
-		function currentSlide(n) {
-			showSlides(slideIndex = n);
-		}
-
-		function showSlides(n) {
-			let i;
-			let slides = document.getElementsByClassName("mySlides");
-			let dots = document.getElementsByClassName("dot");
-			if (n > slides.length) { slideIndex = 1 }
-			if (n < 1) { slideIndex = slides.length }
-			for (i = 0; i < slides.length; i++) {
-				slides[i].style.display = "none";
-			}
-			for (i = 0; i < dots.length; i++) {
-				dots[i].className = dots[i].className.replace(" active", "");
-			}
-			slides[slideIndex - 1].style.display = "block";
-			dots[slideIndex - 1].className += " active";
-		}
-	</script>
-
-</body>
- -->
-
-
-
- {% comment %} {% endcomment %}
-{% comment %} <div class="container">
- <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
-	<div class="carousel-inner">
-	  <div class="carousel-item active">
-		<div class="cards-wrapper">
-		  <div class="card services">
-			<div class="image-wrapper">
-			  <img src="https://codingyaar.com/wp-content/uploads/multiple-items-carousel-slide-1-card-1.jpg" alt="...">
-			</div>
-			<div class="card-body">
-			  <h5 class="card-title">Card title</h5>
-			  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
-				content.</p>
-			  <a href="#" class="btn btn-primary">Go somewhere</a>
-			</div>
-		  </div>
-		  <div class="card services">
-			<div class="image-wrapper">
-			  <img src="https://codingyaar.com/wp-content/uploads/multiple-items-carousel-slide-1-card-2.jpg" alt="...">
-			</div>
-			<div class="card-body">
-			  <h5 class="card-title">Card title</h5>
-			  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
-				content.</p>
-			  <a href="#" class="btn btn-primary">Go somewhere</a>
-			</div>
-		  </div>
-		  <div class="card services">
-			<div class="image-wrapper">
-			  <img src="https://codingyaar.com/wp-content/uploads/multiple-items-carousel-slide-1-card-3.jpg" alt="...">
-			</div>
-			<div class="card-body">
-			  <h5 class="card-title">Card title</h5>
-			  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
-				content.</p>
-			  <a href="#" class="btn btn-primary">Go somewhere</a>
-			</div>
-		  </div>
-		</div>
-	  </div>
-	  <div class="carousel-item">
-		<div class="cards-wrapper">
-		  <div class="card services">
-			<div class="image-wrapper">
-			  <img src="https://codingyaar.com/wp-content/uploads/multiple-items-carousel-slide-2-card-1.jpg" alt="...">
-			</div>
-			<div class="card-body">
-			  <h5 class="card-title">Card title</h5>
-			  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
-				content.</p>
-			  <a href="#" class="btn btn-primary">Go somewhere</a>
-			</div>
-		  </div>
-		  <div class="card services">
-			<div class="image-wrapper">
-			  <img src="https://codingyaar.com/wp-content/uploads/multiple-items-carousel-slide-2-card-2.jpg" alt="...">
-			</div>
-			<div class="card-body">
-			  <h5 class="card-title">Card title</h5>
-			  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
-				content.</p>
-			  <a href="#" class="btn btn-primary">Go somewhere</a>
-			</div>
-		  </div>
-		  <div class="card services">
-			<div class="image-wrapper">
-			  <img src="https://codingyaar.com/wp-content/uploads/multiple-items-carousel-slide-2-card-3.jpg" alt="...">
-			</div>
-			<div class="card-body">
-			  <h5 class="card-title">Card title</h5>
-			  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
-				content.</p>
-			  <a href="#" class="btn btn-primary">Go somewhere</a>
-			</div>
-		  </div>
-		</div>
-	  </div>
-	  <div class="carousel-item">
-		<div class="cards-wrapper">
-		  <div class="card services">
-			<div class="image-wrapper">
-			  <img src="https://codingyaar.com/wp-content/uploads/bootstrap-multiple-items-carousel-slide-3-card-1.jpg" alt="...">
-			</div>
-			<div class="card-body">
-			  <h5 class="card-title">Card title</h5>
-			  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
-				content.</p>
-			  <a href="#" class="btn btn-primary">Go somewhere</a>
-			</div>
-		  </div>
-		  <div class="card services">
-			<div class="image-wrapper">
-			  <img src="https://codingyaar.com/wp-content/uploads/multiple-items-carousel-slide-3-card-2.jpg" alt="...">
-			</div>
-			<div class="card-body">
-			  <h5 class="card-title">Card title</h5>
-			  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
-				content.</p>
-			  <a href="#" class="btn btn-primary">Go somewhere</a>
-			</div>
-		  </div>
-		  <div class="card services">
-			<div class="image-wrapper">
-			  <img src="https://codingyaar.com/wp-content/uploads/multiple-items-carousel-slide-3-card-3.jpg" alt="...">
-			</div>
-			<div class="card-body">
-			  <h5 class="card-title">Card title</h5>
-			  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
-				content.</p>
-			  <a href="#" class="btn btn-primary">Go somewhere</a>
-			</div>
-		  </div>
-		</div>
-	  </div>
-	</div>
-	<button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
-	  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-	  <span class="visually-hidden">Previous</span>
-	</button>
-	<button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
-	  <span class="carousel-control-next-icon" aria-hidden="true"></span>
-	  <span class="visually-hidden">Next</span>
-	</button>
-  </div>
-</div> {% endcomment %}
 
 <div class="services_section layout_padding">
 	<div class="container">
 	  <h1 class="services_taital"><span>Our </span><span style="color: #1f1f1f">Services</span></h1>
 	  <p class="services_text">Consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</p>
-	  <div id="main_slider" class="carousel slide" data-ride="carousel">
+	  <div id="yourCarouselId" class="carousel slide" data-ride="carousel">
+		<!-- Indicators -->
+		<ol class="carousel-indicators">
+		  <li data-target="#yourCarouselId" data-slide-to="0" class="active"></li>
+		  <li data-target="#yourCarouselId" data-slide-to="1"></li>
+		  <li data-target="#yourCarouselId" data-slide-to="2" ></li>
+		  <li data-target="#yourCarouselId" data-slide-to="3"></li>
+		  <li data-target="#yourCarouselId" data-slide-to="4" ></li>
+		 
+		  <!-- Add more indicators as needed -->
+		</ol>
+	  
+		<!-- Slides -->
 		<div class="carousel-inner">
-		  <div class="carousel-item active">
-			<div class="services_section_2 layout_padding">
-			  <div class="row">
-				<div class="col-md-6">
-				  <div class="box_section active">
-					<div class="tiles_img_1"><img src="{% static 'images/index/service1.png' %}" alt="" /></div>
-					<h3 class="tile_text active">Health Related</h3>
-					<p class="lorem_text active"><i class="fa fa-chevron-right" aria-hidden="true"></i> &nbsp Doctor's Appointment and visits <br><i class="fa fa-chevron-right" aria-hidden="true"></i> &nbsp Medicine Procurement <br><i class="fa fa-chevron-right" aria-hidden="true"></i> &nbsp Lab Tests assistance </p>
-				  </div>
+			<div class="carousel-item active">
+				<div class="row">
+					<div class="col-md-6">
+						<div class="box_section active">
+							<div class="tiles_img_1"><img src="{% static 'images/index/service1.png' %}" alt="" /></div>
+							<h3 class="tile_text active">Health Related</h3>
+							<p class="lorem_text active"><i class="fa fa-chevron-right" aria-hidden="true"></i> &nbsp Doctor's Appointment and visits <br><i class="fa fa-chevron-right" aria-hidden="true"></i> &nbsp Medicine Procurement <br><i class="fa fa-chevron-right" aria-hidden="true"></i> &nbsp Lab Tests assistance </p>
+						</div>
+					</div>
+					<div class="col-md-6">
+						<div class="box_section">
+							<div class="tiles_img_1"><img src="{% static 'images/index/service2.png' %}" alt="" /></div>
+							<h3 class="tile_text">Daily Needs</h3> 
+							<p class="lorem_text"><i class="fa fa-chevron-right" aria-hidden="true"></i> &nbsp Grocery Support <br> <i class="fa fa-chevron-right" aria-hidden="true"></i> &nbsp Home Maintenance <br><br> </p>
+						</div>
+					</div>
 				</div>
-				<div class="col-md-6">
-				  <div class="box_section">
-					<div class="tiles_img_1"><img src="{% static 'images/index/service3.png' %}" alt="" /></div>
-					<h3 class="tile_text">Daily Needs</h3> 
-					<p class="lorem_text"><i class="fa fa-chevron-right" aria-hidden="true"></i> &nbsp Grocery Support <br> <i class="fa fa-chevron-right" aria-hidden="true"></i> &nbsp Home Maintenance <br><br> </p>
-				  </div>
-				</div>
-			  </div>
 			</div>
-		  </div>
-		  <div class="carousel-item">
-			<div class="services_section_2 layout_padding">
-			  <div class="row">
-				<div class="col-md-6">
-				  <div class="box_section">
-					<div class="tiles_img_1"><img src="{% static 'images/index/service3.png' %}" alt="" /></div>
-					<h3 class="tile_text">Information and Guidance</h3>
-					<p class="lorem_text"><i class="fa fa-chevron-right" aria-hidden="true"></i> &nbsp Assistance for official and legal documentation work <br><i class="fa fa-chevron-right" aria-hidden="true"></i> &nbsp Aadhaar/Passport/Pan Card/Official Certificates <br> <i class="fa fa-chevron-right" aria-hidden="true"></i> &nbsp Technology and Appliances assistance (Usage of Computer/Tablets/Smartphones etc.)  </p>
-				  </div>
+			
+
+			<div class="carousel-item ">
+				<div class="row">
+					<div class="col-md-6">
+						<div class="box_section ">
+							<div class="tiles_img_1"><img src="{% static 'images/index/service3.png' %}" alt="" /></div>
+							<h3 class="tile_text">Information and Guidance</h3>
+							<p class="lorem_text"><i class="fa fa-chevron-right" aria-hidden="true"></i> &nbsp Assistance for official and legal documentation work <br><i class="fa fa-chevron-right" aria-hidden="true"></i> &nbsp Aadhaar/Passport/Pan Card/Official Certificates <br> <i class="fa fa-chevron-right" aria-hidden="true"></i> &nbsp Technology and Appliances assistance (Usage of Computer/Tablets/Smartphones etc.)  </p>
+						</div>
+					</div>
+					<div class="col-md-6">
+						<div class="box_section">
+							<div class="tiles_img_1"><img src="{% static 'images/index/service4.png' %}" alt="" /></div>
+							<h3 class="tile_text">Physiological Support</h3>
+							<p class="lorem_text"><i class="fa fa-chevron-right" aria-hidden="true"></i> &nbsp Emotional Support   <br><i class="fa fa-chevron-right" aria-hidden="true"></i> &nbsp Spend free time (Chit-chat/Watching TV/Playing Games) <br><i class="fa fa-chevron-right" aria-hidden="true"></i> &nbsp Walk with me (visit to a nearby parks/places)  <br><br> </p>
+						</div>
+					</div>
 				</div>
-				<div class="col-md-6">
-				  <div class="box_section">
-					<div class="tiles_img_1"><img src="{% static 'images/index/service1.png' %}" alt="" /></div>
-					<h3 class="tile_text">Physiological Support</h3>
-					<p class="lorem_text"><i class="fa fa-chevron-right" aria-hidden="true"></i> &nbsp Emotional Support   <br><i class="fa fa-chevron-right" aria-hidden="true"></i> &nbsp Spend free time (Chit-chat/Watching TV/Playing Games) <br><i class="fa fa-chevron-right" aria-hidden="true"></i> &nbsp Walk with me (visit to a nearby parks/places)  <br><br> </p>
-				  </div>
-				</div>
-			  </div>
 			</div>
-		  </div>
-		  <div class="carousel-item">
-			<div class="services_section_2 layout_padding">
-			  <div class="row">
-				<div class="col-md-6">
-				  <div class="box_section">
-					<div class="tiles_img_1"><img src="{% static 'images/index/service3.png' %}" alt="" /></div>
-					<h3 class="tile_text">Unique Moments</h3>
-					<p class="lorem_text"><i class="fa fa-chevron-right" aria-hidden="true"></i> &nbsp Organizing Events/Small Outings/Get Together with family, relatives and friends </p>
-				  </div>
+
+			<div class="carousel-item ">
+				<div class="row">
+					<div class="col-md-6">
+						<div class="box_section ">
+							<div class="tiles_img_1"><img src="{% static 'images/index/service5.png' %}" alt="" /></div>
+							<h3 class="tile_text">Unique Moments</h3>
+							<p class="lorem_text"><i class="fa fa-chevron-right" aria-hidden="true"></i> &nbsp Organizing Events/Small Outings/Get Together with family, relatives and friends </p>
+				  
+						</div>
+					</div>
+					
 				</div>
-			  </div>
 			</div>
-		  </div>
+		  
+		  <!-- Add more slides as needed -->
 		</div>
-		<a class="carousel-control-prev" href="#main_slider" role="button" data-slide="prev">
-		  <i class="fa fa-angle-left"></i>
+	  
+		<!-- Controls -->
+		<a class="carousel-control-prev" href="#yourCarouselId" role="button" data-slide="prev">
+		  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+		  <span class="sr-only">Previous</span>
 		</a>
-		<a class="carousel-control-next" href="#main_slider" role="button" data-slide="next">
-		  <i class="fa fa-angle-right"></i>
+		<a class="carousel-control-next" href="#yourCarouselId" role="button" data-slide="next">
+		  <span class="carousel-control-next-icon" aria-hidden="true"></span>
+		  <span class="sr-only">Next</span>
 		</a>
+	  	</div>
+	  
 	  </div>
 	</div>
   </div>

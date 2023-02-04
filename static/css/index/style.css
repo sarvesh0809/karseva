@@ -419,9 +419,7 @@ button {
 .box_section:hover .lorem_text{
     color: #ffffff;
 }
-/* .box_section:hover .tiles_img_1{
-    background-image: url(../images/carpet-img2.png);
-} */
+
 .box_section.active{
     background-color: #89cbeb;
     border: 1px solid #89cbeb;
@@ -431,16 +429,12 @@ button {
     max-width: 50%;
     margin: 0 auto;
     text-align: center;
-   
-   
     background-repeat: no-repeat;
 }
 .tiles_img_1 {
     max-width: 50%;
     margin: 0 auto;
     text-align: center;
-   
-   
     background-repeat: no-repeat;
 }
 .tile_text{
@@ -651,7 +645,7 @@ button {
     font-weight: bold;
     text-transform: uppercase;
     text-align: center;
-    margin-left: -2.2rem;
+    
 }
 .dummy_text{
     width: 100%;
@@ -1020,6 +1014,6 @@ textarea#comment::placeholder {
     display: none !important;
 }
 
-/* .advocateImage {
-    width: 17rem;
-} */
+.advocateImage {
+    max-width: 50%;
+} 

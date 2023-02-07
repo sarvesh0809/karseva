@@ -1,5 +1,6 @@
 
 {% load static %}
+
 <style>
 .services{
   border: none;
@@ -23,8 +24,16 @@
 	width: 1.5rem;
 	height: 1.5rem;
   }
-  
-  
+.fa-chevron-right{
+	margin-top: 1em;
+}
+.lorem_text{
+	margin: 0 !important;
+}
+.box_section {
+	height: 30rem !important;
+	overflow: hidden;
+}
 @media screen and (min-width: 577px) {
   .cards-wrapper {
     display: flex;
@@ -48,14 +57,16 @@
   max-width: 100%;
   max-height: 100%;
 }
-
+.carousel-indicators li {
+	background-color: rgba(20, 12, 85, 0.5);
+}
 </style>
 
 
 <div class="services_section layout_padding">
 	<div class="container">
 	  <h1 class="services_taital"><span>Our </span><span style="color: #1f1f1f">Services</span></h1>
-	  <p class="services_text">Consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</p>
+	  <p class="services_text">At Karseva, we understand that aging can be a challenge - so why not make it easier? Whether you need help with grocery shopping, scheduling appointments, keeping up with the family or just want someone to talk to or a company to go on a walk, we are here to lend a helping hand. From errands to companionship and beyond, we've got your elderly loved ones covered! Let us show you:</p>
 	  <div id="yourCarouselId" class="carousel slide" data-ride="carousel">
 		<!-- Indicators -->
 		<ol class="carousel-indicators">

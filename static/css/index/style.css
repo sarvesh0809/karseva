@@ -333,13 +333,14 @@ button {
     float: left;
 }
 .contact_bt a{
-    width: 170px;
     float: left;
-    font-size: 16px;
+    font-size: 20px;
     color: #f8fdfe;
+    font-weight: bolder;
+    letter-spacing: 3px;
 }
 .contact_bt a:hover{
-    color: #181919;
+    color: #e4bd52;
 }
 .contact_padding{
     padding-left: 15px;
@@ -452,6 +453,7 @@ button {
     color: #000000;
     margin-left: 0px;
     font-weight: 500;
+    font-family: verdana;
 }
 .tile_text.active {
     color: #ffffff;
@@ -555,6 +557,7 @@ button {
 }
 .choose_box{
     width: 100%;
+    
     /* float: left; */
     border: 1px solid #90ceec;
 }

@@ -197,10 +197,10 @@ body { padding-right: 0 !important }
 }
 .switch-button-case {
   display: inline-block;
-  background: none;
+  background: rgba(199, 189, 189, 0.468);
   width: 49%;
   height: 100%;
-  color: white;
+  color: black;
   position: relative;
   border: none;
   transition: 0.3s ease all;
@@ -227,16 +227,9 @@ body { padding-right: 0 !important }
   transition: 0.3s ease-out all;
 }
 .switch-button .active-case {
-  color: #151515;
-  /* box-shadow:
-    inset 0 0 50px #fff,     
-    inset 20px 0 80px #f0f,  
-    inset -20px 0 80px #0ff, 
-    inset 20px 0 300px #f0f, 
-    inset -20px 0 300px #0ff,
-    0 0 50px #fff,           
-    -10px 0 80px #f0f,       
-    10px 0 80px #0ff;    */
+  color: rgb(0, 0, 0);
+  background-color: rgb(233, 233, 63);
+  box-shadow: 0px 0px 18px 7px #27291a;
 }
 
 .signature {
@@ -329,13 +322,7 @@ body { padding-right: 0 !important }
                                     <button type="button"  class="switch-button-case left active-case">User</button>
                                     <button type="button"  class="switch-button-case right">Volunteer</button>
                                 </div>
-								<!-- <input type="radio" name="logintype" id="yes" checked />
-                                <input type="radio" name="logintype" id="no"/>
-                                <div class="switch">
-                                    <label for="yes">User</label>
-                                    <label for="no">Volunteer</label>
-                                    <span></span>
-                                </div> -->
+								
                               
 							</div>
 						</div>

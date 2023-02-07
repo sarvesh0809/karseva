@@ -46,7 +46,7 @@ def ALL_Volunteers(request):
     }
     return render(request, 'admin/ALL_Volunteers.html', context)
 
-
+@login_required(login_url='login')
 def user_profile_edit(request):
     response_data={}
     try:
@@ -81,7 +81,7 @@ def user_profile_edit(request):
         response_data['message'] = 400
     return HttpResponse(json.dumps(response_data), content_type="application/json")
 
-
+@login_required(login_url='login')
 def volunteer_profile_edit(request):
     response_data={}
     try:

@@ -111,7 +111,7 @@ def user_view_request_submit(request,pk):
 
     return HttpResponse(json.dumps(response_data), content_type="application/json")
 
-
+@login_required(login_url='login')
 def user_profile_submit(request):
     response_data={}
     try:

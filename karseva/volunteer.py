@@ -103,6 +103,7 @@ def volunteer_view_request_submit(request,pk):
 
     return HttpResponse(json.dumps(response_data), content_type="application/json")
 
+@login_required(login_url='login')
 def volunteer_profile_submit(request):
     response_data={}
     try:
@@ -156,6 +157,7 @@ def volunteer_profile_submit(request):
     return HttpResponse(json.dumps(response_data), content_type="application/json")
 
 
+@login_required(login_url='login')
 def volunteer_procure_submit(request):
     response_data={}
     try:
@@ -174,7 +176,7 @@ def volunteer_procure_submit(request):
     return HttpResponse(json.dumps(response_data), content_type="application/json")
 
 
-
+@login_required(login_url='login')
 def volunterr_otp_submit(request):
     response_data={}
     try:

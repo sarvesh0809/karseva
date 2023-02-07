@@ -1,0 +1,152 @@
+
+{% load static %}
+
+<style>
+.services{
+  border: none;
+  border-radius: 0;
+  box-shadow: 2px 6px 8px 0 rgba(22, 22, 26, 0.18);
+}
+.carousel-inner {
+	padding: 1em;
+  }
+  .carousel-control-prev,
+  .carousel-control-next {
+	background-color: #367d99;
+	width: 6vh;
+	height: 6vh;
+	border-radius: 50%;
+	top: 70%;
+	transform: translateY(-50%);
+  }
+  .carousel-control-prev span,
+  .carousel-control-next span {
+	width: 1.5rem;
+	height: 1.5rem;
+  }
+  
+  
+@media screen and (min-width: 577px) {
+  .cards-wrapper {
+    display: flex;
+  }
+  .services{
+    margin: 0 0.5em;
+    width: calc(100% / 2);
+  }
+  .image-wrapper {
+    height: 20vw;
+    margin: 0 auto;
+  }
+}
+@media screen and (max-width: 576px) {
+  .card:not(:first-child) {
+    display: none;
+  }
+} 
+
+.image-wrapper img {
+  max-width: 100%;
+  max-height: 100%;
+}
+.carousel-indicators li {
+	background-color: rgba(20, 12, 85, 0.5);
+}
+</style>
+
+
+<div class="services_section layout_padding">
+	<div class="container">
+	  <h1 class="services_taital"><span>Our </span><span style="color: #1f1f1f">Services</span></h1>
+	  <p class="services_text">Consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</p>
+	  <div id="yourCarouselId" class="carousel slide" data-ride="carousel">
+		<!-- Indicators -->
+		<ol class="carousel-indicators">
+		  <li data-target="#yourCarouselId" data-slide-to="0" class="active"></li>
+		  <li data-target="#yourCarouselId" data-slide-to="1"></li>
+		  <li data-target="#yourCarouselId" data-slide-to="2" ></li>
+		  <li data-target="#yourCarouselId" data-slide-to="3"></li>
+		  <li data-target="#yourCarouselId" data-slide-to="4" ></li>
+		 
+		  <!-- Add more indicators as needed -->
+		</ol>
+	  
+		<!-- Slides -->
+		<div class="carousel-inner">
+			<div class="carousel-item active">
+				<div class="row">
+					<div class="col-md-6">
+						<div class="box_section active">
+							<div class="tiles_img_1"><img src="{% static 'images/index/service1.png' %}" alt="" /></div>
+							<h3 class="tile_text active">Health Related</h3>
+							<p class="lorem_text active"><i class="fa fa-chevron-right" aria-hidden="true"></i> &nbsp Doctor's Appointment and visits <br><i class="fa fa-chevron-right" aria-hidden="true"></i> &nbsp Medicine Procurement <br><i class="fa fa-chevron-right" aria-hidden="true"></i> &nbsp Lab Tests assistance <br><br></p>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="carousel-item ">
+				<div class="row">
+					<div class="col-md-6">
+						<div class="box_section">
+							<div class="tiles_img_1"><img src="{% static 'images/index/service2.png' %}" alt="" /></div>
+							<h3 class="tile_text">Daily Needs</h3> 
+							<p class="lorem_text"><i class="fa fa-chevron-right" aria-hidden="true"></i> &nbsp Grocery Support <br> <i class="fa fa-chevron-right" aria-hidden="true"></i> &nbsp Home Maintenance  <br><br></p>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+
+			<div class="carousel-item ">
+				<div class="row">
+					<div class="col-md-6">
+						<div class="box_section ">
+							<div class="tiles_img_1"><img src="{% static 'images/index/service3.png' %}" alt="" /></div>
+							<h3 class="tile_text">Information and Guidance</h3>
+							<p class="lorem_text"><i class="fa fa-chevron-right" aria-hidden="true"></i> &nbsp Assistance for official and legal documentation work <br><i class="fa fa-chevron-right" aria-hidden="true"></i> &nbsp Aadhaar/Passport/Pan Card/Official Certificates <br> <i class="fa fa-chevron-right" aria-hidden="true"></i> &nbsp Technology and Appliances assistance (Usage of Computer/Tablets/Smartphones etc.)  </p>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="carousel-item ">
+				<div class="row">
+					<div class="col-md-6">
+						<div class="box_section">
+							<div class="tiles_img_1"><img src="{% static 'images/index/service4.png' %}" alt="" /></div>
+							<h3 class="tile_text">Physiological Support</h3>
+							<p class="lorem_text"><i class="fa fa-chevron-right" aria-hidden="true"></i> &nbsp Emotional Support   <br><i class="fa fa-chevron-right" aria-hidden="true"></i> &nbsp Spend free time (Chit-chat/Watching TV/Playing Games) <br><i class="fa fa-chevron-right" aria-hidden="true"></i> &nbsp Walk with me (visit to a nearby parks/places)  <br><br> </p>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="carousel-item ">
+				<div class="row">
+					<div class="col-md-6">
+						<div class="box_section ">
+							<div class="tiles_img_1"><img src="{% static 'images/index/service5.png' %}" alt="" /></div>
+							<h3 class="tile_text">Unique Moments</h3>
+							<p class="lorem_text"><i class="fa fa-chevron-right" aria-hidden="true"></i> &nbsp Organizing Events/Small Outings/Get Together with family, relatives and friends <br><br><br><br></p>
+				  
+						</div>
+					</div>	
+				</div>
+			</div>
+		  
+		  <!-- Add more slides as needed -->
+		</div>
+	  
+		<!-- Controls -->
+		<a class="carousel-control-prev" href="#yourCarouselId" role="button" data-slide="prev">
+		  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+		  <span class="sr-only">Previous</span>
+		</a>
+		<a class="carousel-control-next" href="#yourCarouselId" role="button" data-slide="next">
+		  <span class="carousel-control-next-icon" aria-hidden="true"></span>
+		  <span class="sr-only">Next</span>
+		</a>
+	  	</div>
+	  
+	  </div>
+	</div>
+  </div>

@@ -2,6 +2,11 @@
 {% block title %} Karseva {% endblock %}
 {% block index %}
 {% load static %}
+<style>
+  .card2{height: 28rem;
+    overflow: hidden;}
+ 
+</style>
 <!-- style css -->
 <link rel="stylesheet" type="text/css" href="{% static 'css/index/style.css' %}">
 <!-- Responsive-->
@@ -66,7 +71,9 @@
       </div>
       <div class="col-md-6">
         <h1 class="services_taital"><span>About </span> <img src="{% static 'images/index/karseva_icon2.png' %}"> <span style="color: #1f1f1f">Karseva</span></h1>
-        <p class="ipsum_text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam</p>
+        <p class="ipsum_text">Karseva is a movement to support the elderly and make sure they are taken care of as they age. We are advocates dedicated to bridging the gap between the elderly and young adults who want to share a bit of their time and energy. By becoming a Karseva advocate, you can help make the world a safer place for our beloved seniors. 
+          So what are you waiting for? Be part of a movement that not only helps our aging parents and grandparents but also brings generations together in harmony.
+          </p>
         <div class="contact_bt_1"><a href="#">READ MORE<span class="contact_padding"><img src="{% static 'images/index/contact-icon1.png' %}"></span></a></div>
       </div>
     </div>
@@ -78,7 +85,7 @@
 <div class="choose_section layout_padding">
   <div class="container">
     <h1 class="choose_taital"><span>Why </span> <img src="{% static 'images/index/karseva_icon.png' %}"> <span style="color: #1f1f1f">Choose Us</span></h1>
-    <p class="choose_text">Consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</p>
+    <p class="ipsum_text">At Karseva, we don't just deliver helpful services - we deliver the human touch. We understand that elderly care is not about replacing people with machines and technology; it's about giving them the support and companionship they need. We stand out because we believe in taking every measure possible to ensure your safety and comfort. Our volunteers go through an extensive background verification process and are hand-picked and matched with customers based on their interests and specific needs.</p>
     
     <div class="choose_section_2 layout_padding">
       <div class="row">
@@ -108,7 +115,7 @@
         </div>
       </div>
       <div class="image_3"><img src="{% static 'images/index/karseva-whychooseus.jpg' %}"></div>
-      <div class="get_bt"><a href="#">Get A quote</a></div>
+      <div class="get_bt"><a href="#">Give us a call</a></div>
     </div>
   </div>
 </div>
@@ -118,28 +125,28 @@
   <div class="row">
     <h1 class="choose_taital"><span>Our </span><span style="color: #1f1f1f">Team</span></h1>
     <div class="col-lg-3 col-sm-6">
-      <div class="choose_box" >
+      <div class="choose_box card2" >
         <div><img class="advocateImage"src="{% static 'images/index/team-2.png' %}"></div>
         <div >
-          <h2 class="consectetur_text">Advocate</h2>
+          <h2 class="consectetur_text">Volunteer (Karseva advocate)</h2>
           <p class="choose_text">As an advocate of Karseva, you get the chance to give back to those who gave us so much. Our advocates are our most valuable resources who make sure our elders have access to services and assistance they need.</p>
         </div>
       </div>
     </div>
     <div class="col-lg-3 col-sm-6">
-      <div class="choose_box" >
+      <div class="choose_box card2" >
         <div><img class="advocateImage"src="{% static 'images/index/team-4.png' %}"></div>
         <div >
-          <h2 class="consectetur_text">Coordinator</h2>
+          <h2 class="consectetur_text">Coordinator's</h2>
           <p class="choose_text">Coordinators are the bridge between Karseva advocates and customers. They make sure that the connection between volunteers and customers is as strong as ever, enabling effective communication and relationship building. By fostering strong customer relationships, they help to ensure that both sides can have a great experience with Karseva.</p>
         </div>
       </div>
     </div>
     <div class="col-lg-3 col-sm-6">
-      <div class="choose_box" >
+      <div class="choose_box card2" >
         <div><img class="advocateImage"src="{% static 'images/index/team-2.png' %}"></div>
         <div >
-          <h2 class="consectetur_text">Volunteer</h2>
+          <h2 class="consectetur_text">Administrators/Support</h2>
           <p class="choose_text">Have questions or need help?  Have no fear!
             Our admins are the linchpin that hold the Karseva initiative together. Our friendly administrators are always here to provide assistance. Whether it's technical support, organizational advice, or simply providing direction and control of your Karseva objective - our team has got you covered. Don't hesitate to reach out if you encounter any problems along the way.</p>
         </div>
@@ -304,10 +311,10 @@
         <div class="location_text"><a href="#"><img src="{% static 'images/index/map-icon.png' %}"><span class="padding_left_15">Locations</span></a></div>
       </div>
       <div class="footer_left">
-        <div class="location_text"><a href="#"><img src="{% static 'images/index/call-icon.png' %}"><span class="padding_left_15">+71 9876543210</span></a></div>
+        <div class="location_text"><a href="#"><img src="{% static 'images/index/call-icon.png' %}"><span class="padding_left_15">+91 9876543210</span></a></div>
       </div>
       <div class="footer_left">
-        <div class="location_text"><a href="#"><img src="{% static 'images/index/mail-icon.png' %}"><span class="padding_left_15">demo@gmail.com</span></a></div>
+        <div class="location_text"><a href="#"><img src="{% static 'images/index/mail-icon.png' %}"><span class="padding_left_15">support@karseva.co.in</span></a></div>
       </div>
     </div>
     <div class="contact_section">

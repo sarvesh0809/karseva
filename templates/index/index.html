@@ -16,7 +16,7 @@
   <div class="container-fluid">
     <div class="row">
       <div class="col-md-3">
-        <div class="logo"><a href="index.html"><h1 style="font-family: Verdana, Geneva, Tahoma, sans-serif;font-weight: bold;color: aliceblue;">KARSEVA</h1></a></div>
+        <div class="logo"><a href="index.html"><img src="{% static 'images/index/karseva_logo.png' %}"></a></div>
       </div>
       <div class="col-md-9">
         <div class="menu_text">
@@ -70,7 +70,7 @@
         <div><img src="{% static 'images/index/karseva-about.png' %}" class="image_2"></div>
       </div>
       <div class="col-md-6">
-        <h1 class="services_taital"><span>About </span> <img src="{% static 'images/index/karseva_icon2.png' %}"> <span style="color: #1f1f1f">Karseva</span></h1>
+        <h1 class="services_taital" style="text-align: center;"><span>About </span> <img src="{% static 'images/index/karseva_icon2.png' %}"> <span style="color: #1f1f1f"></span>Karseva</span></h1>
         <p class="ipsum_text">Karseva is a movement to support the elderly and make sure they are taken care of as they age. We are advocates dedicated to bridging the gap between the elderly and young adults who want to share a bit of their time and energy. By becoming a Karseva advocate, you can help make the world a safer place for our beloved seniors. 
           So what are you waiting for? Be part of a movement that not only helps our aging parents and grandparents but also brings generations together in harmony.
           </p>
@@ -84,7 +84,7 @@
 <!-- choose section start -->
 <div class="choose_section layout_padding">
   <div class="container">
-    <h1 class="choose_taital"><span>Why </span> <img src="{% static 'images/index/karseva_icon.png' %}"> <span style="color: #1f1f1f">Choose Us</span></h1>
+    <h1 class="services_taital" style="text-align: center;"><span>Why </span> <img src="{% static 'images/index/karseva_icon.png' %}"> <span style="color: #1f1f1f">Choose Us</span></h1>
     <p class="ipsum_text">At Karseva, we don't just deliver helpful services - we deliver the human touch. We understand that elderly care is not about replacing people with machines and technology; it's about giving them the support and companionship they need. We stand out because we believe in taking every measure possible to ensure your safety and comfort. Our volunteers go through an extensive background verification process and are hand-picked and matched with customers based on their interests and specific needs.</p>
     
     <div class="choose_section_2 layout_padding">
@@ -126,29 +126,33 @@
     <h1 class="choose_taital"><span>Our </span><span style="color: #1f1f1f">Team</span></h1>
     <div class="col-lg-3 col-sm-6">
       <div class="choose_box card2" >
-        <div><img class="advocateImage"src="{% static 'images/index/team-2.png' %}"></div>
+        <div><img class="advocateImage"src="{% static 'images/index/karseva_volunteer.png' %}"></div>
         <div >
           <h2 class="consectetur_text">Volunteer (Karseva advocate)</h2>
           <p class="choose_text">As an advocate of Karseva, you get the chance to give back to those who gave us so much. Our advocates are our most valuable resources who make sure our elders have access to services and assistance they need.</p>
+          
         </div>
       </div>
     </div>
     <div class="col-lg-3 col-sm-6">
       <div class="choose_box card2" >
-        <div><img class="advocateImage"src="{% static 'images/index/team-4.png' %}"></div>
+        <div><img class="advocateImage"src="{% static 'images/index/karseva_coordinator.png' %}"></div>
         <div >
           <h2 class="consectetur_text">Coordinator's</h2>
           <p class="choose_text">Coordinators are the bridge between Karseva advocates and customers. They make sure that the connection between volunteers and customers is as strong as ever, enabling effective communication and relationship building. By fostering strong customer relationships, they help to ensure that both sides can have a great experience with Karseva.</p>
+          
         </div>
       </div>
     </div>
     <div class="col-lg-3 col-sm-6">
       <div class="choose_box card2" >
         <div><img class="advocateImage"src="{% static 'images/index/team-2.png' %}"></div>
-        <div >
+        <div>
           <h2 class="consectetur_text">Administrators/Support</h2>
           <p class="choose_text">Have questions or need help?  Have no fear!
             Our admins are the linchpin that hold the Karseva initiative together. Our friendly administrators are always here to provide assistance. Whether it's technical support, organizational advice, or simply providing direction and control of your Karseva objective - our team has got you covered. Don't hesitate to reach out if you encounter any problems along the way.</p>
+           
+           
         </div>
       </div>
     </div>
@@ -160,8 +164,8 @@
   </div>
 </div>
 </center>
-<!-- team section start -->
-<!-- <div class="team_section layout_padding">
+ <!-- team section start -->
+<!--<div class="team_section layout_padding">
   <div class="container">
     <h1 class="choose_taital"><span>Our </span><span style="color: #1f1f1f">Team</span></h1>
     </div>
@@ -177,16 +181,13 @@
         <div class="images_main_1">
           <div class="row">
             <div class="col-sm-5">
-              <div class="image_4"><img src="{% static 'images/index/karseva_volunteer.png' %}"></div>
-              <h6 class="follow_text">Follow Us</h6>
-              <div class="follow_social_icon">
-                <ul>
-                  <li><a href="#"><img src="{% static 'images/social-icons/fb-icon.png' %}"></a></li>
-                  <li><a href="#"><img src="{% static 'images/social-icons/twitter-icon.png' %}"></a></li>
-                  <li><a href="#"><img src="{% static 'images/social-icons/linkden-icon.png' %}"></a></li>
-                  <li><a href="#"><img src="{% static 'images/social-icons/instagram-icon.png' %}"></a></li>
-                </ul>
+              <div><img class="advocateImage"src="{% static 'images/index/team-2.png' %}"></div>
+              <div >
+                <h2 class="consectetur_text">Volunteer (Karseva advocate)</h2>
+                <p class="choose_text">As an advocate of Karseva, you get the chance to give back to those who gave us so much. Our advocates are our most valuable resources who make sure our elders have access to services and assistance they need.</p>
               </div>
+              <h6 class="follow_text">Follow Us</h6>
+              
             </div>
             <div class="col-sm-7">
               <h2 class="consectetur_text">Volunteer</h2>
@@ -203,14 +204,7 @@
             <div class="col-sm-5">
               <div class="image_4"><img src="{% static 'images/index/karseva_coordinator.png' %}"></div>
               <h6 class="follow_text">Follow Us</h6>
-              <div class="follow_social_icon">
-                <ul>
-                  <li><a href="#"><img src="{% static 'images/social-icons/fb-icon.png' %}"></a></li>
-                  <li><a href="#"><img src="{% static 'images/social-icons/twitter-icon.png' %}"></a></li>
-                  <li><a href="#"><img src="{% static 'images/social-icons/linkden-icon.png' %}"></a></li>
-                  <li><a href="#"><img src="{% static 'images/social-icons/instagram-icon.png' %}"></a></li>
-                </ul>
-              </div>
+             
             </div>
           </div>
         </div>
@@ -219,14 +213,7 @@
             <div class="col-sm-5">
               <div class="image_4"><img src="{% static 'images/index/karseva_administator.png' %}"></div>
               <h6 class="follow_text">Follow Us</h6>
-              <div class="follow_social_icon">
-                <ul>
-                  <li><a href="#"><img src="{% static 'images/social-icons/fb-icon.png' %}"></a></li>
-                  <li><a href="#"><img src="{% static 'images/social-icons/twitter-icon.png' %}"></a></li>
-                  <li><a href="#"><img src="{% static 'images/social-icons/linkden-icon.png' %}"></a></li>
-                  <li><a href="#"><img src="{% static 'images/social-icons/instagram-icon.png' %}"></a></li>
-                </ul>
-              </div>
+              
             </div>
             <div class="col-sm-7">
               <h2 class="consectetur_text">Administrator</h2>
@@ -238,50 +225,8 @@
       </div>
     </div>
   </div>
-</div> -->
-<!-- team section start -->
+</div>  -->
 
-
-<!-- team section new start -->
-<!-- <div class="container-fluid py-6 px-5">
-  <div class="text-center mx-auto mb-5" style="max-width: 600px;">
-      <h1 class="display-5 mb-0">Our Team Members</h1>
-      <hr class="w-25 mx-auto bg-primary">
-  </div>
-  <div class="row g-5">
-      <div class="col-lg-4">
-          <div class="team-item position-relative overflow-hidden">
-              <img class="img-fluid w-100" src="{% static 'images/index/team-2.png' %}" alt="">
-              <div class="team-text w-100 position-absolute top-50 text-center bg-primary p-4">
-                  <h3 class="text-white">Volunteer (Karseva advocate)</h3>
-                  <p class="text-white text-uppercase mb-0">As an advocate of Karseva, you get the chance to give back to those who gave us so much. Our advocates are our most valuable resources who make sure our elders have access to services and assistance they need.</p>
-              </div>
-          </div>
-      </div>
-      <div class="col-lg-4">
-          <div class="team-item position-relative overflow-hidden">
-              <img class="img-fluid w-100" src="{% static 'images/index/team-5.jpg' %}" alt="">
-              <div class="team-text w-100 position-absolute top-50 text-center bg-primary p-4">
-                  <h3 class="text-white">Coordinators </h3>
-                  <p class="text-white text-uppercase mb-0">Coordinators are the bridge between Karseva advocates and customers. They make sure that the connection between volunteers and customers is as strong as ever, enabling effective communication and relationship building. By fostering strong customer relationships, they help to ensure that both sides can have a great experience with Karseva.</p>
-              </div>
-          </div>
-      </div>
-      <div class="col-lg-4">
-          <div class="team-item position-relative overflow-hidden">
-              <img class="img-fluid w-100" src="{% static 'images/index/team-4.png' %}" alt="">
-              <div class="team-text w-100 position-absolute top-50 text-center bg-primary p-4">
-                  <h3 class="text-white">Administrators/Support</h3>
-                  <p class="text-white text-uppercase mb-0">Have questions or need help?  Have no fear!
-                    Our admins are the linchpin that hold the Karseva initiative together. Our friendly administrators are always here to provide assistance. Whether it's technical support, organizational advice, or simply providing direction and control of your Karseva objective - our team has got you covered. Don't hesitate to reach out if you encounter any problems along the way.
-                    </p>
-              </div>
-          </div>
-      </div>
-  </div>
-</div> -->
-
-<!-- team section new end -->
 <!-- newsletter section start -->
 <div class="newsletter_section">
   <div class="container">

@@ -407,10 +407,12 @@ button {
 .box_section {
     width: 100%;
     float: left;
+    background-color: #89cbeb;
+    
     border: 1px solid #d0d0d0;
     padding: 30px 20px 0px 20px;
 }
-.box_section:hover{
+/* .box_section:hover{
     background-color: #89cbeb;
     border: 1px solid #89cbeb;
 }
@@ -424,7 +426,7 @@ button {
 .box_section.active{
     background-color: #89cbeb;
     border: 1px solid #89cbeb;
-}
+} */
 
 .tiles_img {
     max-width: 50%;
@@ -442,7 +444,7 @@ button {
     width: 100%;
     float: left;
     font-size: 30px;
-    color: #2d2d2c;
+    color: #ffffff;
     text-align: center;
     font-weight: 500;
 }
@@ -450,7 +452,7 @@ button {
     width: 100%;
     float: left;
     font-size: large;
-    color: #000000;
+    color: #ffffff;
     margin-left: 0px;
     font-weight: 500;
     font-family: verdana;

@@ -224,8 +224,9 @@ button {
     background-repeat:no-repeat;
 }
 .logo {
-    margin-top: 17%;
-    width: 60%
+    
+    width: 30%;
+    padding-top: 4px;
    
 }
 .menu_main {

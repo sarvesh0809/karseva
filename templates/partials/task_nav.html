@@ -13,7 +13,7 @@
 <!-- Dashboard -->
 <div class="d-flex flex-column flex-lg-row h-lg-full bg-surface-secondary">
     <nav class="navbar show navbar-vertical h-lg-screen navbar-expand-lg px-0 py-3 navbar-light bg-white border-bottom border-bottom-lg-0 border-end-lg" id="navbarVertical">
-        <div class="container-fluid" 
+        <div class="container-fluid" >
             <!-- Toggler -->
             
             <div style="display: flex;">
@@ -25,8 +25,6 @@
                 </div>
                 <br>
             </div>
-            
-            
             <!-- Collapse -->
             <div class="collapse navbar-collapse" id="sidebarCollapse">
                 <!-- Navigation -->
@@ -39,13 +37,13 @@
                     <li class="nav-item">
                         <a class="nav-link" href="/task_all_requests">
                             <i class="bi bi-chat"></i> View Tasks
-                            <span class="badge bg-soft-primary text-primary rounded-pill d-inline-flex align-items-center ms-auto">6</span>
+                            <span class="badge bg-soft-primary text-primary rounded-pill d-inline-flex align-items-center ms-auto">{{task}}</span>
                         </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="/task_complaints">
                             <i class="bi bi-chat"></i> View Complaints
-                            <span class="badge bg-soft-primary text-primary rounded-pill d-inline-flex align-items-center ms-auto">6</span>
+                            <span class="badge bg-soft-primary text-primary rounded-pill d-inline-flex align-items-center ms-auto">0</span>
                         </a>
                     </li>
                     

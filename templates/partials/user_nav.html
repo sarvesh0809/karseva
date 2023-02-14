@@ -10,6 +10,18 @@
     margin-right: 0 !important;
 }
 
+.logoimg{
+    width: 30px;
+    height: 30px;
+    margin-top: 11px;
+}
+@media screen and (max-width: 600px) {
+    .logoimg {
+        width: 23px;
+        height: 23px;
+        margin-top: 5px;
+    }
+  }
 
 </style>
 <!-- Dashboard -->
@@ -23,7 +35,7 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="col-md-4">
-                    <div ><a href="index.html" style="display: flex; "><h1>KAR</h1><img style="width: 30px; height: 30px;" src="{% static 'images/index/karseva_logo.png' %}"><h1>EVA</h1></a></div>
+                    <div ><a href="index.html" style="display: flex; "><h1>KAR</h1><img class="logoimg" src="{% static 'images/index/karseva_logo.png' %}"><h1>EVA</h1></a></div>
                 </div>
                 <br>
             </div>

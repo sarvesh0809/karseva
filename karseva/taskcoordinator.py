@@ -32,8 +32,11 @@ def task_view_page(request,pk):
 
 @login_required(login_url='login')
 def task_all_requests(request):
+    task = ServiceRequest.objects.filter(pincode__in=list(TaskCoordinatorPincode.objects.filter(coordinator=request.user).values_list('pincode',flat=True))).count()
+  
     context={
-        'services':ServiceRequest.objects.filter(pincode__in=list(TaskCoordinatorPincode.objects.filter(coordinator=request.user).values_list('pincode',flat=True))).order_by("-id")
+        'services':ServiceRequest.objects.filter(pincode__in=list(TaskCoordinatorPincode.objects.filter(coordinator=request.user).values_list('pincode',flat=True))).order_by("-id"),
+        'task': task
     }
     return render(request, 'taskcoordinator/task_all_requests.html', context)
 
